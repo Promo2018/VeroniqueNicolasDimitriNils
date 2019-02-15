@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/style.css")" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <header>
+        <h1> <a href="../Voyages/Index"> BoVoyages  </a> </h1><br />
+        <p> Utilisateur : @Session["email"] </p>
+        <ul id="liste">
+            <li class="actif"><a href="../Personnes/Index" id="courant">Clients</a></li>
+            <li><a href="../Dossiers/Index" id="courant">Dossiers</a></li>
+            <li><a href="../Voyages/Index" id="nouveau">Voyages</a></li>
+            <li><a href="../Assurances/Index" id="autre">Assurances</a></li>
+
+        </ul><br /><br />
+
+    </header>
+    <div id="main">
+        @RenderBody()
+    </div>
+    <footer>
+        <p> BoVoyages @DateTime.Now.Year </p>
+
+    </footer>
+</body>
+</html>

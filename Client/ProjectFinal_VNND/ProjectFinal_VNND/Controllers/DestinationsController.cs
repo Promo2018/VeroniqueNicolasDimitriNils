@@ -21,6 +21,21 @@ namespace ProjectFinal_VNND.Controllers
             return View(destinations.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Index(string continent, string pays, string region)
+        {
+
+            var destination = from s in db.Destinations
+                              select s;
+
+            if (!String.IsNullOrEmpty(continent) || !String.IsNullOrEmpty(pays) || !String.IsNullOrEmpty(region))
+            {
+                destination = destination.Where(s => s.continent.Contains(continent) && s.pays.Contains(pays) && s.region.Contains(region));
+            }
+
+            return View(destination.ToList());
+        }
+
         // GET: Destinations/Details/5
         public ActionResult Details(int? id)
         {

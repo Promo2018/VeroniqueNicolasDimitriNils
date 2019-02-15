@@ -21,6 +21,21 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Index(string nom, string prenom)
+        {
+
+            var personnes = from s in db.Personnes
+                            select s;
+
+            if (!String.IsNullOrEmpty(nom) || !String.IsNullOrEmpty(prenom))
+            {
+                personnes = personnes.Where(s => s.nom.Contains(nom) && s.prenom.Contains(prenom));
+            }
+
+            return View(personnes.ToList());
+        }
+
         // GET: Personnes/Details/5
         public ActionResult Details(int? id)
         {

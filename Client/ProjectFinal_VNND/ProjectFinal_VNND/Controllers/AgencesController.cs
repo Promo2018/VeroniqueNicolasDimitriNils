@@ -20,6 +20,22 @@ namespace ProjectFinal_VNND.Controllers
             return View(db.Agences.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Index(string nomAgence)
+        {
+
+            var agences = from s in db.Agences
+                          select s;
+
+            if (!String.IsNullOrEmpty(nomAgence))
+            {
+                agences = agences.Where(s => s.agence.Contains(nomAgence));
+            }
+
+
+            return View(agences.ToList());
+        }
+
         // GET: Agences/Details/5
         public ActionResult Details(int? id)
         {

@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<ProjectFinal_VNND.Models.Agences>
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 
 <html>
@@ -15,6 +11,15 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Rechercher: @Html.TextBox("nomAgence", "", new { placeholder = "Nom de l'agence ..." })
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </p>
+    }
+
     <table class="table">
         <tr>
             <th>
@@ -22,20 +27,23 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.agence)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.id_agence }) |
-                @Html.ActionLink("Details", "Details", new { id=item.id_agence }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.id_agence })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.agence)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id_agence }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id_agence }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id_agence })
+                </td>
+            </tr>
+        }
+
     </table>
+    <br />
+    <a href="/Voyages" id="autre"> Retour Voyages</a>
 </body>
 </html>

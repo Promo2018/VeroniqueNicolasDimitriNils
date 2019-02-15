@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<ProjectFinal_VNND.Models.Assurances>
 
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
 
@@ -15,6 +12,15 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Rechercher: @Html.TextBox("type", "", new { placeholder = "Type de l'assurance ..." })
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </p>
+    }
+
     <table class="table">
         <tr>
             <th>
@@ -28,26 +34,27 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.libelle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prix)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descriptif)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.id_assurance }) |
-                @Html.ActionLink("Details", "Details", new { id=item.id_assurance }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.id_assurance })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.libelle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prix)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descriptif)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id_assurance }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id_assurance }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id_assurance })
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>

@@ -20,6 +20,21 @@ namespace ProjectFinal_VNND.Controllers
             return View(db.Assurances.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Index(string type)
+        {
+
+            var assurances = from s in db.Assurances
+                            select s;
+
+            if (!String.IsNullOrEmpty(type))
+            {
+                assurances = assurances.Where(s => s.libelle.Contains(type));
+            }
+
+            return View(assurances.ToList());
+        }
+
         // GET: Assurances/Details/5
         public ActionResult Details(int? id)
         {

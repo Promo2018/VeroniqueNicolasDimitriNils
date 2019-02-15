@@ -21,6 +21,21 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers.ToList());
         }
 
+        [HttpPost]
+        public ActionResult Index(string nom, string prenom, string continent, string etat)
+        {
+
+            var dossier = from s in db.Dossiers.Include(d => d.Personnes).Include(d => d.Voyages)
+                          select s;
+
+            if (!String.IsNullOrEmpty(nom) || !String.IsNullOrEmpty(prenom) || !String.IsNullOrEmpty(continent) || !String.IsNullOrEmpty(etat))
+            {
+                dossier = dossier.Where(s => s.Personnes.nom.Contains(nom) && s.Personnes.prenom.Contains(prenom)
+                && s.Voyages.Destinations.continent.Contains(continent));
+            }
+            return View(dossier.ToList());
+        }
+
         // GET: Dossiers/Details/5
         public ActionResult Details(int? id)
         {
