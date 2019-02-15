@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ProjectFinal_VNND.Models.Dossiers>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.numero_carte_bancaire)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dernier_suivi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Raisons_Annulations.annulation_raison)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Etats_Dossiers.etat_dossier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Personnes.civilite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Voyages.id_voyage)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.numero_carte_bancaire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dernier_suivi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Raisons_Annulations.annulation_raison)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Etats_Dossiers.etat_dossier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Personnes.civilite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Voyages.id_voyage)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id_dossier }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id_dossier }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id_dossier })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

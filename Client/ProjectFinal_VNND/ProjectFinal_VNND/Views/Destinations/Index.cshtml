@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProjectFinal_VNND.Models.Destinations>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.region)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descriptif)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Continents.continent)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.pays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.region)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descriptif)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Continents.continent)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id_destination }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id_destination }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id_destination })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿@model ProjectFinal_VNND.Models.Voyages
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Voyages</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.date_aller)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.date_aller)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.date_retour)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.date_retour)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.places_disponibles)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.places_disponibles)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.tarif_tout_compris)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.tarif_tout_compris)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Agences.agence)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Agences.agence)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Destinations.continent)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Destinations.continent)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id_voyage }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

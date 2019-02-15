@@ -1,0 +1,74 @@
+﻿@model ProjectFinal_VNND.Models.Dossiers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Dossiers</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.numero_carte_bancaire)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.numero_carte_bancaire)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.dernier_suivi)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.dernier_suivi)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Raisons_Annulations.annulation_raison)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Raisons_Annulations.annulation_raison)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Etats_Dossiers.etat_dossier)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Etats_Dossiers.etat_dossier)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Personnes.civilite)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Personnes.civilite)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Voyages.id_voyage)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Voyages.id_voyage)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id_dossier }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ProjectFinal_VNND.Models.Voyages>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.date_aller)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date_retour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.places_disponibles)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tarif_tout_compris)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agences.agence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destinations.continent)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_aller)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_retour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.places_disponibles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tarif_tout_compris)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agences.agence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destinations.continent)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id_voyage }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id_voyage }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id_voyage })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

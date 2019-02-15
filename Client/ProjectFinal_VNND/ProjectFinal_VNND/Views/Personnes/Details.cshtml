@@ -1,0 +1,98 @@
+﻿@model ProjectFinal_VNND.Models.Personnes
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Personnes</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nom)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.nom)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.prenom)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.prenom)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.adresse)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.adresse)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.telephone)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.telephone)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.date_naissance)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.date_naissance)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.client)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.client)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.participant)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.participant)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Civilites.civilite)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Civilites.civilite)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id_personne }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
