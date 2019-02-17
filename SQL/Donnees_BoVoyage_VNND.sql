@@ -1,3 +1,5 @@
+--use northwind;
+use BoVoyage_VNND;
 
 --Agences
 
@@ -15,24 +17,24 @@ insert into Agences (agence) values ('Graham-Strosin');
 --Assurances
 
 insert into assurances (libelle, prix, descriptif) values ('Annulation', 1.1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum', 1, 'Mielichhoferia mielichhoferiana (Funck) Loeske var. mielichhoferiana');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum', 1, 'Wissadula amplissima (L.) R.E. Fries');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum', 1, 'Centaurium beyrichii (Torr. & A. Gray ex Torr.) B.L. Rob.');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum', 1, 'Pedicularis densiflora Benth. ex Hook. ssp. densiflora');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum', 1, 'Solanum dimidiatum Raf.');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum1', 1, 'Mielichhoferia mielichhoferiana (Funck) Loeske var. mielichhoferiana');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum2', 1, 'Wissadula amplissima (L.) R.E. Fries');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum3', 1, 'Centaurium beyrichii (Torr. & A. Gray ex Torr.) B.L. Rob.');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum4', 1, 'Pedicularis densiflora Benth. ex Hook. ssp. densiflora');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum5', 1, 'Solanum dimidiatum Raf.');
 
 --Destinations
 
 insert into Destinations (continent, pays, region, descriptif) values ('Asie', 'Indonesia', 'Caprifoliaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Amerique', 'Brazil', 'Scrophulariaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values ('Amerique du Sud', 'Brazil', 'Scrophulariaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
 insert into Destinations (continent, pays, region, descriptif) values ('Europe', 'Poland', 'Fagaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Amerique', 'Brazil', 'Hydrophyllaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values ('Amerique du Sud', 'Brazil', 'Hydrophyllaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
 insert into Destinations (continent, pays, region, descriptif) values ('Europe', 'Croatia', 'Apocynaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
 insert into Destinations (continent, pays, region, descriptif) values ('Asie', 'China', 'Asteraceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
 insert into Destinations (continent, pays, region, descriptif) values ('Europe', 'Portugal', 'Salicaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
 insert into Destinations (continent, pays, region, descriptif) values ('Asie', 'Russia', 'Asteraceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
 insert into Destinations (continent, pays, region, descriptif) values ('Asie', 'Indonesia', 'Rutaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Amerique', 'United States', 'Juncaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values ('Amerique du Nord', 'United States', 'Juncaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
 
 
 --Authentifications
@@ -76,43 +78,43 @@ insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissanc
 
 --Dossiers
 
---insert into Dossiers ([numero carte bancaire], [raison annulation], etat, voyage, [numero client], [dernier suivi]) values ('5448982854595582', NULL, 'acceptee', 36, 2, '2018-10-28');
---insert into Dossiers ([numero carte bancaire], [raison annulation], etat, voyage, [numero client], [dernier suivi]) values ('3582945378359752', 'Places Insuffisantes', 'en attente', 39, 9, '2019-01-29');
---insert into Dossiers ([numero carte bancaire], [raison annulation], etat, voyage, [numero client], [dernier suivi]) values ('3541934982748261', 'Client', 'en cours', 40, 8, '2019-01-28');
---insert into Dossiers ([numero carte bancaire], [raison annulation], etat, voyage, [numero client], [dernier suivi]) values ('374622547053370', NULL, 'acceptee', 40, 7, '2019-01-19');
---insert into Dossiers ([numero carte bancaire], [raison annulation], etat, voyage, [numero client], [dernier suivi]) values ('6331104585972999468', NULL, 'refusee', 38, 11, '2019-02-10');
---insert into Dossiers ([numero carte bancaire], [raison annulation], etat, voyage, [numero client], [dernier suivi]) values ('5610499123419866867', NULL, 'en attente', 35, 9, '2018-10-18');
---insert into Dossiers ([numero carte bancaire], [raison annulation], etat, voyage, [numero client], [dernier suivi]) values ('4017953356060', NULL, 'en cours', 35, 4, '2018-05-20');
---insert into Dossiers ([numero carte bancaire], [raison annulation], etat, voyage, [numero client], [dernier suivi]) values ('3549568678640606', NULL, 'acceptee', 36, 3, '2018-05-10');
---insert into Dossiers ([numero carte bancaire], [raison annulation], etat, voyage, [numero client], [dernier suivi]) values ('3587552955431577', 'Client', 'refusee', 32, 8, '2018-11-06');
---insert into Dossiers ([numero carte bancaire], [raison annulation], etat, voyage, [numero client], [dernier suivi]) values ('3588063986738492', NULL, 'en attente', 37, 3, '2018-12-16');
+insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('5448982854595582',  1, 2 );
+insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('3582945378359752', 2, 9);
+insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('3541934982748261', 3, 8);
+insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('374622547053370',  4, 7);
+insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('6331104585972999468', 5, 8);
+insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('5610499123419866867',  6, 9);
+insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('4017953356060',7, 4);
+insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('3549568678640606', 8, 3);
+insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('3587552955431577', 9, 8);
+insert into Dossiers ([numero carte bancaire],  voyage, [numero client] ) values ('3588063986738492', 10, 3);
 
 
-----[Liste Assurances]
+--[Liste Assurances]
 
---insert into [Liste Assurances] (assurance, dossier) values (3, 4);
---insert into [Liste Assurances] (assurance, dossier) values (3, 11);
---insert into [Liste Assurances] (assurance, dossier) values (1, 5);
---insert into [Liste Assurances] (assurance, dossier) values (1, 9);
---insert into [Liste Assurances] (assurance, dossier) values (1, 7);
---insert into [Liste Assurances] (assurance, dossier) values (3, 7);
---insert into [Liste Assurances] (assurance, dossier) values (3, 6);
---insert into [Liste Assurances] (assurance, dossier) values (2, 6);
---insert into [Liste Assurances] (assurance, dossier) values (4, 10);
---insert into [Liste Assurances] (assurance, dossier) values (2, 4);
+insert into [Liste Assurances] (assurance, dossier) values (3, 4);
+insert into [Liste Assurances] (assurance, dossier) values (3, 10);
+insert into [Liste Assurances] (assurance, dossier) values (1, 5);
+insert into [Liste Assurances] (assurance, dossier) values (1, 9);
+insert into [Liste Assurances] (assurance, dossier) values (1, 7);
+insert into [Liste Assurances] (assurance, dossier) values (3, 7);
+insert into [Liste Assurances] (assurance, dossier) values (3, 6);
+insert into [Liste Assurances] (assurance, dossier) values (2, 6);
+insert into [Liste Assurances] (assurance, dossier) values (4, 10);
+insert into [Liste Assurances] (assurance, dossier) values (2, 4);
 
 ----[Liste Participants]
 
---insert into [Liste Participants] (participant, dossier) values (9, 7);
---insert into [Liste Participants] (participant, dossier) values (8, 7);
---insert into [Liste Participants] (participant, dossier) values (2, 10);
---insert into [Liste Participants] (participant, dossier) values (7, 12);
---insert into [Liste Participants] (participant, dossier) values (4, 7);
---insert into [Liste Participants] (participant, dossier) values (11, 6);
---insert into [Liste Participants] (participant, dossier) values (5, 3);
---insert into [Liste Participants] (participant, dossier) values (5, 7);
---insert into [Liste Participants] (participant, dossier) values (10, 11);
---insert into [Liste Participants] (participant, dossier) values (7, 6);
+insert into [Liste Participants] (participant, dossier) values (9, 7);
+insert into [Liste Participants] (participant, dossier) values (8, 7);
+insert into [Liste Participants] (participant, dossier) values (2, 10);
+insert into [Liste Participants] (participant, dossier) values (7, 10);
+insert into [Liste Participants] (participant, dossier) values (4, 7);
+insert into [Liste Participants] (participant, dossier) values (10, 6);
+insert into [Liste Participants] (participant, dossier) values (5, 3);
+insert into [Liste Participants] (participant, dossier) values (5, 7);
+insert into [Liste Participants] (participant, dossier) values (10, 10);
+insert into [Liste Participants] (participant, dossier) values (7, 6);
 
 
 

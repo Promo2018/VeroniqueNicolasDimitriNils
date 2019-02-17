@@ -1,9 +1,9 @@
 
 --DROP DATABASE BoVoyage_VNND;
 --CREATE DATABASE BoVoyage_VNND;
---USE BoVoyage_VNND;
+USE BoVoyage_VNND;
+--use Northwind;
 /*
-
 DROP TABLE [Liste Participants];
 DROP TABLE [Liste Assurances];
 DROP TABLE Dossiers;
@@ -11,15 +11,29 @@ DROP TABLE [Etats Dossiers];
 DROP TABLE [Raisons Annulations];
 DROP TABLE Assurances;
 DROP TABLE Voyages;
+DROP TABLE Personnes;
 DROP TABLE Destinations;
 DROP TABLE Continents;
 DROP TABLE Agences;
-DROP TABLE Personnes;
 DROP TABLE Civilites;
 DROP TABLE Authentifications;
 DROP TABLE Statuts;
-
+DROP TABLE OuisNons;
 */
+
+------------------------TABLE OUI/NON ENUM POUR PERSONNES (client et participant) ----------------------------
+CREATE TABLE OuisNons(
+	id_ouinon int identity not null,
+	valeur NVARCHAR(3) UNIQUE NOT NULL, 
+	PRIMARY KEY (id_ouinon)
+);
+INSERT INTO OuisNons VALUES ('Non');
+INSERT INTO OuisNons VALUES ('Oui');
+
+update OuisNons set valeur='Non' where id_ouinon=1;
+update OuisNons set valeur='Oui' where id_ouinon=2;
+
+
 
 ------------------------TABLE GERANT ENUM POUR AUTHENTIFICATIONS----------------------------
 CREATE TABLE Statuts(
@@ -49,27 +63,28 @@ INSERT INTO Civilites (civilite) VALUES ('Mme');
 
 ------------------------TABLE PERSONNES-------------------------
 CREATE TABLE Personnes(
-    id_personne INT IDENTITY(1,1),
+    id_personne INT IDENTITY,
     civilite NVARCHAR(8) NOT NULL, --FK
-    nom NVARCHAR(32) NOT NULL,
     prenom NVARCHAR(32) NOT NULL,
+	nom NVARCHAR(32) NOT NULL,  
 	adresse NVARCHAR(230) NOT NULL,
 	telephone NVARCHAR(32) NOT NULL,  
 	[date naissance] DATE NOT NULL,
-	client INT, 
-	participant INT, 
+	client INT default 1, -- FK
+	participant INT default 1, --FK
 	email NVARCHAR(64) UNIQUE, -- à faire trigger pour contrainte non null si client true
 	PRIMARY KEY(id_personne)
 );
 
 ALTER TABLE Personnes ADD CONSTRAINT Fk_1Civilites FOREIGN KEY(civilite) REFERENCES Civilites(civilite);
-
+ALTER TABLE Personnes ADD CONSTRAINT Fk_Client FOREIGN KEY(client) REFERENCES OuisNons(id_ouinon);
+ALTER TABLE Personnes ADD CONSTRAINT Fk_Participant FOREIGN KEY(participant) REFERENCES OuisNons(id_ouinon);
 
 ------------------------TABLE AGENCES-------------------------------
 
 CREATE TABLE Agences(
-	id_agence INT IDENTITY(1,1),
-	agence NVARCHAR(64) NOT NULL,
+	id_agence INT IDENTITY,
+	agence NVARCHAR(64) NOT NULL unique,
 	PRIMARY KEY(id_agence)
 );
 
@@ -81,15 +96,15 @@ CREATE TABLE Continents(
 	PRIMARY KEY(continent)
 );
 INSERT INTO Continents (continent) VALUES ('Afrique');
-INSERT INTO Continents (continent) VALUES ('Amerique');
-INSERT INTO Continents (continent) VALUES ('Antarctique');
+INSERT INTO Continents (continent) VALUES ('Amerique du Nord');
+INSERT INTO Continents (continent) VALUES ('Amerique du Sud');
 INSERT INTO Continents (continent) VALUES ('Asie');
 INSERT INTO Continents (continent) VALUES ('Europe');
 INSERT INTO Continents (continent) VALUES ('Océanie');
 
 ------------------------TABLE DESTINATIONS----------------------
 CREATE TABLE Destinations(
-	id_destination INT IDENTITY(1,1),
+	id_destination INT IDENTITY,
 	continent NVARCHAR(16) NOT NULL, --FK
 	pays NVARCHAR(32) NOT NULL,
 	region NVARCHAR(32),
@@ -101,11 +116,11 @@ ALTER TABLE Destinations ADD CONSTRAINT Fk_2Continents FOREIGN KEY(continent) RE
 
 ------------------------TABLE VOYAGES---------------------------
 CREATE TABLE Voyages(
-	id_voyage INT IDENTITY(1,1),
+	id_voyage INT IDENTITY,
 	[date aller] DATE NOT NULL,
 	[date retour] DATE NOT NULL,
 	[places disponibles] INT NOT NULL,
-	[tarif tout compris] MONEY NOT NULL,
+	[tarif tout compris] decimal(19,4) NOT NULL,
 	agence INT NOT NULL, --FK
 	destination INT NOT NULL, --FK
 	PRIMARY KEY(id_voyage)
@@ -118,8 +133,8 @@ ALTER TABLE Voyages ADD CONSTRAINT Fk_4Agences FOREIGN KEY(agence) REFERENCES Ag
 ------------------------TABLE ASSURANCES--------------------------
 CREATE TABLE Assurances(
 	id_assurance INT IDENTITY(1,1),
-	libelle NVARCHAR(64) NOT NULL,
-	prix FLOAT NOT NULL,-- on mettra 1 pour les assurances non définies et un pourcentage supérieur à 1 qui multipliera le prix total du dossier
+	libelle NVARCHAR(64) NOT NULL unique,
+	prix FLOAT NOT NULL default 1,-- on mettra 1 pour les assurances non définies et un pourcentage supérieur à 1 qui multipliera le prix total du dossier
 	descriptif NVARCHAR(MAX),
 	PRIMARY KEY(id_assurance)
 );
@@ -136,29 +151,35 @@ INSERT INTO [Raisons Annulations] (annulation_raison) VALUES ('Places Insuffisan
 
 
 CREATE TABLE [Etats Dossiers](
-etat_dossier NVARCHAR(16)NOT NULL, --mettre quatre lignes 'enAttente' OR 'enCours' OR 'refusee' OR 'acceptee'
-PRIMARY KEY(etat_dossier)
+id_etat int identity not null,
+etat NVARCHAR(16)NOT NULL, --mettre quatre lignes 'enAttente' OR 'enCours' OR 'refusee' OR 'acceptee'
+PRIMARY KEY(id_etat)
 );
-INSERT INTO [Etats Dossiers] (etat_dossier) VALUES ('en attente');
-INSERT INTO [Etats Dossiers] (etat_dossier) VALUES ('en cours');
-INSERT INTO [Etats Dossiers] (etat_dossier) VALUES ('refusee');
-INSERT INTO [Etats Dossiers] (etat_dossier) VALUES ('acceptee');
+INSERT INTO [Etats Dossiers] (etat) VALUES ('en attente');
+INSERT INTO [Etats Dossiers] (etat) VALUES ('en cours');
+INSERT INTO [Etats Dossiers] (etat) VALUES ('refusé');
+INSERT INTO [Etats Dossiers] (etat) VALUES ('accepté');
+
+update [Etats Dossiers] set etat='En Attente' where id_etat=1;
+update [Etats Dossiers] set etat='En Cours' where id_etat=2;
+update [Etats Dossiers] set etat='Refusé' where id_etat=3;
+update [Etats Dossiers] set etat='Accepté' where id_etat=4;
 
 
 ------------------------TABLE DOSSIERS----------------------------
 CREATE TABLE Dossiers(
-	id_dossier INT IDENTITY(1,1),
+	id_dossier INT IDENTITY,
 	[numero carte bancaire] NVARCHAR(32) NOT NULL,
-	[raison annulation] NVARCHAR(32), --FK
-	etat NVARCHAR(16) NOT NULL, --FK
+	[raison annulation] NVARCHAR(32) default null, --FK
+	etat int NOT NULL default 1, --FK
 	voyage INT NOT NULL, --FK
 	[numero client] INT NOT NULL, --FK
-	[dernier suivi] DATE, ---- date dernier changement d'etat
+	[dernier suivi] DATE default getdate(), ---- date dernier changement d'etat
 	PRIMARY KEY(id_dossier)
 );
 
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_5Annulation FOREIGN KEY([raison annulation]) REFERENCES [Raisons Annulations](annulation_raison);
-ALTER TABLE Dossiers ADD CONSTRAINT Fk_6EtatDossier FOREIGN KEY(etat) REFERENCES [Etats Dossiers](etat_dossier);
+ALTER TABLE Dossiers ADD CONSTRAINT Fk_6EtatDossier FOREIGN KEY(etat) REFERENCES [Etats Dossiers](id_etat);
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_7Client FOREIGN KEY([numero client]) REFERENCES Personnes(id_personne);
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_8Voyage FOREIGN KEY(voyage) REFERENCES Voyages(id_voyage) ON DELETE CASCADE;
 
@@ -199,17 +220,3 @@ SELECT * FROM [Liste Assurances];
 SELECT * FROM [Liste Participants];
 
 
---################  EXEMPLE INSERT ##################
-
-
-----------------------------------------------------------------------------------------------------
-/*
-
-INSERT INTO Authentification (Email, MotdePasse, Statut) VALUES ('sodales.elit@elitdictum.com', CONVERT(varbinary,'2598lalala'),'Client');
-INSERT INTO Authentification (Email, MotdePasse, Statut) VALUES ('bibendum@elitEtiam.ca', CONVERT(varbinary,'pasmoipoix'),'commercial');
-INSERT INTO Authentification (Email, MotdePasse, Statut) VALUES ('pellentesque@sitametrisus.ca', CONVERT(varbinary,'cestamoi!!!'),'marketting');
-
-INSERT INTO Personnes(Civilite,Nom,Prenom,DateNaissance,Adresse,Telephone,Email,Client,Participant) VALUES('M','Beck','While''mina','17/02/2009','Ap #245-2016 Duis St.','0378588069','sodales.elit@elitdictum.com',0, 0);
-INSERT INTO Personnes(Civilite,Nom,Prenom,DateNaissance,Adresse,Telephone,Email,Client,Participant) VALUES('M','Chang','Meredith','09/12/1967','Ap #878-9210 Pharetra Av.','0692930681','bibendum@elitEtiam.ca',1, 0);
-INSERT INTO Personnes(Civilite,Nom,Prenom,DateNaissance,Adresse,Telephone,Email,Client,Participant) VALUES('M','Morrison','Joy','15/05/1946','P.O. Box 472, 8823 Etiam Avenue','0604220689','pellentesque@sitametrisus.ca',1, 0);
-*/
