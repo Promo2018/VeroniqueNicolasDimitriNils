@@ -52,16 +52,16 @@ insert into Authentifications (email, [mot de passe], statut) values ('dmoodie9@
 
 --Voyages
 
-insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('2019-09-21', '2020-02-02', 23, 264.36, 2, 7);
-insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('2019-04-26', '2020-02-29', 23, 415.01, 10, 10);
-insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('2020-01-27', '2019-11-23', 24, 515.83, 10, 9);
-insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('2019-07-04', '2019-04-30', 5, 436.94, 1, 8);
-insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('2019-05-07', '2019-08-13', 34, 347.22, 6, 4);
-insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('2019-05-04', '2019-12-18', 26, 405.45, 3, 2);
-insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('2019-07-27', '2020-01-20', 26, 450.03, 2, 10);
-insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('2019-10-08', '2019-07-07', 6, 445.74, 9, 6);
-insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('2019-09-02', '2020-01-12', 35, 612.01, 1, 1);
-insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('2019-04-01', '2019-06-16', 16, 277.89, 10, 5);
+insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('28/02/2019','29/03/2019',23, 264.36, 2, 7);
+insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('06/03/2019','23/04/2019',23, 415.01, 10, 10);
+insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('03/03/2019','15/06/2019',24, 515.83, 10, 9);
+insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('09/03/2019','05/06/2019',5, 436.94, 1, 8);
+insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('22/02/2019','16/05/2019',34, 347.22, 6, 4);
+insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('23/02/2019','17/05/2019',26, 405.45, 3, 2);
+insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('09/03/2019','17/03/2019',26, 450.03, 2, 10);
+insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('15/02/2019','18/05/2019',6, 445.74, 9, 6);
+insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('15/03/2019','09/06/2019',35, 612.01, 1, 1);
+insert into Voyages ([date aller], [date retour], [places disponibles], [tarif tout compris], agence, destination) values ('04/03/2019','03/04/2019',16, 277.89, 10, 5);
 
 --Personnes
 
