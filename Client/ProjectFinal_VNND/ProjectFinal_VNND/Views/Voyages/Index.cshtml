@@ -10,10 +10,6 @@
     <title>Index</title>
 </head>
 <body>
-    <ul>
-        <li class="actif"><a href="../Destinations/Index"> Destinations</a></li>
-        <li><a href="../Agences/Index" id="autre"> Agences</a></li>
-    </ul>
     <br />
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -52,7 +48,7 @@
                 @Html.DisplayNameFor(model => model.Agences.agence)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Destinations.continent)
+               Destination
             </th>
             <th></th>
         </tr>

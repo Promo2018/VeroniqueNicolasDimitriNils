@@ -2,6 +2,7 @@
 
 <html>
 <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="@Url.Content("~/Content/style.css")" type="text/css" />
@@ -10,15 +11,35 @@
 </head>
 <body>
     <header>
-        <h1> <a href="../Voyages/Index"> BoVoyages  </a> </h1><br />
-        <p> Utilisateur : @Session["email"] </p>
-        <ul id="liste">
-            <li class="actif"><a href="../Personnes/Index" id="courant">Clients</a></li>
-            <li><a href="../Dossiers/Index" id="courant">Dossiers</a></li>
-            <li><a href="../Voyages/Index" id="nouveau">Voyages</a></li>
-            <li><a href="../Assurances/Index" id="autre">Assurances</a></li>
+        <div class="row">
+            <div class="column">
+                <div class="container">
+                    <img src="../Content/entete.jpg" alt="Voyage" class="image" style="width:100%">
+                    <div class="middle">
+                        <div class="text"> <a href="../Voyages/Index">BoVoyage</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        </ul><br /><br />
+        <p id="p1">Utilisateur : @Session["email"]</p>
+        <nav>
+            <ul>
+                <li class="menu"><a href="../Assurances/Index">Assurances</a></li>
+                <li class="menu"><a href="../Dossiers/Index">Dossiers</a></li>                
+                <li class="menu">
+                    <a href="../Voyages/Index">Voyages</a>
+                    <ul class="submenu">
+                        <li class="subhover"><a href="../Agences/Index">Agences</a></li>
+                        <li class="subhover"><a href="../Destinations/Index">Destinations</a></li>
+                    </ul>
+                </li>
+                <li class="menu"><a href="../Personnes/Index">Clients</a></li>
+            </ul>
+        </nav>
+
+        <br />
+        <br />
 
     </header>
     <div id="main">

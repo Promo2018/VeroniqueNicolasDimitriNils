@@ -1,7 +1,5 @@
 ﻿@model ProjectFinal_VNND.Models.Personnes
 
-
-
 <!DOCTYPE html>
 
 <html>
@@ -15,19 +13,19 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.nom)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.nom)
-            </dd>
-    
-            <dt>
                 @Html.DisplayNameFor(model => model.prenom)
             </dt>
     
             <dd>
                 @Html.DisplayFor(model => model.prenom)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.nom)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.nom)
             </dd>
     
             <dt>
@@ -55,22 +53,6 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.client)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.client)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.participant)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.participant)
-            </dd>
-    
-            <dt>
                 @Html.DisplayNameFor(model => model.email)
             </dt>
     
@@ -84,6 +66,22 @@
     
             <dd>
                 @Html.DisplayFor(model => model.Civilites.civilite)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.OuisNons.valeur)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.OuisNons.valeur)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.OuisNons1.valeur)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.OuisNons1.valeur)
             </dd>
     
         </dl>

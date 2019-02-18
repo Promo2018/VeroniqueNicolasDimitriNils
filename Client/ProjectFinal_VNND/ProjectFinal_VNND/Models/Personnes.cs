@@ -23,8 +23,8 @@ namespace ProjectFinal_VNND.Models
     
         public int id_personne { get; set; }
         public string civilite { get; set; }
-        public string nom { get; set; }
         public string prenom { get; set; }
+        public string nom { get; set; }
         public string adresse { get; set; }
         public string telephone { get; set; }
         public System.DateTime date_naissance { get; set; }
@@ -35,6 +35,8 @@ namespace ProjectFinal_VNND.Models
         public virtual Civilites Civilites { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dossiers> Dossiers { get; set; }
+        public virtual OuisNons OuisNons { get; set; }
+        public virtual OuisNons OuisNons1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dossiers> Dossiers1 { get; set; }
     }

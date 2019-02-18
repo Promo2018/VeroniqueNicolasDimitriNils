@@ -24,7 +24,7 @@ namespace ProjectFinal_VNND.Models
         public int id_dossier { get; set; }
         public string numero_carte_bancaire { get; set; }
         public string raison_annulation { get; set; }
-        public string etat { get; set; }
+        public int etat { get; set; }
         public int voyage { get; set; }
         public int numero_client { get; set; }
         public Nullable<System.DateTime> dernier_suivi { get; set; }

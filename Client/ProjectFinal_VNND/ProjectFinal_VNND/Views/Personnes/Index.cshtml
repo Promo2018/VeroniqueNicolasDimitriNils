@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<ProjectFinal_VNND.Models.Personnes>
 
-
-
 <!DOCTYPE html>
 
 <html>
@@ -26,13 +24,10 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Civilites.civilite)
+                @Html.DisplayNameFor(model => model.prenom)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.nom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.prenom)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.adresse)
@@ -44,53 +39,56 @@
                 @Html.DisplayNameFor(model => model.date_naissance)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.client)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.participant)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Civilites.civilite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OuisNons.valeur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OuisNons1.valeur)
             </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Civilites.civilite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prenom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.adresse)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telephone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.date_naissance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.client)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.participant)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id_personne }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id_personne }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id_personne })
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prenom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.adresse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_naissance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Civilites.civilite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OuisNons.valeur)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OuisNons1.valeur)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id_personne }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id_personne }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id_personne })
+                </td>
+            </tr>
         }
 
     </table>

@@ -17,7 +17,7 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Personnes
         public ActionResult Index()
         {
-            var personnes = db.Personnes.Include(p => p.Civilites);
+            var personnes = db.Personnes.Include(p => p.Civilites).Include(p => p.OuisNons).Include(p => p.OuisNons1);
             return View(personnes.ToList());
         }
 
@@ -55,6 +55,8 @@ namespace ProjectFinal_VNND.Controllers
         public ActionResult Create()
         {
             ViewBag.civilite = new SelectList(db.Civilites, "civilite", "civilite");
+            ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur");
+            ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur");
             return View();
         }
 
@@ -63,7 +65,7 @@ namespace ProjectFinal_VNND.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_personne,civilite,nom,prenom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        public ActionResult Create([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
         {
             if (ModelState.IsValid)
             {
@@ -73,6 +75,8 @@ namespace ProjectFinal_VNND.Controllers
             }
 
             ViewBag.civilite = new SelectList(db.Civilites, "civilite", "civilite", personnes.civilite);
+            ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
+            ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
             return View(personnes);
         }
 
@@ -89,6 +93,8 @@ namespace ProjectFinal_VNND.Controllers
                 return HttpNotFound();
             }
             ViewBag.civilite = new SelectList(db.Civilites, "civilite", "civilite", personnes.civilite);
+            ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
+            ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
             return View(personnes);
         }
 
@@ -97,7 +103,7 @@ namespace ProjectFinal_VNND.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_personne,civilite,nom,prenom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        public ActionResult Edit([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
         {
             if (ModelState.IsValid)
             {
@@ -106,6 +112,8 @@ namespace ProjectFinal_VNND.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.civilite = new SelectList(db.Civilites, "civilite", "civilite", personnes.civilite);
+            ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
+            ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
             return View(personnes);
         }
 

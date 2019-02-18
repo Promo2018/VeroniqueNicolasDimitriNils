@@ -55,7 +55,7 @@ namespace ProjectFinal_VNND.Controllers
         public ActionResult Create()
         {
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison");
-            ViewBag.etat = new SelectList(db.Etats_Dossiers, "etat_dossier", "etat_dossier");
+            ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat");
             ViewBag.numero_client = new SelectList(db.Personnes, "id_personne", "civilite");
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage");
             return View();
@@ -76,7 +76,7 @@ namespace ProjectFinal_VNND.Controllers
             }
 
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison", dossiers.raison_annulation);
-            ViewBag.etat = new SelectList(db.Etats_Dossiers, "etat_dossier", "etat_dossier", dossiers.etat);
+            ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
             ViewBag.numero_client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.numero_client);
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
             return View(dossiers);
@@ -95,7 +95,7 @@ namespace ProjectFinal_VNND.Controllers
                 return HttpNotFound();
             }
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison", dossiers.raison_annulation);
-            ViewBag.etat = new SelectList(db.Etats_Dossiers, "etat_dossier", "etat_dossier", dossiers.etat);
+            ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
             ViewBag.numero_client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.numero_client);
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
             return View(dossiers);
@@ -115,7 +115,7 @@ namespace ProjectFinal_VNND.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison", dossiers.raison_annulation);
-            ViewBag.etat = new SelectList(db.Etats_Dossiers, "etat_dossier", "etat_dossier", dossiers.etat);
+            ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
             ViewBag.numero_client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.numero_client);
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
             return View(dossiers);

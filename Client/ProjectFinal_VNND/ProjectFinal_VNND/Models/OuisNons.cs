@@ -12,18 +12,21 @@ namespace ProjectFinal_VNND.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Etats_Dossiers
+    public partial class OuisNons
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Etats_Dossiers()
+        public OuisNons()
         {
-            this.Dossiers = new HashSet<Dossiers>();
+            this.Personnes = new HashSet<Personnes>();
+            this.Personnes1 = new HashSet<Personnes>();
         }
     
-        public int id_etat { get; set; }
-        public string etat { get; set; }
+        public int id_ouinon { get; set; }
+        public string valeur { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dossiers> Dossiers { get; set; }
+        public virtual ICollection<Personnes> Personnes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Personnes> Personnes1 { get; set; }
     }
 }

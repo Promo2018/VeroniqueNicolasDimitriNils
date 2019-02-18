@@ -101,8 +101,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -162,6 +162,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\OuisNons.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Personnes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -206,16 +209,6 @@
     <Content Include="Views\Destinations\Details.cshtml" />
     <Content Include="Views\Destinations\Edit.cshtml" />
     <Content Include="Views\Destinations\Index.cshtml" />
-    <Content Include="Views\Dossiers\Create.cshtml" />
-    <Content Include="Views\Dossiers\Delete.cshtml" />
-    <Content Include="Views\Dossiers\Details.cshtml" />
-    <Content Include="Views\Dossiers\Edit.cshtml" />
-    <Content Include="Views\Dossiers\Index.cshtml" />
-    <Content Include="Views\Personnes\Create.cshtml" />
-    <Content Include="Views\Personnes\Delete.cshtml" />
-    <Content Include="Views\Personnes\Details.cshtml" />
-    <Content Include="Views\Personnes\Edit.cshtml" />
-    <Content Include="Views\Personnes\Index.cshtml" />
     <Content Include="Views\Voyages\Create.cshtml" />
     <Content Include="Views\Voyages\Delete.cshtml" />
     <Content Include="Views\Voyages\Details.cshtml" />
@@ -223,6 +216,16 @@
     <Content Include="Views\Voyages\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Personnes\Create.cshtml" />
+    <Content Include="Views\Personnes\Delete.cshtml" />
+    <Content Include="Views\Personnes\Details.cshtml" />
+    <Content Include="Views\Personnes\Edit.cshtml" />
+    <Content Include="Views\Personnes\Index.cshtml" />
+    <Content Include="Views\Dossiers\Create.cshtml" />
+    <Content Include="Views\Dossiers\Delete.cshtml" />
+    <Content Include="Views\Dossiers\Details.cshtml" />
+    <Content Include="Views\Dossiers\Edit.cshtml" />
+    <Content Include="Views\Dossiers\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
