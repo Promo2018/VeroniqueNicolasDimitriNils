@@ -39,16 +39,16 @@ insert into Destinations (continent, pays, region, descriptif) values ('Amerique
 
 --Authentifications
 
-insert into Authentifications (email, [mot de passe], statut) values ('knairns0@si.edu', CAST('CkGDJzA' AS VARBINARY(64)), 'Client');
-insert into Authentifications (email, [mot de passe], statut) values ('ksimenel1@discuz.net', CAST('iscKl9Ebevd' AS VARBINARY(64)), 'Commercial');
-insert into Authentifications (email, [mot de passe], statut) values ('phusby2@netlog.com', CAST('KYvBSw2'AS VARBINARY(64)), 'Administrateur');
-insert into Authentifications (email, [mot de passe], statut) values ('lbalsillie3@live.com', CAST('gniF3c5lrIRO'AS VARBINARY(64)), 'Client');
-insert into Authentifications (email, [mot de passe], statut) values ('osnailham4@weather.com', CAST('lIkYUgyfE'AS VARBINARY(64)), 'Commercial');
-insert into Authentifications (email, [mot de passe], statut) values ('clulham5@canalblog.com', CAST('XctjAM'AS VARBINARY(64)), 'Marketing');
-insert into Authentifications (email, [mot de passe], statut) values ('fpiecha6@ow.ly', CAST('b9cjZzGVUM5'AS VARBINARY(64)), 'Client');
-insert into Authentifications (email, [mot de passe], statut) values ('kwilkins7@sphinn.com', CAST('1dW2qenbADd'AS VARBINARY(64)), 'Commercial');
-insert into Authentifications (email, [mot de passe], statut) values ('crameau8@blinklist.com', CAST('oQQhUTGmUdxe'AS VARBINARY(64)), 'Marketing');
-insert into Authentifications (email, [mot de passe], statut) values ('dmoodie9@ameblo.jp', CAST('esHbbJ'AS VARBINARY(64)), 'Client');
+insert into Authentifications (email, [mot de passe], statut) values ('knairns0@si.edu', 'CkGDJzA', 'Client');
+insert into Authentifications (email, [mot de passe], statut) values ('ksimenel1@discuz.net', 'iscKl9Ebevd', 'Commercial');
+insert into Authentifications (email, [mot de passe], statut) values ('phusby2@netlog.com', 'KYvBSw2', 'Administrateur');
+insert into Authentifications (email, [mot de passe], statut) values ('lbalsillie3@live.com', 'gniF3c5lrIRO', 'Client');
+insert into Authentifications (email, [mot de passe], statut) values ('osnailham4@weather.com', 'lIkYUgyfE', 'Commercial');
+insert into Authentifications (email, [mot de passe], statut) values ('clulham5@canalblog.com', 'XctjAM', 'Marketing');
+insert into Authentifications (email, [mot de passe], statut) values ('fpiecha6@ow.ly', 'b9cjZzGVUM5', 'Client');
+insert into Authentifications (email, [mot de passe], statut) values ('kwilkins7@sphinn.com', '1dW2qenbADd', 'Commercial');
+insert into Authentifications (email, [mot de passe], statut) values ('crameau8@blinklist.com', 'oQQhUTGmUdxe', 'Marketing');
+insert into Authentifications (email, [mot de passe], statut) values ('dmoodie9@ameblo.jp', 'esHbbJ', 'Client');
 
 --Voyages
 
@@ -78,16 +78,16 @@ insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissanc
 
 --Dossiers
 
-insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('5448982854595582',  1, 2 );
-insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('3582945378359752', 2, 9);
-insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('3541934982748261', 3, 8);
-insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('374622547053370',  4, 7);
-insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('6331104585972999468', 5, 8);
-insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('5610499123419866867',  6, 9);
-insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('4017953356060',7, 4);
-insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('3549568678640606', 8, 3);
-insert into Dossiers ([numero carte bancaire],  voyage, [numero client]) values ('3587552955431577', 9, 8);
-insert into Dossiers ([numero carte bancaire],  voyage, [numero client] ) values ('3588063986738492', 10, 3);
+insert into Dossiers ([numero carte bancaire],  voyage, client) values ('5448982854595582',  1, 2 );
+insert into Dossiers ([numero carte bancaire],  voyage, client) values ('3582945378359752', 2, 9);
+insert into Dossiers ([numero carte bancaire],  voyage, client) values ('3541934982748261', 3, 8);
+insert into Dossiers ([numero carte bancaire],  voyage, client) values ('374622547053370',  4, 7);
+insert into Dossiers ([numero carte bancaire],  voyage, client) values ('6331104585972999468', 5, 8);
+insert into Dossiers ([numero carte bancaire],  voyage, client) values ('5610499123419866867',  6, 9);
+insert into Dossiers ([numero carte bancaire],  voyage, client) values ('4017953356060',7, 4);
+insert into Dossiers ([numero carte bancaire],  voyage, client) values ('3549568678640606', 8, 3);
+insert into Dossiers ([numero carte bancaire],  voyage, client) values ('3587552955431577', 9, 8);
+insert into Dossiers ([numero carte bancaire],  voyage, client ) values ('3588063986738492', 10, 3);
 
 
 --[Liste Assurances]

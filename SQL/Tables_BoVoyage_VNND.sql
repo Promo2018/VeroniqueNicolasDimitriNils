@@ -48,7 +48,7 @@ INSERT INTO Statuts (statut) VALUES ('Administrateur');
 ------------------------TABLE AUTHENTIFICATIONS-------------------------
 CREATE TABLE Authentifications (
     email NVARCHAR(64) UNIQUE NOT NULL,
-	[mot de passe] VARBINARY(64) NOT NULL,
+	[mot de passe] NVARCHAR(64) NOT NULL,
     statut NVARCHAR(16) NOT NULL, --FK
 );
 ALTER TABLE Authentifications ADD CONSTRAINT Fk_0Authentifications FOREIGN KEY(statut) REFERENCES Statuts(statut);
@@ -161,10 +161,10 @@ INSERT INTO [Etats Dossiers] (etat) VALUES ('en cours');
 INSERT INTO [Etats Dossiers] (etat) VALUES ('refusé');
 INSERT INTO [Etats Dossiers] (etat) VALUES ('accepté');
 
-update [Etats Dossiers] set etat='En Attente' where id_etat=1;
-update [Etats Dossiers] set etat='En Cours' where id_etat=2;
-update [Etats Dossiers] set etat='Refusé' where id_etat=3;
-update [Etats Dossiers] set etat='Accepté' where id_etat=4;
+UPDATE [Etats Dossiers] set etat='En Attente' where id_etat=1;
+UPDATE [Etats Dossiers] set etat='En Cours' where id_etat=2;
+UPDATE [Etats Dossiers] set etat='Refusé' where id_etat=3;
+UPDATE [Etats Dossiers] set etat='Accepté' where id_etat=4;
 
 
 ------------------------TABLE DOSSIERS----------------------------
@@ -174,14 +174,14 @@ CREATE TABLE Dossiers(
 	[raison annulation] NVARCHAR(32) default null, --FK
 	etat int NOT NULL default 1, --FK
 	voyage INT NOT NULL, --FK
-	[numero client] INT NOT NULL, --FK
+	client INT NOT NULL, --FK
 	[dernier suivi] DATE default getdate(), ---- date dernier changement d'etat
 	PRIMARY KEY(id_dossier)
 );
 
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_5Annulation FOREIGN KEY([raison annulation]) REFERENCES [Raisons Annulations](annulation_raison);
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_6EtatDossier FOREIGN KEY(etat) REFERENCES [Etats Dossiers](id_etat);
-ALTER TABLE Dossiers ADD CONSTRAINT Fk_7Client FOREIGN KEY([numero client]) REFERENCES Personnes(id_personne);
+ALTER TABLE Dossiers ADD CONSTRAINT Fk_7Client FOREIGN KEY(client) REFERENCES Personnes(id_personne);
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_8Voyage FOREIGN KEY(voyage) REFERENCES Voyages(id_voyage) ON DELETE CASCADE;
 
 
