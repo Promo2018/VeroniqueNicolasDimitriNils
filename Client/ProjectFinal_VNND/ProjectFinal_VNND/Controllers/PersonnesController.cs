@@ -36,8 +36,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes.ToList());
         }
 
-        // GET: Personnes/Details/5
-        public ActionResult Details(int? id)
+        // GET: Personnes/Informations/5
+        public ActionResult Informations(int? id)
         {
             if (id == null)
             {
@@ -51,8 +51,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes);
         }
 
-        // GET: Personnes/Create
-        public ActionResult Create()
+        // GET: Personnes/Sauvegarder
+        public ActionResult Sauvegarder()
         {
             ViewBag.civilite = new SelectList(db.Civilites, "civilite", "civilite");
             ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur");
@@ -60,12 +60,12 @@ namespace ProjectFinal_VNND.Controllers
             return View();
         }
 
-        // POST: Personnes/Create
+        // POST: Personnes/Sauvegarder
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        public ActionResult Sauvegarder([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
         {
             if (ModelState.IsValid)
             {
@@ -80,8 +80,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes);
         }
 
-        // GET: Personnes/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Personnes/Modifier/5
+        public ActionResult Modifier(int? id)
         {
             if (id == null)
             {
@@ -98,12 +98,12 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes);
         }
 
-        // POST: Personnes/Edit/5
+        // POST: Personnes/Modifier/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        public ActionResult Modifier([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
         {
             if (ModelState.IsValid)
             {
@@ -117,8 +117,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes);
         }
 
-        // GET: Personnes/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Personnes/Supprimer/5
+        public ActionResult Supprimer(int? id)
         {
             if (id == null)
             {
@@ -132,8 +132,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes);
         }
 
-        // POST: Personnes/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Personnes/Supprimer/5
+        [HttpPost, ActionName("Supprimer")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

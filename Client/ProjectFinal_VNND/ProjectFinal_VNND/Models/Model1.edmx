@@ -922,7 +922,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
-  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <!-- EF Designer content (DO NOT Modifier MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <Connection>
       <DesignerInfoPropertySet>

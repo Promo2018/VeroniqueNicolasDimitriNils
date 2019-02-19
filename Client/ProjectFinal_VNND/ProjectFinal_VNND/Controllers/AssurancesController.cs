@@ -35,8 +35,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(assurances.ToList());
         }
 
-        // GET: Assurances/Details/5
-        public ActionResult Details(int? id)
+        // GET: Assurances/Informations/5
+        public ActionResult Informations(int? id)
         {
             if (id == null)
             {
@@ -50,18 +50,18 @@ namespace ProjectFinal_VNND.Controllers
             return View(assurances);
         }
 
-        // GET: Assurances/Create
-        public ActionResult Create()
+        // GET: Assurances/Sauvegarder
+        public ActionResult Sauvegarder()
         {
             return View();
         }
 
-        // POST: Assurances/Create
+        // POST: Assurances/Sauvegarder
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_assurance,libelle,prix,descriptif")] Assurances assurances)
+        public ActionResult Sauvegarder([Bind(Include = "id_assurance,libelle,prix,descriptif")] Assurances assurances)
         {
             if (ModelState.IsValid)
             {
@@ -73,8 +73,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(assurances);
         }
 
-        // GET: Assurances/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Assurances/Modifier/5
+        public ActionResult Modifier(int? id)
         {
             if (id == null)
             {
@@ -88,12 +88,12 @@ namespace ProjectFinal_VNND.Controllers
             return View(assurances);
         }
 
-        // POST: Assurances/Edit/5
+        // POST: Assurances/Modifier/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_assurance,libelle,prix,descriptif")] Assurances assurances)
+        public ActionResult Modifier([Bind(Include = "id_assurance,libelle,prix,descriptif")] Assurances assurances)
         {
             if (ModelState.IsValid)
             {
@@ -104,8 +104,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(assurances);
         }
 
-        // GET: Assurances/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Assurances/Supprimer/5
+        public ActionResult Supprimer(int? id)
         {
             if (id == null)
             {
@@ -119,8 +119,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(assurances);
         }
 
-        // POST: Assurances/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Assurances/Supprimer/5
+        [HttpPost, ActionName("Supprimer")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

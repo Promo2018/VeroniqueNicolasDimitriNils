@@ -1,5 +1,5 @@
 ﻿@model ProjectFinal_VNND.Models.Dossiers
-
+    @using ProjectFinal_VNND.Models;
 
 
 <!DOCTYPE html>
@@ -7,10 +7,9 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
+    <title>Informations</title>
 </head>
 <body>
-    <h3>Are you sure you want to delete this?</h3>
     <div>
         <h4>Dossiers</h4>
         <hr />
@@ -18,61 +17,68 @@
             <dt>
                 @Html.DisplayNameFor(model => model.numero_carte_bancaire)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.numero_carte_bancaire)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.dernier_suivi)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.dernier_suivi)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Raisons_Annulations.annulation_raison)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Raisons_Annulations.annulation_raison)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Etats_Dossiers.etat)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Etats_Dossiers.etat)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Personnes.civilite)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Personnes.civilite)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Voyages.id_voyage)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Voyages.id_voyage)
             </dd>
-    
+            <dt>
+                Liste Des Participants
+            </dt>
+            <dd>
+                <ul>
+                    <li> @Model.Personnes.civilite @Model.Personnes.prenom @Model.Personnes.nom</li>
+                    @foreach (Personnes personne in Model.Personnes1)
+                    {
+                        <li> @personne.civilite @personne.prenom @personne.nom</li>
+                    }
+                </ul>
+            </dd>
+
         </dl>
-    
-        @using (Html.BeginForm()) {
-            @Html.AntiForgeryToken()
-    
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-        }
     </div>
+    <p>
+        @Html.ActionLink("Modifier", "Modifier", new { id = Model.id_dossier }) |
+        @Html.ActionLink("Retour au Menu Précédent", "Index")
+    </p>
 </body>
 </html>

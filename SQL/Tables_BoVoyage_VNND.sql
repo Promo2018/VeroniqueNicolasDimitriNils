@@ -134,7 +134,7 @@ ALTER TABLE Voyages ADD CONSTRAINT Fk_4Agences FOREIGN KEY(agence) REFERENCES Ag
 CREATE TABLE Assurances(
 	id_assurance INT IDENTITY(1,1),
 	libelle NVARCHAR(64) NOT NULL unique,
-	prix FLOAT NOT NULL default 1,-- on mettra 1 pour les assurances non définies et un pourcentage supérieur à 1 qui multipliera le prix total du dossier
+	prix FLOAT NOT NULL default 0,-- on mettra 1 pour les assurances non définies et un pourcentage supérieur à 1 qui multipliera le prix total du dossier
 	descriptif NVARCHAR(MAX),
 	PRIMARY KEY(id_assurance)
 );

@@ -24,7 +24,9 @@ namespace ProjectFinal_VNND.Models
         public string libelle { get; set; }
         public double prix { get; set; }
         public string descriptif { get; set; }
-    
+        public string prix100 { get { return ((int)Math.Round(prix * 100)).ToString(); } }
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dossiers> Dossiers { get; set; }
     }

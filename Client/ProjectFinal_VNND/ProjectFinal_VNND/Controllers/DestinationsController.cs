@@ -36,8 +36,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(destination.ToList());
         }
 
-        // GET: Destinations/Details/5
-        public ActionResult Details(int? id)
+        // GET: Destinations/Informations/5
+        public ActionResult Informations(int? id)
         {
             if (id == null)
             {
@@ -51,19 +51,19 @@ namespace ProjectFinal_VNND.Controllers
             return View(destinations);
         }
 
-        // GET: Destinations/Create
-        public ActionResult Create()
+        // GET: Destinations/Sauvegarder
+        public ActionResult Sauvegarder()
         {
             ViewBag.continent = new SelectList(db.Continents, "continent", "continent");
             return View();
         }
 
-        // POST: Destinations/Create
+        // POST: Destinations/Sauvegarder
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_destination,continent,pays,region,descriptif")] Destinations destinations)
+        public ActionResult Sauvegarder([Bind(Include = "id_destination,continent,pays,region,descriptif")] Destinations destinations)
         {
             if (ModelState.IsValid)
             {
@@ -76,8 +76,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(destinations);
         }
 
-        // GET: Destinations/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Destinations/Modifier/5
+        public ActionResult Modifier(int? id)
         {
             if (id == null)
             {
@@ -92,12 +92,12 @@ namespace ProjectFinal_VNND.Controllers
             return View(destinations);
         }
 
-        // POST: Destinations/Edit/5
+        // POST: Destinations/Modifier/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_destination,continent,pays,region,descriptif")] Destinations destinations)
+        public ActionResult Modifier([Bind(Include = "id_destination,continent,pays,region,descriptif")] Destinations destinations)
         {
             if (ModelState.IsValid)
             {
@@ -109,8 +109,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(destinations);
         }
 
-        // GET: Destinations/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Destinations/Supprimer/5
+        public ActionResult Supprimer(int? id)
         {
             if (id == null)
             {
@@ -124,8 +124,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(destinations);
         }
 
-        // POST: Destinations/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Destinations/Supprimer/5
+        [HttpPost, ActionName("Supprimer")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

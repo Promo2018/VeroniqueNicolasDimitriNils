@@ -47,8 +47,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyage.ToList());
         }
 
-        // GET: Voyages/Details/5
-        public ActionResult Details(int? id)
+        // GET: Voyages/Informations/5
+        public ActionResult Informations(int? id)
         {
             if (id == null)
             {
@@ -62,20 +62,20 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
-        // GET: Voyages/Create
-        public ActionResult Create()
+        // GET: Voyages/Sauvegarder
+        public ActionResult Sauvegarder()
         {
             ViewBag.agence = new SelectList(db.Agences, "id_agence", "agence");
             ViewBag.destination = new SelectList(db.Destinations, "id_destination", "continent");
             return View();
         }
 
-        // POST: Voyages/Create
+        // POST: Voyages/Sauvegarder
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_voyage,date_aller,date_retour,places_disponibles,tarif_tout_compris,agence,destination")] Voyages voyages)
+        public ActionResult Sauvegarder([Bind(Include = "id_voyage,date_aller,date_retour,places_disponibles,tarif_tout_compris,agence,destination")] Voyages voyages)
         {
             if (ModelState.IsValid)
             {
@@ -89,8 +89,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
-        // GET: Voyages/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Voyages/Modifier/5
+        public ActionResult Modifier(int? id)
         {
             if (id == null)
             {
@@ -106,12 +106,12 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
-        // POST: Voyages/Edit/5
+        // POST: Voyages/Modifier/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_voyage,date_aller,date_retour,places_disponibles,tarif_tout_compris,agence,destination")] Voyages voyages)
+        public ActionResult Modifier([Bind(Include = "id_voyage,date_aller,date_retour,places_disponibles,tarif_tout_compris,agence,destination")] Voyages voyages)
         {
             if (ModelState.IsValid)
             {
@@ -124,8 +124,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
-        // GET: Voyages/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Voyages/Supprimer/5
+        public ActionResult Supprimer(int? id)
         {
             if (id == null)
             {
@@ -139,8 +139,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
-        // POST: Voyages/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Voyages/Supprimer/5
+        [HttpPost, ActionName("Supprimer")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

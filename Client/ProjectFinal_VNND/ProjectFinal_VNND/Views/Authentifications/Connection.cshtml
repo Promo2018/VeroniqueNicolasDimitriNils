@@ -1,0 +1,43 @@
+﻿@model ProjectFinal_VNND.Models.Authentifications
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+
+        <h1>merci de vous authentifier</h1>
+        <p>
+
+
+            @Html.RadioButtonFor(model => Model.statut, "Administrateur") Administrateur<br />
+
+            @Html.RadioButtonFor(model => Model.statut, "Client") Client<br />
+
+            @Html.RadioButtonFor(model => Model.statut, "Commercial") Commercial<br />
+
+            @Html.RadioButtonFor(model => Model.statut, "Marketing") Marketing<br />
+
+            <br />
+
+            Login: @Html.TextBox("f_login", Model.email)<br />
+            Mot de passe:  @Html.Password("f_pass", Model.mot_de_passe)<br />
+            <input type="submit" value="valider" />
+        </p>
+        <p>
+            @if (Session["login"] != null && Session["password"] != null)
+            {
+                <br />
+            <p>Et je suis connecté avec les identifiants : @Session["login"] @Session["password"]</p>
+        }
+            </p>
+        }
+
+</body>
+</html>

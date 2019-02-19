@@ -9,7 +9,7 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Ajouter une Agence", "Sauvegarder")
     </p>
 
     @using (Html.BeginForm())
@@ -35,9 +35,8 @@
                     @Html.DisplayFor(modelItem => item.agence)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id_agence }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id_agence }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id_agence })
+                    @Html.ActionLink("Modifier", "Modifier", new { id = item.id_agence }) |
+                    @Html.ActionLink("Supprimer", "Supprimer", new { id = item.id_agence })
                 </td>
             </tr>
         }

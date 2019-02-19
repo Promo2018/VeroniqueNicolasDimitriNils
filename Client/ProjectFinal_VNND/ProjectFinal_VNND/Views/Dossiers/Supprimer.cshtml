@@ -1,14 +1,16 @@
 ﻿@model ProjectFinal_VNND.Models.Dossiers
 
 
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
+    <title>Supprimer</title>
 </head>
 <body>
+    <h3>Etes-vous sure de vouloir supprimer ?</h3>
     <div>
         <h4>Dossiers</h4>
         <hr />
@@ -62,10 +64,15 @@
             </dd>
     
         </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Supprimer" class="btn btn-default" /> |
+                @Html.ActionLink("Retour au Menu Précédent", "Index")
+            </div>
+        }
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.id_dossier }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
 </body>
 </html>

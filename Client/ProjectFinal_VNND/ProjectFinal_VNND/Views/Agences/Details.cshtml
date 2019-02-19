@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
+    <title>Informations</title>
 </head>
 <body>
     <div>
@@ -16,16 +16,16 @@
             <dt>
                 Agence
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.agence)
             </dd>
-    
+
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.id_agence }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Modifier", "Modifier", new { id = Model.id_agence }) |
+        @Html.ActionLink("Retour au Menu Précédent", "Index")
     </p>
 </body>
 </html>

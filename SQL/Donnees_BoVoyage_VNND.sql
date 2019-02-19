@@ -16,12 +16,12 @@ insert into Agences (agence) values ('Graham-Strosin');
 
 --Assurances
 
-insert into assurances (libelle, prix, descriptif) values ('Annulation', 1.1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum1', 1, 'Mielichhoferia mielichhoferiana (Funck) Loeske var. mielichhoferiana');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum2', 1, 'Wissadula amplissima (L.) R.E. Fries');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum3', 1, 'Centaurium beyrichii (Torr. & A. Gray ex Torr.) B.L. Rob.');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum4', 1, 'Pedicularis densiflora Benth. ex Hook. ssp. densiflora');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum5', 1, 'Solanum dimidiatum Raf.');
+insert into assurances (libelle, prix, descriptif) values ('Annulation', 0.1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum1', 0, 'Mielichhoferia mielichhoferiana (Funck) Loeske var. mielichhoferiana');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum2', 0, 'Wissadula amplissima (L.) R.E. Fries');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum3', 0, 'Centaurium beyrichii (Torr. & A. Gray ex Torr.) B.L. Rob.');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum4', 0, 'Pedicularis densiflora Benth. ex Hook. ssp. densiflora');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum5', 0, 'Solanum dimidiatum Raf.');
 
 --Destinations
 
