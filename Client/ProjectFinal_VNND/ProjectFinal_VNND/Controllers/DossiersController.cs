@@ -21,21 +21,6 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers.ToList());
         }
 
-        [HttpPost]
-        public ActionResult Index(string nom, string prenom, string continent, string etat)
-        {
-
-            var dossier = from s in db.Dossiers.Include(d => d.Personnes).Include(d => d.Voyages)
-                          select s;
-
-            if (!String.IsNullOrEmpty(nom) || !String.IsNullOrEmpty(prenom) || !String.IsNullOrEmpty(continent) || !String.IsNullOrEmpty(etat))
-            {
-                dossier = dossier.Where(s => s.Personnes.nom.Contains(nom) && s.Personnes.prenom.Contains(prenom)
-                && s.Voyages.Destinations.continent.Contains(continent));
-            }
-            return View(dossier.ToList());
-        }
-
         // GET: Dossiers/Details/5
         public ActionResult Details(int? id)
         {
@@ -56,7 +41,7 @@ namespace ProjectFinal_VNND.Controllers
         {
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison");
             ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat");
-            ViewBag.numero_client = new SelectList(db.Personnes, "id_personne", "civilite");
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "civilite");
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage");
             return View();
         }
@@ -66,10 +51,12 @@ namespace ProjectFinal_VNND.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,numero_client,dernier_suivi")] Dossiers dossiers)
+        public ActionResult Create([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
         {
             if (ModelState.IsValid)
             {
+                dossiers.etat = 1;
+                dossiers.dernier_suivi = DateTime.Now;
                 db.Dossiers.Add(dossiers);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -77,7 +64,7 @@ namespace ProjectFinal_VNND.Controllers
 
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison", dossiers.raison_annulation);
             ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
-            ViewBag.numero_client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.numero_client);
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.client);
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
             return View(dossiers);
         }
@@ -96,7 +83,7 @@ namespace ProjectFinal_VNND.Controllers
             }
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison", dossiers.raison_annulation);
             ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
-            ViewBag.numero_client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.numero_client);
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.client);
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
             return View(dossiers);
         }
@@ -106,7 +93,7 @@ namespace ProjectFinal_VNND.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,numero_client,dernier_suivi")] Dossiers dossiers)
+        public ActionResult Edit([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
         {
             if (ModelState.IsValid)
             {
@@ -116,7 +103,7 @@ namespace ProjectFinal_VNND.Controllers
             }
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison", dossiers.raison_annulation);
             ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
-            ViewBag.numero_client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.numero_client);
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.client);
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
             return View(dossiers);
         }

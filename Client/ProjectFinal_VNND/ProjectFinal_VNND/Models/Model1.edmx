@@ -30,7 +30,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Authentifications' n'a pas d
             <PropertyRef Name="statut" />
           </Key>
           <Property Name="email" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="mot de passe" Type="varbinary" MaxLength="64" Nullable="false" />
+          <Property Name="mot de passe" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="statut" Type="nvarchar" MaxLength="16" Nullable="false" />
         </EntityType>
         <EntityType Name="Civilites">
@@ -64,7 +64,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Authentifications' n'a pas d
           <Property Name="raison annulation" Type="nvarchar" MaxLength="32" />
           <Property Name="etat" Type="int" Nullable="false" />
           <Property Name="voyage" Type="int" Nullable="false" />
-          <Property Name="numero client" Type="int" Nullable="false" />
+          <Property Name="client" Type="int" Nullable="false" />
           <Property Name="dernier suivi" Type="date" />
         </EntityType>
         <EntityType Name="Etats Dossiers">
@@ -270,7 +270,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
               <PropertyRef Name="id_personne" />
             </Principal>
             <Dependent Role="Dossiers">
-              <PropertyRef Name="numero client" />
+              <PropertyRef Name="client" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -477,7 +477,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <Property Name="raison_annulation" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="etat" Type="Int32" Nullable="false" />
           <Property Name="voyage" Type="Int32" Nullable="false" />
-          <Property Name="numero_client" Type="Int32" Nullable="false" />
+          <Property Name="client" Type="Int32" Nullable="false" />
           <Property Name="dernier_suivi" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Raisons_Annulations" Relationship="Self.Fk_5Annulation" FromRole="Dossiers" ToRole="Raisons_Annulations" />
           <NavigationProperty Name="Etats_Dossiers" Relationship="Self.Fk_6EtatDossier" FromRole="Dossiers" ToRole="Etats_Dossiers" />
@@ -559,7 +559,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
             <PropertyRef Name="statut" />
           </Key>
           <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="mot_de_passe" Type="Binary" MaxLength="64" FixedLength="false" Nullable="false" />
+          <Property Name="mot_de_passe" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="statut" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Statuts" Relationship="Self.Fk_0Authentifications" FromRole="Authentifications" ToRole="Statuts" />
         </EntityType>
@@ -643,7 +643,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
               <PropertyRef Name="id_personne" />
             </Principal>
             <Dependent Role="Dossiers">
-              <PropertyRef Name="numero_client" />
+              <PropertyRef Name="client" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -829,7 +829,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
                 <ScalarProperty Name="raison_annulation" ColumnName="raison annulation" />
                 <ScalarProperty Name="etat" ColumnName="etat" />
                 <ScalarProperty Name="voyage" ColumnName="voyage" />
-                <ScalarProperty Name="numero_client" ColumnName="numero client" />
+                <ScalarProperty Name="client" ColumnName="client" />
                 <ScalarProperty Name="dernier_suivi" ColumnName="dernier suivi" />
               </MappingFragment>
             </EntityTypeMapping>

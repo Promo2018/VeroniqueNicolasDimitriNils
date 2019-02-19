@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectFinal_VNND.Models.Authentifications>
+﻿@model ProjectFinal_VNND.Models.Authentifications
 
 
 <!DOCTYPE html>
@@ -9,30 +9,35 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Statuts.statut)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Statuts.statut)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-    }
-    
-    </table>
+    @using (Html.BeginForm())
+    {
+
+        <h1>merci de vous authentifier</h1>
+        <p>
+
+
+            @Html.RadioButtonFor(model => Model.statut, "Administrateur") Administrateur<br />
+
+            @Html.RadioButtonFor(model => Model.statut, "Client") Client<br />
+
+            @Html.RadioButtonFor(model => Model.statut, "Commercial") Commercial<br />
+
+            @Html.RadioButtonFor(model => Model.statut, "Marketing") Marketing<br />
+
+            <br />
+
+            Login: @Html.TextBox("f_login", Model.email)<br />
+            Mot de passe:  @Html.Password("f_pass", Model.mot_de_passe)<br />
+            <input type="submit" value="valider" />
+        </p>
+        <p>
+            @if (Session["login"] != null && Session["password"] != null)
+            {
+                <br />
+            <p>Et je suis connecté avec les identifiants : @Session["login"] @Session["password"]</p>
+        }
+            </p>
+        }
+
 </body>
 </html>

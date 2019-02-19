@@ -26,7 +26,7 @@ namespace ProjectFinal_VNND.Models
         public string raison_annulation { get; set; }
         public int etat { get; set; }
         public int voyage { get; set; }
-        public int numero_client { get; set; }
+        public int client { get; set; }
         public Nullable<System.DateTime> dernier_suivi { get; set; }
     
         public virtual Raisons_Annulations Raisons_Annulations { get; set; }

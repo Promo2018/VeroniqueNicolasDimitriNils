@@ -15,7 +15,7 @@ namespace ProjectFinal_VNND.Models
     public partial class Authentifications
     {
         public string email { get; set; }
-        public byte[] mot_de_passe { get; set; }
+        public string mot_de_passe { get; set; }
         public string statut { get; set; }
     
         public virtual Statuts Statuts { get; set; }

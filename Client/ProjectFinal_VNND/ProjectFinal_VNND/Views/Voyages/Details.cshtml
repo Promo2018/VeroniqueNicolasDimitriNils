@@ -17,55 +17,79 @@
             <dt>
                 @Html.DisplayNameFor(model => model.date_aller)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.date_aller)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.date_retour)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.date_retour)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.places_disponibles)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.places_disponibles)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.tarif_tout_compris)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.tarif_tout_compris)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Agences.agence)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Agences.agence)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Destinations.continent)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Destinations.continent)
             </dd>
-    
+            <dt>
+                @Html.DisplayNameFor(model => model.Destinations.pays)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Destinations.pays)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Destinations.region)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Destinations.region)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Destinations.descriptif)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Destinations.descriptif)
+            </dd>
+
         </dl>
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.id_voyage }) |
+        @Html.ActionLink("Réserver", "Create", new { Controller = "Dossiers", action = "Create" })
+        <br />
         @Html.ActionLink("Back to List", "Index")
     </p>
 </body>

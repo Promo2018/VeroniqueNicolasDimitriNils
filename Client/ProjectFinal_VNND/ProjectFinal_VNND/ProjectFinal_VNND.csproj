@@ -199,11 +199,6 @@
     <Content Include="Views\Assurances\Details.cshtml" />
     <Content Include="Views\Assurances\Edit.cshtml" />
     <Content Include="Views\Assurances\Index.cshtml" />
-    <Content Include="Views\Authentifications\Create.cshtml" />
-    <Content Include="Views\Authentifications\Delete.cshtml" />
-    <Content Include="Views\Authentifications\Details.cshtml" />
-    <Content Include="Views\Authentifications\Edit.cshtml" />
-    <Content Include="Views\Authentifications\Index.cshtml" />
     <Content Include="Views\Destinations\Create.cshtml" />
     <Content Include="Views\Destinations\Delete.cshtml" />
     <Content Include="Views\Destinations\Details.cshtml" />
@@ -221,12 +216,17 @@
     <Content Include="Views\Personnes\Details.cshtml" />
     <Content Include="Views\Personnes\Edit.cshtml" />
     <Content Include="Views\Personnes\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Authentifications\Create.cshtml" />
+    <Content Include="Views\Authentifications\Delete.cshtml" />
+    <Content Include="Views\Authentifications\Details.cshtml" />
+    <Content Include="Views\Authentifications\Edit.cshtml" />
+    <Content Include="Views\Authentifications\Index.cshtml" />
     <Content Include="Views\Dossiers\Create.cshtml" />
     <Content Include="Views\Dossiers\Delete.cshtml" />
     <Content Include="Views\Dossiers\Details.cshtml" />
     <Content Include="Views\Dossiers\Edit.cshtml" />
     <Content Include="Views\Dossiers\Index.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

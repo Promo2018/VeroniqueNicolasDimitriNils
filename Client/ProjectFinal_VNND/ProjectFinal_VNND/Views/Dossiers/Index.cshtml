@@ -29,6 +29,9 @@
                 @Html.DisplayNameFor(model => model.id_dossier)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Personnes.civilite)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Personnes.nom)
             </th>
             <th>
@@ -47,7 +50,7 @@
                 @Html.DisplayNameFor(model => model.Etats_Dossiers.etat)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Personnes.civilite)
+                @Html.DisplayNameFor(model => model.Personnes.id_personne)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Voyages.id_voyage)
@@ -60,6 +63,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.id_dossier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Personnes.civilite)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Personnes.nom)
@@ -80,7 +86,7 @@
                 @Html.DisplayFor(modelItem => item.Etats_Dossiers.etat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Personnes.civilite)
+                @Html.DisplayFor(modelItem => item.Personnes.id_personne)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Voyages.id_voyage)

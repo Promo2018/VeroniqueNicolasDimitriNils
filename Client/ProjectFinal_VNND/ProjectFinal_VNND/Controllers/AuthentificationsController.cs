@@ -17,8 +17,37 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Authentifications
         public ActionResult Index()
         {
-            var authentifications = db.Authentifications.Include(a => a.Statuts);
-            return View(authentifications.ToList());
+            Authentifications qui = new Authentifications();
+            ViewBag.message = "Login + Pass";
+            return View("Index", qui);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Index(Authentifications auth)
+        {
+
+            if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
+            {
+                string login = Request.Form["f_login"];
+                string password = Request.Form["f_pass"];
+
+                auth.email = login;
+                auth.mot_de_passe = password;
+
+                Session["login"] = login;
+                Session["password"] = password;
+                //Request.Form["f_login"] = "";
+                //Request.Form["f_pass"] = "";
+                auth.email = "";
+                auth.mot_de_passe = "";
+
+                return RedirectToAction("../Voyages/Index");
+            }
+            else
+            {
+                ViewBag.message = "ATTENTION \nIf you want to proceed you must fill out all required fields";
+                return View("Index", auth);
+            }
         }
 
         // GET: Authentifications/Details/5

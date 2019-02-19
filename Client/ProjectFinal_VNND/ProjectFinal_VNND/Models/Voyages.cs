@@ -11,25 +11,22 @@ namespace ProjectFinal_VNND.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
-
+    
     public partial class Voyages
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Voyages()
         {
             this.Dossiers = new HashSet<Dossiers>();
-            
         }
     
         public int id_voyage { get; set; }
-        public System.DateTime date_aller { get; set; }        
-        public System.DateTime date_retour { get; set; }        
+        public System.DateTime date_aller { get; set; }
+        public System.DateTime date_retour { get; set; }
         public int places_disponibles { get; set; }
         public decimal tarif_tout_compris { get; set; }
         public int agence { get; set; }
         public int destination { get; set; }
-        
     
         public virtual Agences Agences { get; set; }
         public virtual Destinations Destinations { get; set; }
