@@ -145,6 +145,7 @@ CREATE TABLE [Raisons Annulations](
 annulation_raison NVARCHAR(32)NOT NULL, -- mettre trois lignes Clients ou places Insuffisantes ou aucune
 PRIMARY KEY(annulation_raison)
 );
+INSERT INTO [Raisons Annulations] (annulation_raison) VALUES (' ');
 INSERT INTO [Raisons Annulations] (annulation_raison) VALUES ('Client');
 INSERT INTO [Raisons Annulations] (annulation_raison) VALUES ('Places Insuffisantes');
 
