@@ -226,6 +226,7 @@
     <Content Include="Views\Dossiers\Details.cshtml" />
     <Content Include="Views\Dossiers\Edit.cshtml" />
     <Content Include="Views\Dossiers\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

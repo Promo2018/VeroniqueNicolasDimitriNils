@@ -1,5 +1,7 @@
 ﻿<!DOCTYPE html>
 
+
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,32 +13,38 @@
 </head>
 <body>
     <header>
-        <div class="row">
-            <div class="column">
-                <div class="container">
-                    <img src="../Content/entete.jpg" alt="Voyage" class="image" style="width:100%">
-                    <div class="middle">
-                        <div class="text"> <a href="../Voyages/Index">BoVoyage</a> </div>
+        
+            <div class="row">
+                <div class="column">
+                    <div class="container">
+                        <img src="../../Content/entete.jpg" alt="Voyage" class="image" style="width:100%">
+                        <div class="middle">
+                            <div class="text"> <a href="../../Voyages/Index">BoVoyage</a> </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>            
 
-        <p id="p1">Utilisateur : @Session["email"]</p>
-        <nav>
-            <ul>
-                <li class="menu"><a href="../Assurances/Index">Assurances</a></li>
-                <li class="menu"><a href="../Dossiers/Index">Dossiers</a></li>                
-                <li class="menu">
-                    <a href="../Voyages/Index">Voyages</a>
-                    <ul class="submenu">
-                        <li class="subhover"><a href="../Agences/Index">Agences</a></li>
-                        <li class="subhover"><a href="../Destinations/Index">Destinations</a></li>
-                    </ul>
-                </li>
-                <li class="menu"><a href="../Personnes/Index">Clients</a></li>
-            </ul>
-        </nav>
+            <nav>
+                <p id="p1">Utilisateur : @Session["email"]</p>
+                <ul>
+                    
+                    <li class="menu"><a href="../Dossiers/Index">Dossiers</a>
+                        <ul class="submenu">
+                            <li class="menu"><a href="../Assurances/Index">Assurances</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="menu">
+                        <a href="../Voyages/Index">Voyages</a>
+                        <ul class="submenu">
+                            <li class="subhover"><a href="../Agences/Index">Agences</a></li>
+                            <li class="subhover"><a href="../Destinations/Index">Destinations</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu"><a href="../Personnes/Index">Clients</a></li>
+                </ul>
+            </nav>
 
         <br />
         <br />

@@ -23,7 +23,7 @@ namespace ProjectFinal_VNND.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string searchPattern, decimal? prixMax, decimal? prixMin, string place, DateTime? aller, DateTime? retour)
+        public ActionResult Index(string searchPattern, decimal? prixMax, decimal? prixMin, int? place, DateTime? aller, DateTime? retour)
         {
 
             var voyage = from s in db.Voyages.Include(v => v.Destinations)
@@ -32,13 +32,14 @@ namespace ProjectFinal_VNND.Controllers
 
             if (prixMax == null) { prixMax = 9999999; }
             if (prixMin == null) { prixMin = 1; }
+            if (place == null) { place = 99999; }
             if (aller == null) { aller = DateTime.ParseExact("01/01/0001", "dd/MM/yyyy", CultureInfo.InvariantCulture); }
             if (retour == null) { retour = DateTime.ParseExact("31/12/2100", "dd/MM/yyyy", CultureInfo.InvariantCulture); }
 
 
-            if (!String.IsNullOrEmpty(searchPattern) || prixMax > 0 || prixMin > 0 || !String.IsNullOrEmpty(place) || aller != null || retour != null)
+            if (!String.IsNullOrEmpty(searchPattern) || prixMax > 0 || prixMin > 0 || place > 0 || aller != null || retour != null)
             {
-                voyage = voyage.Where(s => s.tarif_tout_compris <= prixMax && s.tarif_tout_compris >= prixMin && s.places_disponibles.ToString().Contains(place)
+                voyage = voyage.Where(s => s.tarif_tout_compris <= prixMax && s.tarif_tout_compris >= prixMin && s.places_disponibles <= place
                 && s.date_aller >= aller && s.date_retour <= retour
                 && (s.Destinations.continent.Contains(searchPattern) || s.Destinations.pays.Contains(searchPattern) || s.Destinations.region.Contains(searchPattern)));
 

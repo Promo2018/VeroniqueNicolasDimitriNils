@@ -1,7 +1,4 @@
 ﻿@model IEnumerable<ProjectFinal_VNND.Models.Voyages>
-
-
-
 <!DOCTYPE html>
 
 <html>
@@ -33,23 +30,21 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.date_aller)
+                Date aller
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.date_retour)
+                Date retour
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.places_disponibles)
+                Place disponible
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tarif_tout_compris)
+                Tarif tout compris
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Agences.agence)
+                Destination
             </th>
-            <th>
-               Destination
-            </th>
+
             <th></th>
         </tr>
 
@@ -67,9 +62,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tarif_tout_compris)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Agences.agence)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Destinations.continent)
