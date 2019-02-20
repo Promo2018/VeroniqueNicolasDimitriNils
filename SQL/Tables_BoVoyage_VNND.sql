@@ -23,7 +23,7 @@ DROP TABLE OuisNons;
 
 ------------------------TABLE OUI/NON ENUM POUR PERSONNES (client et participant) ----------------------------
 CREATE TABLE OuisNons(
-	id_ouinon int identity not null,
+	id_ouinon int identity NOT NULL,
 	valeur NVARCHAR(3) UNIQUE NOT NULL, 
 	PRIMARY KEY (id_ouinon)
 );
@@ -37,8 +37,9 @@ update OuisNons set valeur='Oui' where id_ouinon=2;
 
 ------------------------TABLE GERANT ENUM POUR AUTHENTIFICATIONS----------------------------
 CREATE TABLE Statuts(
+	id_statut int identity NOT NULL,
 	statut NVARCHAR(16) UNIQUE NOT NULL, -- mettre les 4 choix Client, Administrateur, Commercial, Marketting
-	PRIMARY KEY (statut),
+	PRIMARY KEY (id_statut),
 );
 INSERT INTO Statuts (statut) VALUES ('Client');
 INSERT INTO Statuts (statut) VALUES ('Commercial');
@@ -49,9 +50,10 @@ INSERT INTO Statuts (statut) VALUES ('Administrateur');
 CREATE TABLE Authentifications (
     email NVARCHAR(64) UNIQUE NOT NULL,
 	[mot de passe] NVARCHAR(64) NOT NULL,
-    statut NVARCHAR(16) NOT NULL, --FK
+    statut int NOT NULL, --FK
+	PRIMARY KEY (email)
 );
-ALTER TABLE Authentifications ADD CONSTRAINT Fk_0Authentifications FOREIGN KEY(statut) REFERENCES Statuts(statut);
+ALTER TABLE Authentifications ADD CONSTRAINT Fk_0Authentifications FOREIGN KEY(statut) REFERENCES Statuts(id_statut);
 
 ------------------------TABLE GERANT ENUM POUR PERSONNES ----------------------------
 CREATE TABLE Civilites(
@@ -134,7 +136,7 @@ ALTER TABLE Voyages ADD CONSTRAINT Fk_4Agences FOREIGN KEY(agence) REFERENCES Ag
 CREATE TABLE Assurances(
 	id_assurance INT IDENTITY(1,1),
 	libelle NVARCHAR(64) NOT NULL unique,
-	prix FLOAT NOT NULL default 1,-- on mettra 1 pour les assurances non définies et un pourcentage supérieur à 1 qui multipliera le prix total du dossier
+	prix FLOAT NOT NULL default 0,-- on mettra 1 pour les assurances non définies et un pourcentage supérieur à 1 qui multipliera le prix total du dossier
 	descriptif NVARCHAR(MAX),
 	PRIMARY KEY(id_assurance)
 );
