@@ -39,5 +39,18 @@ namespace ProjectFinal_VNND.Models
         public virtual OuisNons OuisNons1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dossiers> Dossiers1 { get; set; }
+        public int age
+        {
+            get
+            {
+                int Age = DateTime.Now.Year - date_naissance.Year;
+                if (DateTime.Now.Month < date_naissance.Month || DateTime.Now.Month == date_naissance.Month && DateTime.Now.Day < date_naissance.Day)
+                { Age--; }
+                else
+                { };
+                return Age;
+            }
+        }
+        public int reduction { get { int red = 0; if(age < 12) { red = 40; }  return red; } }
     }
 }

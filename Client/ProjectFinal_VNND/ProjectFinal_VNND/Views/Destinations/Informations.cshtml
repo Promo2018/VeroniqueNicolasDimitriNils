@@ -1,0 +1,57 @@
+﻿@model ProjectFinal_VNND.Models.Destinations
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Informations</title>
+</head>
+<body>
+    <div>
+        <h4>Destinations</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Continent
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Continents.continent)
+            </dd>
+
+            <dt>
+                Pays
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pays)
+            </dd>
+
+            <dt>
+                R&eacutegion
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.region)
+            </dd>
+
+            <dt>
+                Description du Voyage
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.descriptif)
+            </dd>
+
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modifier", "Modifier", new { id = Model.id_destination }) |
+        @Html.ActionLink("Retour au Menu Destination", "Index")
+    </p>
+</body>
+</html>

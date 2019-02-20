@@ -1,13 +1,15 @@
 ﻿@model ProjectFinal_VNND.Models.Authentifications
 
-
+@{
+    Layout = null;
+}
 
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Informations</title>
+    <title>Details</title>
 </head>
 <body>
     <div>
@@ -25,8 +27,8 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Modifier", "Modifier", new { /* id = Model.PrimaryKey */ }) |
-        @Html.ActionLink("Retour au Menu Précédent", "Index")
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
 </html>

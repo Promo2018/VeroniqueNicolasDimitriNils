@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
+    <title>Modifier</title>
 </head>
 <body>
     @using (Html.BeginForm())
@@ -21,7 +21,7 @@
             @Html.HiddenFor(model => model.id_voyage)
     
             <div class="form-group">
-                @Html.LabelFor(model => model.date_aller, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.date_aller,"Date Aller", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.date_aller, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.date_aller, "", new { @class = "text-danger" })
@@ -29,7 +29,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.date_retour, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.date_retour,"Date Retour", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.date_retour, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.date_retour, "", new { @class = "text-danger" })
@@ -37,7 +37,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.places_disponibles, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.places_disponibles, "Places Disponibles", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.places_disponibles, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.places_disponibles, "", new { @class = "text-danger" })
@@ -45,7 +45,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.tarif_tout_compris, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.tarif_tout_compris, "Tarif Tout Compris", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.tarif_tout_compris, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.tarif_tout_compris, "", new { @class = "text-danger" })
@@ -53,7 +53,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.agence, "agence", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.agence, "Agence", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("agence", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.agence, "", new { @class = "text-danger" })
@@ -61,7 +61,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.destination, "destination", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.destination, "Destination", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("destination", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.destination, "", new { @class = "text-danger" })
@@ -70,14 +70,14 @@
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <input type="submit" value="Enregistrer" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Retour au Menu Voyage", "Index")
     </div>
 </body>
 </html>

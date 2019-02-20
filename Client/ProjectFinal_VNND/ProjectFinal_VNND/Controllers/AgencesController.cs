@@ -36,8 +36,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(agences.ToList());
         }
 
-        // GET: Agences/Details/5
-        public ActionResult Details(int? id)
+        // GET: Agences/Informations/5
+        public ActionResult Informations(int? id)
         {
             if (id == null)
             {
@@ -51,18 +51,18 @@ namespace ProjectFinal_VNND.Controllers
             return View(agences);
         }
 
-        // GET: Agences/Create
-        public ActionResult Create()
+        // GET: Agences/Sauvegarder
+        public ActionResult Sauvegarder()
         {
             return View();
         }
 
-        // POST: Agences/Create
+        // POST: Agences/Sauvegarder
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_agence,agence")] Agences agences)
+        public ActionResult Sauvegarder([Bind(Include = "id_agence,agence")] Agences agences)
         {
             if (ModelState.IsValid)
             {
@@ -74,8 +74,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(agences);
         }
 
-        // GET: Agences/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Agences/Modifier/5
+        public ActionResult Modifier(int? id)
         {
             if (id == null)
             {
@@ -89,12 +89,12 @@ namespace ProjectFinal_VNND.Controllers
             return View(agences);
         }
 
-        // POST: Agences/Edit/5
+        // POST: Agences/Modifier/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_agence,agence")] Agences agences)
+        public ActionResult Modifier([Bind(Include = "id_agence,agence")] Agences agences)
         {
             if (ModelState.IsValid)
             {
@@ -105,8 +105,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(agences);
         }
 
-        // GET: Agences/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Agences/Supprimer/5
+        public ActionResult Supprimer(int? id)
         {
             if (id == null)
             {
@@ -120,8 +120,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(agences);
         }
 
-        // POST: Agences/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Agences/Supprimer/5
+        [HttpPost, ActionName("Supprimer")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

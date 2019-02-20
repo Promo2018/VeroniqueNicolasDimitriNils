@@ -21,8 +21,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers.ToList());
         }
 
-        // GET: Dossiers/Details/5
-        public ActionResult Details(int? id)
+        // GET: Dossiers/Informations/5
+        public ActionResult Informations(int? id)
         {
             if (id == null)
             {
@@ -36,8 +36,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers);
         }
 
-        // GET: Dossiers/Create
-        public ActionResult Create()
+        // GET: Dossiers/Sauvegarder
+        public ActionResult Sauvegarder()
         {
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison");
             ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat");
@@ -46,12 +46,12 @@ namespace ProjectFinal_VNND.Controllers
             return View();
         }
 
-        // POST: Dossiers/Create
+        // POST: Dossiers/Sauvegarder
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
+        public ActionResult Sauvegarder([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
         {
             if (ModelState.IsValid)
             {
@@ -69,8 +69,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers);
         }
 
-        // GET: Dossiers/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Dossiers/Modifier/5
+        public ActionResult Modifier(int? id)
         {
             if (id == null)
             {
@@ -88,12 +88,12 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers);
         }
 
-        // POST: Dossiers/Edit/5
+        // POST: Dossiers/Modifier/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
+        public ActionResult Modifier([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
         {
             if (ModelState.IsValid)
             {
@@ -108,8 +108,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers);
         }
 
-        // GET: Dossiers/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Dossiers/Supprimer/5
+        public ActionResult Supprimer(int? id)
         {
             if (id == null)
             {
@@ -123,8 +123,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers);
         }
 
-        // POST: Dossiers/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Dossiers/Supprimer/5
+        [HttpPost, ActionName("Supprimer")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

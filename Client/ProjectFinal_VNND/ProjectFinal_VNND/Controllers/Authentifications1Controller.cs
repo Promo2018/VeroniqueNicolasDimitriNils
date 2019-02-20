@@ -10,48 +10,19 @@ using ProjectFinal_VNND.Models;
 
 namespace ProjectFinal_VNND.Controllers
 {
-    public class AuthentificationsController : Controller
+    public class Authentifications1Controller : Controller
     {
         private BoVoyage_VNNDEntities db = new BoVoyage_VNNDEntities();
 
-        // GET: Authentifications
+        // GET: Authentifications1
         public ActionResult Index()
         {
-            Authentifications qui = new Authentifications();
-            ViewBag.message = "Login + Pass";
-            return View("Index", qui);
+            var authentifications = db.Authentifications.Include(a => a.Statuts);
+            return View(authentifications.ToList());
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(Authentifications auth)
-        {
-
-            if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
-            {
-                string login = Request.Form["f_login"];
-                string password = Request.Form["f_pass"];
-
-                auth.email = login;
-                auth.mot_de_passe = password;
-
-                Session["login"] = login;
-                Session["password"] = password;
-                //Request.Form["f_login"] = "";
-                //Request.Form["f_pass"] = "";
-                auth.email = "";
-                auth.mot_de_passe = "";
-
-                return RedirectToAction("../Voyages/Index");
-            }
-            else
-            {
-                ViewBag.message = "ATTENTION \nIf you want to proceed you must fill out all required fields";
-                return View("Index", auth);
-            }
-        }
-
-        // GET: Authentifications/Informations/5
-        public ActionResult Informations(string id)
+        // GET: Authentifications1/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -65,19 +36,19 @@ namespace ProjectFinal_VNND.Controllers
             return View(authentifications);
         }
 
-        // GET: Authentifications/Sauvegarder
-        public ActionResult Sauvegarder()
+        // GET: Authentifications1/Create
+        public ActionResult Create()
         {
             ViewBag.statut = new SelectList(db.Statuts, "statut", "statut");
             return View();
         }
 
-        // POST: Authentifications/Sauvegarder
+        // POST: Authentifications1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Sauvegarder([Bind(Include = "email,mot_de_passe,statut")] Authentifications authentifications)
+        public ActionResult Create([Bind(Include = "email,mot_de_passe,statut")] Authentifications authentifications)
         {
             if (ModelState.IsValid)
             {
@@ -90,8 +61,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(authentifications);
         }
 
-        // GET: Authentifications/Modifier/5
-        public ActionResult Modifier(string id)
+        // GET: Authentifications1/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -106,12 +77,12 @@ namespace ProjectFinal_VNND.Controllers
             return View(authentifications);
         }
 
-        // POST: Authentifications/Modifier/5
+        // POST: Authentifications1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Modifier([Bind(Include = "email,mot_de_passe,statut")] Authentifications authentifications)
+        public ActionResult Edit([Bind(Include = "email,mot_de_passe,statut")] Authentifications authentifications)
         {
             if (ModelState.IsValid)
             {
@@ -123,8 +94,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(authentifications);
         }
 
-        // GET: Authentifications/Supprimer/5
-        public ActionResult Supprimer(string id)
+        // GET: Authentifications1/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -138,8 +109,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(authentifications);
         }
 
-        // POST: Authentifications/Supprimer/5
-        [HttpPost, ActionName("Supprimer")]
+        // POST: Authentifications1/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {

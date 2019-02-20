@@ -10,7 +10,7 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Ajouter", "Sauvegarder")
     </p>
 
     @using (Html.BeginForm(new { @class = "example" }))
@@ -92,9 +92,9 @@
                 @Html.DisplayFor(modelItem => item.Voyages.id_voyage)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id_dossier }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id_dossier }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id_dossier })
+                @Html.ActionLink("Modifier", "Modifier", new { id = item.id_dossier }) |
+                @Html.ActionLink("Informations", "Informations", new { id = item.id_dossier }) |
+                @Html.ActionLink("Supprimer", "Supprimer", new { id = item.id_dossier })
             </td>
         </tr>
         }

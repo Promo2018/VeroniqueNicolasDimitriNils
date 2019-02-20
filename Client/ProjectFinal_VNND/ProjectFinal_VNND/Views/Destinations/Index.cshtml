@@ -9,7 +9,7 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Ajouter une Destination", "Sauvegarder")
     </p>
 
     @using (Html.BeginForm())
@@ -25,17 +25,15 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.pays)
+                Continent
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.region)
+                Pays
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.descriptif)
+                R&eacutegion
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Continents.continent)
-            </th>
+
             <th></th>
         </tr>
 
@@ -43,21 +41,19 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Continents.continent)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.pays)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.region)
                 </td>
+
                 <td>
-                    @Html.DisplayFor(modelItem => item.descriptif)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Continents.continent)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id_destination }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id_destination }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id_destination })
+                    @Html.ActionLink("Modifier", "Modifier", new { id = item.id_destination }) |
+                    @Html.ActionLink("Informations", "Informations", new { id = item.id_destination }) |
+                    @Html.ActionLink("Supprimer", "Supprimer", new { id = item.id_destination })
                 </td>
             </tr>
         }
