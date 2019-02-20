@@ -1,5 +1,5 @@
 ﻿@model ProjectFinal_VNND.Models.Dossiers
-    @using ProjectFinal_VNND.Models;
+
 
 
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Informations</title>
+    <title>Details</title>
 </head>
 <body>
     <div>
@@ -17,68 +17,56 @@
             <dt>
                 @Html.DisplayNameFor(model => model.numero_carte_bancaire)
             </dt>
-
+    
             <dd>
                 @Html.DisplayFor(model => model.numero_carte_bancaire)
             </dd>
-
+    
             <dt>
                 @Html.DisplayNameFor(model => model.dernier_suivi)
             </dt>
-
+    
             <dd>
                 @Html.DisplayFor(model => model.dernier_suivi)
             </dd>
-
+    
             <dt>
                 @Html.DisplayNameFor(model => model.Raisons_Annulations.annulation_raison)
             </dt>
-
+    
             <dd>
                 @Html.DisplayFor(model => model.Raisons_Annulations.annulation_raison)
             </dd>
-
+    
             <dt>
                 @Html.DisplayNameFor(model => model.Etats_Dossiers.etat)
             </dt>
-
+    
             <dd>
                 @Html.DisplayFor(model => model.Etats_Dossiers.etat)
             </dd>
-
+    
             <dt>
-                @Html.DisplayNameFor(model => model.Personnes.civilite)
+                @Html.DisplayNameFor(model => model.Personnes.prenom)
             </dt>
-
+    
             <dd>
-                @Html.DisplayFor(model => model.Personnes.civilite)
+                @Html.DisplayFor(model => model.Personnes.prenom)
             </dd>
-
+    
             <dt>
                 @Html.DisplayNameFor(model => model.Voyages.id_voyage)
             </dt>
-
+    
             <dd>
                 @Html.DisplayFor(model => model.Voyages.id_voyage)
             </dd>
-            <dt>
-                Liste Des Participants
-            </dt>
-            <dd>
-                <ul>
-                    <li> @Model.Personnes.civilite @Model.Personnes.prenom @Model.Personnes.nom</li>
-                    @foreach (Personnes personne in Model.Personnes1)
-                    {
-                        <li> @personne.civilite @personne.prenom @personne.nom</li>
-                    }
-                </ul>
-            </dd>
-
+    
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Modifier", "Modifier", new { id = Model.id_dossier }) |
-        @Html.ActionLink("Retour au Menu Précédent", "Index")
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id_dossier }) |
+        @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
 </html>

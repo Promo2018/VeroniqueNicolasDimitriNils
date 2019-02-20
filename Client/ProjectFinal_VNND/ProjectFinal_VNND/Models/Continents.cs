@@ -20,6 +20,7 @@ namespace ProjectFinal_VNND.Models
             this.Destinations = new HashSet<Destinations>();
         }
     
+        public int id_continent { get; set; }
         public string continent { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

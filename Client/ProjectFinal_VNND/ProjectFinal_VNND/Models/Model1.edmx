@@ -21,28 +21,27 @@
           <Property Name="prix" Type="float" Nullable="false" />
           <Property Name="descriptif" Type="nvarchar(max)" />
         </EntityType>
-        <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Authentifications' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Authentifications">
           <Key>
-            <PropertyRef Name="email" />
-            <PropertyRef Name="mot de passe" />
-            <PropertyRef Name="statut" />
+            <PropertyRef Name="id_auth" />
           </Key>
+          <Property Name="id_auth" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="mot de passe" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="statut" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="statut" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Civilites">
           <Key>
-            <PropertyRef Name="civilite" />
+            <PropertyRef Name="id_civilite" />
           </Key>
+          <Property Name="id_civilite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="civilite" Type="nvarchar" MaxLength="8" Nullable="false" />
         </EntityType>
         <EntityType Name="Continents">
           <Key>
-            <PropertyRef Name="continent" />
+            <PropertyRef Name="id_continent" />
           </Key>
+          <Property Name="id_continent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="continent" Type="nvarchar" MaxLength="16" Nullable="false" />
         </EntityType>
         <EntityType Name="Destinations">
@@ -50,7 +49,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Authentifications' n'a pas d
             <PropertyRef Name="id_destination" />
           </Key>
           <Property Name="id_destination" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="continent" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="continent" Type="int" Nullable="false" />
           <Property Name="pays" Type="nvarchar" MaxLength="32" Nullable="false" />
           <Property Name="region" Type="nvarchar" MaxLength="32" />
           <Property Name="descriptif" Type="nvarchar(max)" />
@@ -61,7 +60,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Authentifications' n'a pas d
           </Key>
           <Property Name="id_dossier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="numero carte bancaire" Type="nvarchar" MaxLength="32" Nullable="false" />
-          <Property Name="raison annulation" Type="nvarchar" MaxLength="32" />
+          <Property Name="raison annulation" Type="int" />
           <Property Name="etat" Type="int" Nullable="false" />
           <Property Name="voyage" Type="int" Nullable="false" />
           <Property Name="client" Type="int" Nullable="false" />
@@ -74,23 +73,19 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Authentifications' n'a pas d
           <Property Name="id_etat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="etat" Type="nvarchar" MaxLength="16" Nullable="false" />
         </EntityType>
-        <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Assurances' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Liste Assurances">
           <Key>
-            <PropertyRef Name="assurance" />
-            <PropertyRef Name="dossier" />
+            <PropertyRef Name="id_listassurance" />
           </Key>
+          <Property Name="id_listassurance" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="assurance" Type="int" Nullable="false" />
           <Property Name="dossier" Type="int" Nullable="false" />
         </EntityType>
-        <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Liste Participants">
           <Key>
-            <PropertyRef Name="participant" />
-            <PropertyRef Name="dossier" />
+            <PropertyRef Name="id_listparticipant" />
           </Key>
+          <Property Name="id_listparticipant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="participant" Type="int" Nullable="false" />
           <Property Name="dossier" Type="int" Nullable="false" />
         </EntityType>
@@ -106,7 +101,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
             <PropertyRef Name="id_personne" />
           </Key>
           <Property Name="id_personne" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="civilite" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="civilite" Type="int" Nullable="false" />
           <Property Name="prenom" Type="nvarchar" MaxLength="32" Nullable="false" />
           <Property Name="nom" Type="nvarchar" MaxLength="32" Nullable="false" />
           <Property Name="adresse" Type="nvarchar" MaxLength="230" Nullable="false" />
@@ -118,14 +113,16 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
         </EntityType>
         <EntityType Name="Raisons Annulations">
           <Key>
-            <PropertyRef Name="annulation_raison" />
+            <PropertyRef Name="id_annul" />
           </Key>
+          <Property Name="id_annul" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="annulation_raison" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
         <EntityType Name="Statuts">
           <Key>
-            <PropertyRef Name="statut" />
+            <PropertyRef Name="id_statut" />
           </Key>
+          <Property Name="id_statut" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="statut" Type="nvarchar" MaxLength="16" Nullable="false" />
         </EntityType>
         <EntityType Name="Voyages">
@@ -145,7 +142,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <End Role="Authentifications" Type="Self.Authentifications" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Statuts">
-              <PropertyRef Name="statut" />
+              <PropertyRef Name="id_statut" />
             </Principal>
             <Dependent Role="Authentifications">
               <PropertyRef Name="statut" />
@@ -157,7 +154,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <End Role="Personnes" Type="Self.Personnes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Civilites">
-              <PropertyRef Name="civilite" />
+              <PropertyRef Name="id_civilite" />
             </Principal>
             <Dependent Role="Personnes">
               <PropertyRef Name="civilite" />
@@ -169,7 +166,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <End Role="Destinations" Type="Self.Destinations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Continents">
-              <PropertyRef Name="continent" />
+              <PropertyRef Name="id_continent" />
             </Principal>
             <Dependent Role="Destinations">
               <PropertyRef Name="continent" />
@@ -205,7 +202,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <End Role="Dossiers" Type="Self.Dossiers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Raisons Annulations">
-              <PropertyRef Name="annulation_raison" />
+              <PropertyRef Name="id_annul" />
             </Principal>
             <Dependent Role="Dossiers">
               <PropertyRef Name="raison annulation" />
@@ -329,35 +326,19 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
         <EntityContainer Name="BoVoyage_VNNDModelStoreContainer">
           <EntitySet Name="Agences" EntityType="Self.Agences" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Assurances" EntityType="Self.Assurances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Authentifications" EntityType="Self.Authentifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Civilites" EntityType="Self.Civilites" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Continents" EntityType="Self.Continents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Destinations" EntityType="Self.Destinations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dossiers" EntityType="Self.Dossiers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Etats Dossiers" EntityType="Self.Etats Dossiers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liste Assurances" EntityType="Self.Liste Assurances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liste Participants" EntityType="Self.Liste Participants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OuisNons" EntityType="Self.OuisNons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Personnes" EntityType="Self.Personnes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Raisons Annulations" EntityType="Self.Raisons Annulations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statuts" EntityType="Self.Statuts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voyages" EntityType="Self.Voyages" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Authentifications" EntityType="Self.Authentifications" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Authentifications].[email] AS [email], 
-    [Authentifications].[mot de passe] AS [mot de passe], 
-    [Authentifications].[statut] AS [statut]
-    FROM [dbo].[Authentifications] AS [Authentifications]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Liste Assurances" EntityType="Self.Liste Assurances" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Liste Assurances].[assurance] AS [assurance], 
-    [Liste Assurances].[dossier] AS [dossier]
-    FROM [dbo].[Liste Assurances] AS [Liste Assurances]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Liste Participants" EntityType="Self.Liste Participants" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Liste Participants].[participant] AS [participant], 
-    [Liste Participants].[dossier] AS [dossier]
-    FROM [dbo].[Liste Participants] AS [Liste Participants]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="Fk_0Authentifications" Association="Self.Fk_0Authentifications">
             <End Role="Statuts" EntitySet="Statuts" />
             <End Role="Authentifications" EntitySet="Authentifications" />
@@ -440,19 +421,31 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <Property Name="libelle" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="prix" Type="Double" Nullable="false" />
           <Property Name="descriptif" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Dossiers" Relationship="Self.Liste_Assurances" FromRole="Assurances" ToRole="Dossiers" />
+          <NavigationProperty Name="Liste_Assurances" Relationship="Self.Fk_5Assurance" FromRole="Assurances" ToRole="Liste_Assurances" />
+        </EntityType>
+        <EntityType Name="Authentifications">
+          <Key>
+            <PropertyRef Name="id_auth" />
+          </Key>
+          <Property Name="id_auth" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mot_de_passe" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="statut" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Statuts" Relationship="Self.Fk_0Authentifications" FromRole="Authentifications" ToRole="Statuts" />
         </EntityType>
         <EntityType Name="Civilites">
           <Key>
-            <PropertyRef Name="civilite" />
+            <PropertyRef Name="id_civilite" />
           </Key>
+          <Property Name="id_civilite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="civilite" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Personnes" Relationship="Self.Fk_1Civilites" FromRole="Civilites" ToRole="Personnes" />
         </EntityType>
         <EntityType Name="Continents">
           <Key>
-            <PropertyRef Name="continent" />
+            <PropertyRef Name="id_continent" />
           </Key>
+          <Property Name="id_continent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="continent" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Destinations" Relationship="Self.Fk_2Continents" FromRole="Continents" ToRole="Destinations" />
         </EntityType>
@@ -461,7 +454,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
             <PropertyRef Name="id_destination" />
           </Key>
           <Property Name="id_destination" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="continent" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="continent" Type="Int32" Nullable="false" />
           <Property Name="pays" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="region" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="descriptif" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -474,17 +467,17 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           </Key>
           <Property Name="id_dossier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="numero_carte_bancaire" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="raison_annulation" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="raison_annulation" Type="Int32" />
           <Property Name="etat" Type="Int32" Nullable="false" />
           <Property Name="voyage" Type="Int32" Nullable="false" />
           <Property Name="client" Type="Int32" Nullable="false" />
           <Property Name="dernier_suivi" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Raisons_Annulations" Relationship="Self.Fk_5Annulation" FromRole="Dossiers" ToRole="Raisons_Annulations" />
+          <NavigationProperty Name="Liste_Assurances" Relationship="Self.Fk_6Dossier" FromRole="Dossiers" ToRole="Liste_Assurances" />
           <NavigationProperty Name="Etats_Dossiers" Relationship="Self.Fk_6EtatDossier" FromRole="Dossiers" ToRole="Etats_Dossiers" />
           <NavigationProperty Name="Personnes" Relationship="Self.Fk_7Client" FromRole="Dossiers" ToRole="Personnes" />
+          <NavigationProperty Name="Liste_Participants" Relationship="Self.Fk_7Dossier" FromRole="Dossiers" ToRole="Liste_Participants" />
           <NavigationProperty Name="Voyages" Relationship="Self.Fk_8Voyage" FromRole="Dossiers" ToRole="Voyages" />
-          <NavigationProperty Name="Assurances" Relationship="Self.Liste_Assurances" FromRole="Dossiers" ToRole="Assurances" />
-          <NavigationProperty Name="Personnes1" Relationship="Self.Liste_Participants" FromRole="Dossiers" ToRole="Personnes" />
         </EntityType>
         <EntityType Name="Etats_Dossiers">
           <Key>
@@ -493,6 +486,26 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <Property Name="id_etat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="etat" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Dossiers" Relationship="Self.Fk_6EtatDossier" FromRole="Etats_Dossiers" ToRole="Dossiers" />
+        </EntityType>
+        <EntityType Name="Liste_Assurances">
+          <Key>
+            <PropertyRef Name="id_listassurance" />
+          </Key>
+          <Property Name="id_listassurance" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="assurance" Type="Int32" Nullable="false" />
+          <Property Name="dossier" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Assurances" Relationship="Self.Fk_5Assurance" FromRole="Liste_Assurances" ToRole="Assurances" />
+          <NavigationProperty Name="Dossiers" Relationship="Self.Fk_6Dossier" FromRole="Liste_Assurances" ToRole="Dossiers" />
+        </EntityType>
+        <EntityType Name="Liste_Participants">
+          <Key>
+            <PropertyRef Name="id_listparticipant" />
+          </Key>
+          <Property Name="id_listparticipant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="participant" Type="Int32" Nullable="false" />
+          <Property Name="dossier" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dossiers" Relationship="Self.Fk_7Dossier" FromRole="Liste_Participants" ToRole="Dossiers" />
+          <NavigationProperty Name="Personnes" Relationship="Self.Fk_6Personne" FromRole="Liste_Participants" ToRole="Personnes" />
         </EntityType>
         <EntityType Name="OuisNons">
           <Key>
@@ -508,7 +521,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
             <PropertyRef Name="id_personne" />
           </Key>
           <Property Name="id_personne" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="civilite" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="civilite" Type="Int32" Nullable="false" />
           <Property Name="prenom" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nom" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="adresse" Type="String" MaxLength="230" FixedLength="false" Unicode="true" Nullable="false" />
@@ -519,21 +532,23 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Civilites" Relationship="Self.Fk_1Civilites" FromRole="Personnes" ToRole="Civilites" />
           <NavigationProperty Name="Dossiers" Relationship="Self.Fk_7Client" FromRole="Personnes" ToRole="Dossiers" />
+          <NavigationProperty Name="Liste_Participants" Relationship="Self.Fk_6Personne" FromRole="Personnes" ToRole="Liste_Participants" />
           <NavigationProperty Name="OuisNons" Relationship="Self.Fk_Client" FromRole="Personnes" ToRole="OuisNons" />
           <NavigationProperty Name="OuisNons1" Relationship="Self.Fk_Participant" FromRole="Personnes" ToRole="OuisNons" />
-          <NavigationProperty Name="Dossiers1" Relationship="Self.Liste_Participants" FromRole="Personnes" ToRole="Dossiers" />
         </EntityType>
         <EntityType Name="Raisons_Annulations">
           <Key>
-            <PropertyRef Name="annulation_raison" />
+            <PropertyRef Name="id_annul" />
           </Key>
+          <Property Name="id_annul" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="annulation_raison" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Dossiers" Relationship="Self.Fk_5Annulation" FromRole="Raisons_Annulations" ToRole="Dossiers" />
         </EntityType>
         <EntityType Name="Statuts">
           <Key>
-            <PropertyRef Name="statut" />
+            <PropertyRef Name="id_statut" />
           </Key>
+          <Property Name="id_statut" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="statut" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Authentifications" Relationship="Self.Fk_0Authentifications" FromRole="Statuts" ToRole="Authentifications" />
         </EntityType>
@@ -552,17 +567,6 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <NavigationProperty Name="Destinations" Relationship="Self.Fk_3Destination" FromRole="Voyages" ToRole="Destinations" />
           <NavigationProperty Name="Dossiers" Relationship="Self.Fk_8Voyage" FromRole="Voyages" ToRole="Dossiers" />
         </EntityType>
-        <EntityType Name="Authentifications">
-          <Key>
-            <PropertyRef Name="email" />
-            <PropertyRef Name="mot_de_passe" />
-            <PropertyRef Name="statut" />
-          </Key>
-          <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="mot_de_passe" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="statut" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Statuts" Relationship="Self.Fk_0Authentifications" FromRole="Authentifications" ToRole="Statuts" />
-        </EntityType>
         <Association Name="Fk_4Agences">
           <End Role="Agences" Type="Self.Agences" Multiplicity="1" />
           <End Role="Voyages" Type="Self.Voyages" Multiplicity="*" />
@@ -575,12 +579,36 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Fk_5Assurance">
+          <End Role="Assurances" Type="Self.Assurances" Multiplicity="1" />
+          <End Role="Liste_Assurances" Type="Self.Liste_Assurances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assurances">
+              <PropertyRef Name="id_assurance" />
+            </Principal>
+            <Dependent Role="Liste_Assurances">
+              <PropertyRef Name="assurance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_0Authentifications">
+          <End Role="Statuts" Type="Self.Statuts" Multiplicity="1" />
+          <End Role="Authentifications" Type="Self.Authentifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuts">
+              <PropertyRef Name="id_statut" />
+            </Principal>
+            <Dependent Role="Authentifications">
+              <PropertyRef Name="statut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Fk_1Civilites">
           <End Role="Civilites" Type="Self.Civilites" Multiplicity="1" />
           <End Role="Personnes" Type="Self.Personnes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Civilites">
-              <PropertyRef Name="civilite" />
+              <PropertyRef Name="id_civilite" />
             </Principal>
             <Dependent Role="Personnes">
               <PropertyRef Name="civilite" />
@@ -592,7 +620,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <End Role="Destinations" Type="Self.Destinations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Continents">
-              <PropertyRef Name="continent" />
+              <PropertyRef Name="id_continent" />
             </Principal>
             <Dependent Role="Destinations">
               <PropertyRef Name="continent" />
@@ -616,10 +644,24 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <End Role="Dossiers" Type="Self.Dossiers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Raisons_Annulations">
-              <PropertyRef Name="annulation_raison" />
+              <PropertyRef Name="id_annul" />
             </Principal>
             <Dependent Role="Dossiers">
               <PropertyRef Name="raison_annulation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_6Dossier">
+          <End Role="Dossiers" Type="Self.Dossiers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Liste_Assurances" Type="Self.Liste_Assurances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dossiers">
+              <PropertyRef Name="id_dossier" />
+            </Principal>
+            <Dependent Role="Liste_Assurances">
+              <PropertyRef Name="dossier" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -647,6 +689,20 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Fk_7Dossier">
+          <End Role="Dossiers" Type="Self.Dossiers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Liste_Participants" Type="Self.Liste_Participants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dossiers">
+              <PropertyRef Name="id_dossier" />
+            </Principal>
+            <Dependent Role="Liste_Participants">
+              <PropertyRef Name="dossier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Fk_8Voyage">
           <End Role="Voyages" Type="Self.Voyages" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -658,6 +714,18 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
             </Principal>
             <Dependent Role="Dossiers">
               <PropertyRef Name="voyage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_6Personne">
+          <End Role="Personnes" Type="Self.Personnes" Multiplicity="1" />
+          <End Role="Liste_Participants" Type="Self.Liste_Participants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnes">
+              <PropertyRef Name="id_personne" />
+            </Principal>
+            <Dependent Role="Liste_Participants">
+              <PropertyRef Name="participant" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -685,43 +753,33 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Fk_0Authentifications">
-          <End Role="Statuts" Type="Self.Statuts" Multiplicity="1" />
-          <End Role="Authentifications" Type="Self.Authentifications" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Statuts">
-              <PropertyRef Name="statut" />
-            </Principal>
-            <Dependent Role="Authentifications">
-              <PropertyRef Name="statut" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Liste_Assurances">
-          <End Role="Assurances" Type="Self.Assurances" Multiplicity="*" />
-          <End Role="Dossiers" Type="Self.Dossiers" Multiplicity="*" />
-        </Association>
-        <Association Name="Liste_Participants">
-          <End Role="Personnes" Type="Self.Personnes" Multiplicity="*" />
-          <End Role="Dossiers" Type="Self.Dossiers" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="BoVoyage_VNNDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Agences" EntityType="Self.Agences" />
           <EntitySet Name="Assurances" EntityType="Self.Assurances" />
+          <EntitySet Name="Authentifications" EntityType="Self.Authentifications" />
           <EntitySet Name="Civilites" EntityType="Self.Civilites" />
           <EntitySet Name="Continents" EntityType="Self.Continents" />
           <EntitySet Name="Destinations" EntityType="Self.Destinations" />
           <EntitySet Name="Dossiers" EntityType="Self.Dossiers" />
           <EntitySet Name="Etats_Dossiers" EntityType="Self.Etats_Dossiers" />
+          <EntitySet Name="Liste_Assurances" EntityType="Self.Liste_Assurances" />
+          <EntitySet Name="Liste_Participants" EntityType="Self.Liste_Participants" />
           <EntitySet Name="OuisNons" EntityType="Self.OuisNons" />
           <EntitySet Name="Personnes" EntityType="Self.Personnes" />
           <EntitySet Name="Raisons_Annulations" EntityType="Self.Raisons_Annulations" />
           <EntitySet Name="Statuts" EntityType="Self.Statuts" />
           <EntitySet Name="Voyages" EntityType="Self.Voyages" />
-          <EntitySet Name="Authentifications" EntityType="Self.Authentifications" />
           <AssociationSet Name="Fk_4Agences" Association="Self.Fk_4Agences">
             <End Role="Agences" EntitySet="Agences" />
             <End Role="Voyages" EntitySet="Voyages" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_5Assurance" Association="Self.Fk_5Assurance">
+            <End Role="Assurances" EntitySet="Assurances" />
+            <End Role="Liste_Assurances" EntitySet="Liste_Assurances" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_0Authentifications" Association="Self.Fk_0Authentifications">
+            <End Role="Statuts" EntitySet="Statuts" />
+            <End Role="Authentifications" EntitySet="Authentifications" />
           </AssociationSet>
           <AssociationSet Name="Fk_1Civilites" Association="Self.Fk_1Civilites">
             <End Role="Civilites" EntitySet="Civilites" />
@@ -739,6 +797,10 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
             <End Role="Raisons_Annulations" EntitySet="Raisons_Annulations" />
             <End Role="Dossiers" EntitySet="Dossiers" />
           </AssociationSet>
+          <AssociationSet Name="Fk_6Dossier" Association="Self.Fk_6Dossier">
+            <End Role="Dossiers" EntitySet="Dossiers" />
+            <End Role="Liste_Assurances" EntitySet="Liste_Assurances" />
+          </AssociationSet>
           <AssociationSet Name="Fk_6EtatDossier" Association="Self.Fk_6EtatDossier">
             <End Role="Etats_Dossiers" EntitySet="Etats_Dossiers" />
             <End Role="Dossiers" EntitySet="Dossiers" />
@@ -747,9 +809,17 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
             <End Role="Personnes" EntitySet="Personnes" />
             <End Role="Dossiers" EntitySet="Dossiers" />
           </AssociationSet>
+          <AssociationSet Name="Fk_7Dossier" Association="Self.Fk_7Dossier">
+            <End Role="Dossiers" EntitySet="Dossiers" />
+            <End Role="Liste_Participants" EntitySet="Liste_Participants" />
+          </AssociationSet>
           <AssociationSet Name="Fk_8Voyage" Association="Self.Fk_8Voyage">
             <End Role="Voyages" EntitySet="Voyages" />
             <End Role="Dossiers" EntitySet="Dossiers" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_6Personne" Association="Self.Fk_6Personne">
+            <End Role="Personnes" EntitySet="Personnes" />
+            <End Role="Liste_Participants" EntitySet="Liste_Participants" />
           </AssociationSet>
           <AssociationSet Name="Fk_Client" Association="Self.Fk_Client">
             <End Role="OuisNons" EntitySet="OuisNons" />
@@ -758,18 +828,6 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <AssociationSet Name="Fk_Participant" Association="Self.Fk_Participant">
             <End Role="OuisNons" EntitySet="OuisNons" />
             <End Role="Personnes" EntitySet="Personnes" />
-          </AssociationSet>
-          <AssociationSet Name="Fk_0Authentifications" Association="Self.Fk_0Authentifications">
-            <End Role="Statuts" EntitySet="Statuts" />
-            <End Role="Authentifications" EntitySet="Authentifications" />
-          </AssociationSet>
-          <AssociationSet Name="Liste_Assurances" Association="Self.Liste_Assurances">
-            <End Role="Assurances" EntitySet="Assurances" />
-            <End Role="Dossiers" EntitySet="Dossiers" />
-          </AssociationSet>
-          <AssociationSet Name="Liste_Participants" Association="Self.Liste_Participants">
-            <End Role="Personnes" EntitySet="Personnes" />
-            <End Role="Dossiers" EntitySet="Dossiers" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -796,9 +854,20 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Authentifications">
+            <EntityTypeMapping TypeName="BoVoyage_VNNDModel.Authentifications">
+              <MappingFragment StoreEntitySet="Authentifications">
+                <ScalarProperty Name="id_auth" ColumnName="id_auth" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mot_de_passe" ColumnName="mot de passe" />
+                <ScalarProperty Name="statut" ColumnName="statut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Civilites">
             <EntityTypeMapping TypeName="BoVoyage_VNNDModel.Civilites">
               <MappingFragment StoreEntitySet="Civilites">
+                <ScalarProperty Name="id_civilite" ColumnName="id_civilite" />
                 <ScalarProperty Name="civilite" ColumnName="civilite" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -806,6 +875,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <EntitySetMapping Name="Continents">
             <EntityTypeMapping TypeName="BoVoyage_VNNDModel.Continents">
               <MappingFragment StoreEntitySet="Continents">
+                <ScalarProperty Name="id_continent" ColumnName="id_continent" />
                 <ScalarProperty Name="continent" ColumnName="continent" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -842,6 +912,24 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Liste_Assurances">
+            <EntityTypeMapping TypeName="BoVoyage_VNNDModel.Liste_Assurances">
+              <MappingFragment StoreEntitySet="Liste Assurances">
+                <ScalarProperty Name="id_listassurance" ColumnName="id_listassurance" />
+                <ScalarProperty Name="assurance" ColumnName="assurance" />
+                <ScalarProperty Name="dossier" ColumnName="dossier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Liste_Participants">
+            <EntityTypeMapping TypeName="BoVoyage_VNNDModel.Liste_Participants">
+              <MappingFragment StoreEntitySet="Liste Participants">
+                <ScalarProperty Name="id_listparticipant" ColumnName="id_listparticipant" />
+                <ScalarProperty Name="participant" ColumnName="participant" />
+                <ScalarProperty Name="dossier" ColumnName="dossier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OuisNons">
             <EntityTypeMapping TypeName="BoVoyage_VNNDModel.OuisNons">
               <MappingFragment StoreEntitySet="OuisNons">
@@ -869,6 +957,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <EntitySetMapping Name="Raisons_Annulations">
             <EntityTypeMapping TypeName="BoVoyage_VNNDModel.Raisons_Annulations">
               <MappingFragment StoreEntitySet="Raisons Annulations">
+                <ScalarProperty Name="id_annul" ColumnName="id_annul" />
                 <ScalarProperty Name="annulation_raison" ColumnName="annulation_raison" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -876,6 +965,7 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
           <EntitySetMapping Name="Statuts">
             <EntityTypeMapping TypeName="BoVoyage_VNNDModel.Statuts">
               <MappingFragment StoreEntitySet="Statuts">
+                <ScalarProperty Name="id_statut" ColumnName="id_statut" />
                 <ScalarProperty Name="statut" ColumnName="statut" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -893,36 +983,11 @@ avertissement 6002: La table/vue 'BoVoyage_VNND.dbo.Liste Participants' n'a pas 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Authentifications">
-            <EntityTypeMapping TypeName="BoVoyage_VNNDModel.Authentifications">
-              <MappingFragment StoreEntitySet="Authentifications">
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="mot_de_passe" ColumnName="mot de passe" />
-                <ScalarProperty Name="statut" ColumnName="statut" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Liste_Assurances" TypeName="BoVoyage_VNNDModel.Liste_Assurances" StoreEntitySet="Liste Assurances">
-            <EndProperty Name="Assurances">
-              <ScalarProperty Name="id_assurance" ColumnName="assurance" />
-            </EndProperty>
-            <EndProperty Name="Dossiers">
-              <ScalarProperty Name="id_dossier" ColumnName="dossier" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Liste_Participants" TypeName="BoVoyage_VNNDModel.Liste_Participants" StoreEntitySet="Liste Participants">
-            <EndProperty Name="Personnes">
-              <ScalarProperty Name="id_personne" ColumnName="participant" />
-            </EndProperty>
-            <EndProperty Name="Dossiers">
-              <ScalarProperty Name="id_dossier" ColumnName="dossier" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
-  <!-- EF Designer content (DO NOT Modifier MANUALLY BELOW HERE) -->
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <Connection>
       <DesignerInfoPropertySet>

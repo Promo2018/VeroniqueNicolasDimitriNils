@@ -18,11 +18,11 @@ namespace ProjectFinal_VNND.Models
         public Personnes()
         {
             this.Dossiers = new HashSet<Dossiers>();
-            this.Dossiers1 = new HashSet<Dossiers>();
+            this.Liste_Participants = new HashSet<Liste_Participants>();
         }
     
         public int id_personne { get; set; }
-        public string civilite { get; set; }
+        public int civilite { get; set; }
         public string prenom { get; set; }
         public string nom { get; set; }
         public string adresse { get; set; }
@@ -35,22 +35,9 @@ namespace ProjectFinal_VNND.Models
         public virtual Civilites Civilites { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dossiers> Dossiers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liste_Participants> Liste_Participants { get; set; }
         public virtual OuisNons OuisNons { get; set; }
         public virtual OuisNons OuisNons1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dossiers> Dossiers1 { get; set; }
-        public int age
-        {
-            get
-            {
-                int Age = DateTime.Now.Year - date_naissance.Year;
-                if (DateTime.Now.Month < date_naissance.Month || DateTime.Now.Month == date_naissance.Month && DateTime.Now.Day < date_naissance.Day)
-                { Age--; }
-                else
-                { };
-                return Age;
-            }
-        }
-        public int reduction { get { int red = 0; if(age < 12) { red = 40; }  return red; } }
     }
 }

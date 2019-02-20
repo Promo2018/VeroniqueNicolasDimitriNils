@@ -16,39 +16,38 @@ insert into Agences (agence) values ('Graham-Strosin');
 
 --Assurances
 
-insert into assurances (libelle, prix, descriptif) values ('Annulation', 0.1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum1', 0, 'Mielichhoferia mielichhoferiana (Funck) Loeske var. mielichhoferiana');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum2', 0, 'Wissadula amplissima (L.) R.E. Fries');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum3', 0, 'Centaurium beyrichii (Torr. & A. Gray ex Torr.) B.L. Rob.');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum4', 0, 'Pedicularis densiflora Benth. ex Hook. ssp. densiflora');
-insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum5', 0, 'Solanum dimidiatum Raf.');
+insert into assurances (libelle, prix, descriptif) values ('Annulation', 1.1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum1', 1, 'Mielichhoferia mielichhoferiana (Funck) Loeske var. mielichhoferiana');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum2', 1, 'Wissadula amplissima (L.) R.E. Fries');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum3', 1, 'Centaurium beyrichii (Torr. & A. Gray ex Torr.) B.L. Rob.');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum4', 1, 'Pedicularis densiflora Benth. ex Hook. ssp. densiflora');
+insert into assurances (libelle, prix, descriptif) values ('Lorem ipsum5', 1, 'Solanum dimidiatum Raf.');
 
 --Destinations
 
-insert into Destinations (continent, pays, region, descriptif) values ('Asie', 'Indonesia', 'Caprifoliaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Amerique du Sud', 'Brazil', 'Scrophulariaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Europe', 'Poland', 'Fagaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Amerique du Sud', 'Brazil', 'Hydrophyllaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Europe', 'Croatia', 'Apocynaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Asie', 'China', 'Asteraceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Europe', 'Portugal', 'Salicaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Asie', 'Russia', 'Asteraceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Asie', 'Indonesia', 'Rutaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-insert into Destinations (continent, pays, region, descriptif) values ('Amerique du Nord', 'United States', 'Juncaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
-
+insert into Destinations (continent, pays, region, descriptif) values (4, 'Indonesia', 'Caprifoliaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values (3, 'Brazil', 'Scrophulariaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values (5, 'Poland', 'Fagaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values (3, 'Brazil', 'Hydrophyllaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values (5, 'Croatia', 'Apocynaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values (4, 'China', 'Asteraceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values (5, 'Portugal', 'Salicaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values (4, 'Russia', 'Asteraceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values (4, 'Indonesia', 'Rutaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
+insert into Destinations (continent, pays, region, descriptif) values (6, 'United States', 'Juncaceae', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. ');
 
 --Authentifications
 
-insert into Authentifications (email, [mot de passe], statut) values ('knairns0@si.edu', 'CkGDJzA', 'Client');
-insert into Authentifications (email, [mot de passe], statut) values ('ksimenel1@discuz.net', 'iscKl9Ebevd', 'Commercial');
-insert into Authentifications (email, [mot de passe], statut) values ('phusby2@netlog.com', 'KYvBSw2', 'Administrateur');
-insert into Authentifications (email, [mot de passe], statut) values ('lbalsillie3@live.com', 'gniF3c5lrIRO', 'Client');
-insert into Authentifications (email, [mot de passe], statut) values ('osnailham4@weather.com', 'lIkYUgyfE', 'Commercial');
-insert into Authentifications (email, [mot de passe], statut) values ('clulham5@canalblog.com', 'XctjAM', 'Marketing');
-insert into Authentifications (email, [mot de passe], statut) values ('fpiecha6@ow.ly', 'b9cjZzGVUM5', 'Client');
-insert into Authentifications (email, [mot de passe], statut) values ('kwilkins7@sphinn.com', '1dW2qenbADd', 'Commercial');
-insert into Authentifications (email, [mot de passe], statut) values ('crameau8@blinklist.com', 'oQQhUTGmUdxe', 'Marketing');
-insert into Authentifications (email, [mot de passe], statut) values ('dmoodie9@ameblo.jp', 'esHbbJ', 'Client');
+insert into Authentifications (email, [mot de passe], statut) values ('knairns0@si.edu', 'CkGDJzA', 1);
+insert into Authentifications (email, [mot de passe], statut) values ('ksimenel1@discuz.net', 'iscKl9Ebevd', 2);
+insert into Authentifications (email, [mot de passe], statut) values ('phusby2@netlog.com', 'KYvBSw2', 4);
+insert into Authentifications (email, [mot de passe], statut) values ('lbalsillie3@live.com', 'gniF3c5lrIRO', 1);
+insert into Authentifications (email, [mot de passe], statut) values ('osnailham4@weather.com', 'lIkYUgyfE', 2);
+insert into Authentifications (email, [mot de passe], statut) values ('clulham5@canalblog.com', 'XctjAM', 3);
+insert into Authentifications (email, [mot de passe], statut) values ('fpiecha6@ow.ly', 'b9cjZzGVUM5', 1);
+insert into Authentifications (email, [mot de passe], statut) values ('kwilkins7@sphinn.com', '1dW2qenbADd', 2);
+insert into Authentifications (email, [mot de passe], statut) values ('crameau8@blinklist.com', 'oQQhUTGmUdxe', 3);
+insert into Authentifications (email, [mot de passe], statut) values ('dmoodie9@ameblo.jp', 'esHbbJ', 1);
 
 --Voyages
 
@@ -65,16 +64,16 @@ insert into Voyages ([date aller], [date retour], [places disponibles], [tarif t
 
 --Personnes
 
-insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values ('Mme', 'Perree', 'Abigael', '371 Bellgrove Terrace', '971-697-8888', '2012-08-10', 'aperree0@fotki.com');
-insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values ('M', 'Wetwood', 'Onfre', '78 Burning Wood Way', '689-705-8702', '1961-03-02', 'owetwood1@gmpg.org');
-insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values ('M', 'Wiz', 'Thornie', '330 Forest Court', '860-462-0184', '2012-06-14', 'twiz2@cbsnews.com');
-insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values ('Mme', 'Cow', 'Amity', '18512 Grayhawk Pass', '384-682-0554', '1965-05-05', 'acow3@domainmarket.com');
-insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values ('M', 'Propper', 'Kalil', '70163 Starling Parkway', '280-952-5248', '1966-08-14', 'kpropper4@theglobeandmail.com');
-insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values ('Mme', 'Bamell', 'Melany', '5306 Vera Point', '684-661-5638', '2014-07-09', 'mbamell5@unesco.org');
-insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values ('Mme', 'Caslin', 'Chiquita', '5689 Bay Center', '913-280-0958', '2000-04-30', 'ccaslin6@elegantthemes.com');
-insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values ('M', 'Melonby', 'Silvain', '68 Bultman Place', '207-948-2670', '1976-05-02', 'smelonby7@twitter.com');
-insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values ('Mme', 'Monument', 'Delora', '9115 Corben Place', '789-114-5754', '1964-07-16', 'dmonument8@bloglovin.com');
-insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values ('Mme', 'Belchem', 'Amil', '96 Sage Trail', '786-516-7635', '1998-07-26', 'abelchem9@indiatimes.com');
+insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values (2, 'Perree', 'Abigael', '371 Bellgrove Terrace', '971-697-8888', '2012-08-10', 'aperree0@fotki.com');
+insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values (1, 'Wetwood', 'Onfre', '78 Burning Wood Way', '689-705-8702', '1961-03-02', 'owetwood1@gmpg.org');
+insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values (1, 'Wiz', 'Thornie', '330 Forest Court', '860-462-0184', '2012-06-14', 'twiz2@cbsnews.com');
+insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values (2, 'Cow', 'Amity', '18512 Grayhawk Pass', '384-682-0554', '1965-05-05', 'acow3@domainmarket.com');
+insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values (1, 'Propper', 'Kalil', '70163 Starling Parkway', '280-952-5248', '1966-08-14', 'kpropper4@theglobeandmail.com');
+insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values (2, 'Bamell', 'Melany', '5306 Vera Point', '684-661-5638', '2014-07-09', 'mbamell5@unesco.org');
+insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values (1, 'Caslin', 'Chiquita', '5689 Bay Center', '913-280-0958', '2000-04-30', 'ccaslin6@elegantthemes.com');
+insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values (1, 'Melonby', 'Silvain', '68 Bultman Place', '207-948-2670', '1976-05-02', 'smelonby7@twitter.com');
+insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values (2, 'Monument', 'Delora', '9115 Corben Place', '789-114-5754', '1964-07-16', 'dmonument8@bloglovin.com');
+insert into Personnes (civilite, nom, prenom, adresse, telephone, [date naissance], email) values (1, 'Belchem', 'Amil', '96 Sage Trail', '786-516-7635', '1998-07-26', 'abelchem9@indiatimes.com');
 
 --Dossiers
 

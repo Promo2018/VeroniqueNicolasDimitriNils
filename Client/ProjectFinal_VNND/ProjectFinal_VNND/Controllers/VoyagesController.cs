@@ -41,14 +41,14 @@ namespace ProjectFinal_VNND.Controllers
             {
                 voyage = voyage.Where(s => s.tarif_tout_compris <= prixMax && s.tarif_tout_compris >= prixMin && s.places_disponibles <= place
                 && s.date_aller >= aller && s.date_retour <= retour
-                && (s.Destinations.continent.Contains(searchPattern) || s.Destinations.pays.Contains(searchPattern) || s.Destinations.region.Contains(searchPattern)));
+                && (s.Destinations.Continents.continent.Contains(searchPattern) || s.Destinations.pays.Contains(searchPattern) || s.Destinations.region.Contains(searchPattern)));
 
             }
             return View(voyage.ToList());
         }
 
-        // GET: Voyages/Informations/5
-        public ActionResult Informations(int? id)
+        // GET: Voyages/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -62,20 +62,20 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
-        // GET: Voyages/Sauvegarder
-        public ActionResult Sauvegarder()
+        // GET: Voyages/Create
+        public ActionResult Create()
         {
             ViewBag.agence = new SelectList(db.Agences, "id_agence", "agence");
             ViewBag.destination = new SelectList(db.Destinations, "id_destination", "continent");
             return View();
         }
 
-        // POST: Voyages/Sauvegarder
+        // POST: Voyages/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Sauvegarder([Bind(Include = "id_voyage,date_aller,date_retour,places_disponibles,tarif_tout_compris,agence,destination")] Voyages voyages)
+        public ActionResult Create([Bind(Include = "id_voyage,date_aller,date_retour,places_disponibles,tarif_tout_compris,agence,destination")] Voyages voyages)
         {
             if (ModelState.IsValid)
             {
@@ -89,8 +89,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
-        // GET: Voyages/Modifier/5
-        public ActionResult Modifier(int? id)
+        // GET: Voyages/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -106,12 +106,12 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
-        // POST: Voyages/Modifier/5
+        // POST: Voyages/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Modifier([Bind(Include = "id_voyage,date_aller,date_retour,places_disponibles,tarif_tout_compris,agence,destination")] Voyages voyages)
+        public ActionResult Edit([Bind(Include = "id_voyage,date_aller,date_retour,places_disponibles,tarif_tout_compris,agence,destination")] Voyages voyages)
         {
             if (ModelState.IsValid)
             {
@@ -124,8 +124,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
-        // GET: Voyages/Supprimer/5
-        public ActionResult Supprimer(int? id)
+        // GET: Voyages/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -139,8 +139,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
-        // POST: Voyages/Supprimer/5
-        [HttpPost, ActionName("Supprimer")]
+        // POST: Voyages/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

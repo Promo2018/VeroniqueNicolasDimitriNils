@@ -3,11 +3,11 @@
  output extension=".cs"#><#
 
 const string inputFile = @"Model1.edmx";
-var textTransform = DynamicTextTransformation.Sauvegarder(this);
+var textTransform = DynamicTextTransformation.Create(this);
 var code = new CodeGenerationTools(this);
 var ef = new MetadataTools(this);
 var typeMapper = new TypeMapper(code, ef, textTransform.Errors);
-var	fileManager = EntityFrameworkTemplateFileManager.Sauvegarder(this);
+var	fileManager = EntityFrameworkTemplateFileManager.Create(this);
 var itemCollection = new EdmMetadataLoader(textTransform.Host, textTransform.Errors).CreateEdmItemCollection(inputFile);
 var codeStringGenerator = new CodeStringGenerator(code, typeMapper, ef);
 
@@ -334,7 +334,7 @@ public class CodeStringGenerator
     
     public void WriteFunctionParameters(EdmFunction edmFunction, Action<string, string, string, string> writeParameter)
     {
-        var parameters = FunctionImportParameter.Sauvegarder(edmFunction.Parameters, _code, _ef);
+        var parameters = FunctionImportParameter.Create(edmFunction.Parameters, _code, _ef);
         foreach (var parameter in parameters.Where(p => p.NeedsLocalVariable))
         {
             var isNotNull = parameter.IsNullableOfT ? parameter.FunctionParameterName + ".HasValue" : parameter.FunctionParameterName + " != null";
@@ -707,7 +707,7 @@ public class TypeMapper
 
     public IEnumerable<FunctionImportParameter> GetParameters(EdmFunction edmFunction)
     {
-        return FunctionImportParameter.Sauvegarder(edmFunction.Parameters, _code, _ef);
+        return FunctionImportParameter.Create(edmFunction.Parameters, _code, _ef);
     }
 
     public TypeUsage GetReturnType(EdmFunction edmFunction)

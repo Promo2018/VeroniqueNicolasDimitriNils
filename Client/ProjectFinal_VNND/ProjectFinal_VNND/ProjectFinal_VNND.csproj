@@ -115,7 +115,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AgencesController.cs" />
     <Compile Include="Controllers\AssurancesController.cs" />
-    <Compile Include="Controllers\Authentifications1Controller.cs" />
     <Compile Include="Controllers\AuthentificationsController.cs" />
     <Compile Include="Controllers\DestinationsController.cs" />
     <Compile Include="Controllers\DossiersController.cs" />
@@ -146,6 +145,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Etats_Dossiers.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Liste_Assurances.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Liste_Participants.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -190,50 +195,44 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
-    <Content Include="Views\Agences\Sauvegarder.cshtml" />
-    <Content Include="Views\Agences\Supprimer.cshtml" />
+    <Content Include="Views\Agences\Create.cshtml" />
+    <Content Include="Views\Agences\Delete.cshtml" />
     <Content Include="Views\Agences\Details.cshtml" />
-    <Content Include="Views\Agences\Modifier.cshtml" />
+    <Content Include="Views\Agences\Edit.cshtml" />
     <Content Include="Views\Agences\Index.cshtml" />
-    <Content Include="Views\Assurances\Sauvegarder.cshtml" />
-    <Content Include="Views\Assurances\Supprimer.cshtml" />
-    <Content Include="Views\Assurances\Informations.cshtml" />
-    <Content Include="Views\Assurances\Modifier.cshtml" />
+    <Content Include="Views\Assurances\Create.cshtml" />
+    <Content Include="Views\Assurances\Delete.cshtml" />
+    <Content Include="Views\Assurances\Details.cshtml" />
+    <Content Include="Views\Assurances\Edit.cshtml" />
     <Content Include="Views\Assurances\Index.cshtml" />
-    <Content Include="Views\Destinations\Sauvegarder.cshtml" />
-    <Content Include="Views\Destinations\Supprimer.cshtml" />
-    <Content Include="Views\Destinations\Informations.cshtml" />
-    <Content Include="Views\Destinations\Modifier.cshtml" />
-    <Content Include="Views\Destinations\Index.cshtml" />
-    <Content Include="Views\Voyages\Sauvegarder.cshtml" />
-    <Content Include="Views\Voyages\Supprimer.cshtml" />
-    <Content Include="Views\Voyages\Informations.cshtml" />
-    <Content Include="Views\Voyages\Modifier.cshtml" />
+    <Content Include="Views\Voyages\Create.cshtml" />
+    <Content Include="Views\Voyages\Delete.cshtml" />
+    <Content Include="Views\Voyages\Details.cshtml" />
+    <Content Include="Views\Voyages\Edit.cshtml" />
     <Content Include="Views\Voyages\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Personnes\Sauvegarder.cshtml" />
-    <Content Include="Views\Personnes\Supprimer.cshtml" />
-    <Content Include="Views\Personnes\Informations.cshtml" />
-    <Content Include="Views\Personnes\Modifier.cshtml" />
-    <Content Include="Views\Personnes\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
-    <Content Include="Views\Authentifications\Sauvegarder.cshtml" />
-    <Content Include="Views\Authentifications\Supprimer.cshtml" />
+    <Content Include="Views\Authentifications\Create.cshtml" />
+    <Content Include="Views\Authentifications\Delete.cshtml" />
     <Content Include="Views\Authentifications\Details.cshtml" />
-    <Content Include="Views\Authentifications\Modifier.cshtml" />
-    <Content Include="Views\Authentifications\Connection.cshtml" />
-    <Content Include="Views\Dossiers\Sauvegarder.cshtml" />
-    <Content Include="Views\Dossiers\Supprimer.cshtml" />
-    <Content Include="Views\Dossiers\Informations.cshtml" />
-    <Content Include="Views\Dossiers\Modifier.cshtml" />
-    <Content Include="Views\Dossiers\Index.cshtml" />
+    <Content Include="Views\Authentifications\Edit.cshtml" />
     <Content Include="Views\Authentifications\Index.cshtml" />
-    <Content Include="Views\Authentifications\Authentifications1\Create.cshtml" />
-    <Content Include="Views\Authentifications\Authentifications1\Delete.cshtml" />
-    <Content Include="Views\Authentifications\Authentifications1\Details.cshtml" />
-    <Content Include="Views\Authentifications\Authentifications1\Edit.cshtml" />
-    <Content Include="Views\Authentifications\Authentifications1\Index.cshtml" />
+    <Content Include="Views\Destinations\Create.cshtml" />
+    <Content Include="Views\Destinations\Delete.cshtml" />
+    <Content Include="Views\Destinations\Details.cshtml" />
+    <Content Include="Views\Destinations\Edit.cshtml" />
+    <Content Include="Views\Destinations\Index.cshtml" />
+    <Content Include="Views\Dossiers\Create.cshtml" />
+    <Content Include="Views\Dossiers\Delete.cshtml" />
+    <Content Include="Views\Dossiers\Details.cshtml" />
+    <Content Include="Views\Dossiers\Edit.cshtml" />
+    <Content Include="Views\Dossiers\Index.cshtml" />
+    <Content Include="Views\Personnes\Create.cshtml" />
+    <Content Include="Views\Personnes\Delete.cshtml" />
+    <Content Include="Views\Personnes\Details.cshtml" />
+    <Content Include="Views\Personnes\Edit.cshtml" />
+    <Content Include="Views\Personnes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

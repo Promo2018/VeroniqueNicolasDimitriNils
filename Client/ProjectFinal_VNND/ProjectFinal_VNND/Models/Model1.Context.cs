@@ -27,16 +27,18 @@ namespace ProjectFinal_VNND.Models
     
         public virtual DbSet<Agences> Agences { get; set; }
         public virtual DbSet<Assurances> Assurances { get; set; }
+        public virtual DbSet<Authentifications> Authentifications { get; set; }
         public virtual DbSet<Civilites> Civilites { get; set; }
         public virtual DbSet<Continents> Continents { get; set; }
         public virtual DbSet<Destinations> Destinations { get; set; }
         public virtual DbSet<Dossiers> Dossiers { get; set; }
         public virtual DbSet<Etats_Dossiers> Etats_Dossiers { get; set; }
+        public virtual DbSet<Liste_Assurances> Liste_Assurances { get; set; }
+        public virtual DbSet<Liste_Participants> Liste_Participants { get; set; }
         public virtual DbSet<OuisNons> OuisNons { get; set; }
         public virtual DbSet<Personnes> Personnes { get; set; }
         public virtual DbSet<Raisons_Annulations> Raisons_Annulations { get; set; }
         public virtual DbSet<Statuts> Statuts { get; set; }
         public virtual DbSet<Voyages> Voyages { get; set; }
-        public virtual DbSet<Authentifications> Authentifications { get; set; }
     }
 }

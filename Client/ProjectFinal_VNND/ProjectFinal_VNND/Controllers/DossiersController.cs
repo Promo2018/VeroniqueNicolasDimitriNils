@@ -21,8 +21,23 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers.ToList());
         }
 
-        // GET: Dossiers/Informations/5
-        public ActionResult Informations(int? id)
+        [HttpPost]
+        public ActionResult Index(string nom, string prenom, string continent, string etat)
+        {
+
+            var dossier = from s in db.Dossiers.Include(d => d.Raisons_Annulations).Include(d => d.Etats_Dossiers).Include(d => d.Personnes).Include(d => d.Voyages)
+                          select s;
+
+            if (!String.IsNullOrEmpty(nom) || !String.IsNullOrEmpty(prenom) || !String.IsNullOrEmpty(continent) || !String.IsNullOrEmpty(etat))
+            {
+                dossier = dossier.Where(s => s.Personnes.nom.Contains(nom) && s.Personnes.prenom.Contains(prenom)
+                && s.Voyages.Destinations.Continents.continent.Contains(continent));
+            }
+            return View(dossier.ToList());
+        }
+
+        // GET: Dossiers/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -36,41 +51,39 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers);
         }
 
-        // GET: Dossiers/Sauvegarder
-        public ActionResult Sauvegarder()
+        // GET: Dossiers/Create
+        public ActionResult Create()
         {
-            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison");
+            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison");
             ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat");
-            ViewBag.client = new SelectList(db.Personnes, "id_personne", "civilite");
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "prenom");
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage");
             return View();
         }
 
-        // POST: Dossiers/Sauvegarder
+        // POST: Dossiers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Sauvegarder([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
+        public ActionResult Create([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
         {
             if (ModelState.IsValid)
             {
-                dossiers.etat = 1;
-                dossiers.dernier_suivi = DateTime.Now;
                 db.Dossiers.Add(dossiers);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison", dossiers.raison_annulation);
+            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison", dossiers.raison_annulation);
             ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
-            ViewBag.client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.client);
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "prenom", dossiers.client);
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
             return View(dossiers);
         }
 
-        // GET: Dossiers/Modifier/5
-        public ActionResult Modifier(int? id)
+        // GET: Dossiers/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -81,19 +94,19 @@ namespace ProjectFinal_VNND.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison", dossiers.raison_annulation);
+            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison", dossiers.raison_annulation);
             ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
-            ViewBag.client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.client);
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "prenom", dossiers.client);
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
             return View(dossiers);
         }
 
-        // POST: Dossiers/Modifier/5
+        // POST: Dossiers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Modifier([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
+        public ActionResult Edit([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
         {
             if (ModelState.IsValid)
             {
@@ -101,15 +114,15 @@ namespace ProjectFinal_VNND.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "annulation_raison", "annulation_raison", dossiers.raison_annulation);
+            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison", dossiers.raison_annulation);
             ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
-            ViewBag.client = new SelectList(db.Personnes, "id_personne", "civilite", dossiers.client);
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "prenom", dossiers.client);
             ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
             return View(dossiers);
         }
 
-        // GET: Dossiers/Supprimer/5
-        public ActionResult Supprimer(int? id)
+        // GET: Dossiers/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -123,8 +136,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers);
         }
 
-        // POST: Dossiers/Supprimer/5
-        [HttpPost, ActionName("Supprimer")]
+        // POST: Dossiers/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

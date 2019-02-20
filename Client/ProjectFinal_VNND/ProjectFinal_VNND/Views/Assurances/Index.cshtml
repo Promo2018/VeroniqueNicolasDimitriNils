@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<ProjectFinal_VNND.Models.Assurances>
-    @using ProjectFinal_VNND.Models; 
 
 
 <!DOCTYPE html>
@@ -11,7 +10,7 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Ajouter une Assurance", "Sauvegarder")
+        @Html.ActionLink("Create New", "Create")
     </p>
 
     @using (Html.BeginForm())
@@ -25,10 +24,13 @@
     <table class="table">
         <tr>
             <th>
-                Type d'Assurance
+                @Html.DisplayNameFor(model => model.libelle)
             </th>
             <th>
-                Coût (en % du prix Total) 
+                @Html.DisplayNameFor(model => model.prix)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descriptif)
             </th>
             <th></th>
         </tr>
@@ -40,12 +42,15 @@
                     @Html.DisplayFor(modelItem => item.libelle)
                 </td>
                 <td>
-                    @item.prix100
+                    @Html.DisplayFor(modelItem => item.prix)
                 </td>
                 <td>
-                    @Html.ActionLink("Modifier", "Modifier", new { id = item.id_assurance }) |
-                    @Html.ActionLink("Informations", "Informations", new { id = item.id_assurance }) |
-                    @Html.ActionLink("Supprimer", "Supprimer", new { id = item.id_assurance })
+                    @Html.DisplayFor(modelItem => item.descriptif)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id_assurance }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id_assurance }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id_assurance })
                 </td>
             </tr>
         }

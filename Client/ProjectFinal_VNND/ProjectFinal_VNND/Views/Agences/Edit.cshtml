@@ -1,8 +1,4 @@
-﻿@model ProjectFinal_VNND.Models.Authentifications
-
-@{
-    Layout = null;
-}
+﻿@model ProjectFinal_VNND.Models.Agences
 
 <!DOCTYPE html>
 
@@ -17,14 +13,18 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>Authentifications</h4>
+            <h4>Agences</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.email)
+            @Html.HiddenFor(model => model.id_agence)
     
-            @Html.HiddenFor(model => model.mot_de_passe)
-    
-            @Html.HiddenFor(model => model.statut)
+            <div class="form-group">
+                Agence
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.agence, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.agence, "", new { @class = "text-danger" })
+                </div>
+            </div>
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

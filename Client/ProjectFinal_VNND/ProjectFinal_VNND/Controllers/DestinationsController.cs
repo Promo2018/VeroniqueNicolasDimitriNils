@@ -30,14 +30,14 @@ namespace ProjectFinal_VNND.Controllers
 
             if (!String.IsNullOrEmpty(continent) || !String.IsNullOrEmpty(pays) || !String.IsNullOrEmpty(region))
             {
-                destination = destination.Where(s => s.continent.Contains(continent) && s.pays.Contains(pays) && s.region.Contains(region));
+                destination = destination.Where(s => s.Continents.continent.Contains(continent) && s.pays.Contains(pays) && s.region.Contains(region));
             }
 
             return View(destination.ToList());
         }
 
-        // GET: Destinations/Informations/5
-        public ActionResult Informations(int? id)
+        // GET: Destinations/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -51,19 +51,19 @@ namespace ProjectFinal_VNND.Controllers
             return View(destinations);
         }
 
-        // GET: Destinations/Sauvegarder
-        public ActionResult Sauvegarder()
+        // GET: Destinations/Create
+        public ActionResult Create()
         {
-            ViewBag.continent = new SelectList(db.Continents, "continent", "continent");
+            ViewBag.continent = new SelectList(db.Continents, "id_continent", "continent");
             return View();
         }
 
-        // POST: Destinations/Sauvegarder
+        // POST: Destinations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Sauvegarder([Bind(Include = "id_destination,continent,pays,region,descriptif")] Destinations destinations)
+        public ActionResult Create([Bind(Include = "id_destination,continent,pays,region,descriptif")] Destinations destinations)
         {
             if (ModelState.IsValid)
             {
@@ -72,12 +72,12 @@ namespace ProjectFinal_VNND.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.continent = new SelectList(db.Continents, "continent", "continent", destinations.continent);
+            ViewBag.continent = new SelectList(db.Continents, "id_continent", "continent", destinations.continent);
             return View(destinations);
         }
 
-        // GET: Destinations/Modifier/5
-        public ActionResult Modifier(int? id)
+        // GET: Destinations/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -88,16 +88,16 @@ namespace ProjectFinal_VNND.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.continent = new SelectList(db.Continents, "continent", "continent", destinations.continent);
+            ViewBag.continent = new SelectList(db.Continents, "id_continent", "continent", destinations.continent);
             return View(destinations);
         }
 
-        // POST: Destinations/Modifier/5
+        // POST: Destinations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Modifier([Bind(Include = "id_destination,continent,pays,region,descriptif")] Destinations destinations)
+        public ActionResult Edit([Bind(Include = "id_destination,continent,pays,region,descriptif")] Destinations destinations)
         {
             if (ModelState.IsValid)
             {
@@ -105,12 +105,12 @@ namespace ProjectFinal_VNND.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.continent = new SelectList(db.Continents, "continent", "continent", destinations.continent);
+            ViewBag.continent = new SelectList(db.Continents, "id_continent", "continent", destinations.continent);
             return View(destinations);
         }
 
-        // GET: Destinations/Supprimer/5
-        public ActionResult Supprimer(int? id)
+        // GET: Destinations/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -124,8 +124,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(destinations);
         }
 
-        // POST: Destinations/Supprimer/5
-        [HttpPost, ActionName("Supprimer")]
+        // POST: Destinations/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

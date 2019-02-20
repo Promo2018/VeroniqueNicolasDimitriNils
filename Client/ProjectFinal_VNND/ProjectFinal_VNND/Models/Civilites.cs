@@ -20,6 +20,7 @@ namespace ProjectFinal_VNND.Models
             this.Personnes = new HashSet<Personnes>();
         }
     
+        public int id_civilite { get; set; }
         public string civilite { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

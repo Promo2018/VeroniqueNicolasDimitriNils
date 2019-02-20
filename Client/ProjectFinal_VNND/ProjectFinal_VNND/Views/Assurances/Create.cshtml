@@ -7,10 +7,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Modifier</title>
+    <title>Create</title>
 </head>
 <body>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm()) 
     {
         @Html.AntiForgeryToken()
         
@@ -18,10 +18,8 @@
             <h4>Assurances</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.id_assurance)
-    
             <div class="form-group">
-                @Html.LabelFor(model => model.libelle, "Type d'Assurance", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.libelle, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.libelle, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.libelle, "", new { @class = "text-danger" })
@@ -29,7 +27,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.prix, "Coût (Pourcentage du prix sous forme décimale)", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.prix, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.prix, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.prix, "", new { @class = "text-danger" })
@@ -37,7 +35,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.descriptif,"Conditions d'Application", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.descriptif, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.descriptif, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.descriptif, "", new { @class = "text-danger" })
@@ -46,14 +44,14 @@
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Enregistrer" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
     
     <div>
-        @Html.ActionLink("Retour au Menu Assurance", "Index")
+        @Html.ActionLink("Back to List", "Index")
     </div>
 </body>
 </html>

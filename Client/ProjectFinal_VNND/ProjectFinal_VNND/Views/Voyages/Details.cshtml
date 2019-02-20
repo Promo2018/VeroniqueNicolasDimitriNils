@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Informations</title>
+    <title>Details</title>
 </head>
 <body>
     <div>
@@ -15,7 +15,7 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                Date aller
+                @Html.DisplayNameFor(model => model.date_aller)
             </dt>
 
             <dd>
@@ -23,7 +23,7 @@
             </dd>
 
             <dt>
-                Date retour
+                @Html.DisplayNameFor(model => model.date_retour)
             </dt>
 
             <dd>
@@ -31,7 +31,7 @@
             </dd>
 
             <dt>
-                Nombre de places encore disponibles
+                @Html.DisplayNameFor(model => model.places_disponibles)
             </dt>
 
             <dd>
@@ -39,7 +39,7 @@
             </dd>
 
             <dt>
-                Tarif Tout Compris
+                @Html.DisplayNameFor(model => model.tarif_tout_compris)
             </dt>
 
             <dd>
@@ -47,7 +47,7 @@
             </dd>
 
             <dt>
-                Agence de Voyage
+                @Html.DisplayNameFor(model => model.Agences.agence)
             </dt>
 
             <dd>
@@ -55,7 +55,7 @@
             </dd>
 
             <dt>
-                Destination
+                @Html.DisplayNameFor(model => model.Destinations.continent)
             </dt>
 
             <dd>
@@ -87,10 +87,10 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Modifier", "Modifier", new { id = Model.id_voyage }) |
-        @Html.ActionLink("Réserver", "Sauvegarder", new { Controller = "Dossiers", action = "Sauvegarder" })
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id_voyage }) |
+        @Html.ActionLink("Réserver", "Create", new { Controller = "Dossiers", action = "Create" })
         <br />
-        @Html.ActionLink("Retour au Menu Voyage", "Index")
+        @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
 </html>

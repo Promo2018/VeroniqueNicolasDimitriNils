@@ -36,8 +36,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes.ToList());
         }
 
-        // GET: Personnes/Informations/5
-        public ActionResult Informations(int? id)
+        // GET: Personnes/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -51,21 +51,21 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes);
         }
 
-        // GET: Personnes/Sauvegarder
-        public ActionResult Sauvegarder()
+        // GET: Personnes/Create
+        public ActionResult Create()
         {
-            ViewBag.civilite = new SelectList(db.Civilites, "civilite", "civilite");
+            ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite");
             ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur");
             ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur");
             return View();
         }
 
-        // POST: Personnes/Sauvegarder
+        // POST: Personnes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Sauvegarder([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        public ActionResult Create([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
         {
             if (ModelState.IsValid)
             {
@@ -74,14 +74,14 @@ namespace ProjectFinal_VNND.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.civilite = new SelectList(db.Civilites, "civilite", "civilite", personnes.civilite);
+            ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite", personnes.civilite);
             ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
             ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
             return View(personnes);
         }
 
-        // GET: Personnes/Modifier/5
-        public ActionResult Modifier(int? id)
+        // GET: Personnes/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -92,18 +92,18 @@ namespace ProjectFinal_VNND.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.civilite = new SelectList(db.Civilites, "civilite", "civilite", personnes.civilite);
+            ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite", personnes.civilite);
             ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
             ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
             return View(personnes);
         }
 
-        // POST: Personnes/Modifier/5
+        // POST: Personnes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more Informations see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Modifier([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        public ActionResult Edit([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
         {
             if (ModelState.IsValid)
             {
@@ -111,14 +111,14 @@ namespace ProjectFinal_VNND.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.civilite = new SelectList(db.Civilites, "civilite", "civilite", personnes.civilite);
+            ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite", personnes.civilite);
             ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
             ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
             return View(personnes);
         }
 
-        // GET: Personnes/Supprimer/5
-        public ActionResult Supprimer(int? id)
+        // GET: Personnes/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -132,8 +132,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes);
         }
 
-        // POST: Personnes/Supprimer/5
-        [HttpPost, ActionName("Supprimer")]
+        // POST: Personnes/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

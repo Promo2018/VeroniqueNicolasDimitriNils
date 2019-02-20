@@ -7,10 +7,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Supprimer</title>
+    <title>Delete</title>
 </head>
 <body>
-    <h3>Etes-vous sure de vouloir supprimer ?</h3>
+    <h3>Are you sure you want to delete this?</h3>
     <div>
         <h4>Voyages</h4>
         <hr />
@@ -69,8 +69,8 @@
             @Html.AntiForgeryToken()
     
             <div class="form-actions no-color">
-                <input type="submit" value="Supprimer" class="btn btn-default" /> |
-                @Html.ActionLink("Retour au Menu Voyage", "Index")
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
             </div>
         }
     </div>

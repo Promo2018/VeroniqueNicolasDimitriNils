@@ -17,25 +17,25 @@ namespace ProjectFinal_VNND.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Dossiers()
         {
-            this.Assurances = new HashSet<Assurances>();
-            this.Personnes1 = new HashSet<Personnes>();
+            this.Liste_Assurances = new HashSet<Liste_Assurances>();
+            this.Liste_Participants = new HashSet<Liste_Participants>();
         }
     
         public int id_dossier { get; set; }
         public string numero_carte_bancaire { get; set; }
-        public string raison_annulation { get; set; }
+        public Nullable<int> raison_annulation { get; set; }
         public int etat { get; set; }
         public int voyage { get; set; }
         public int client { get; set; }
         public Nullable<System.DateTime> dernier_suivi { get; set; }
     
         public virtual Raisons_Annulations Raisons_Annulations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liste_Assurances> Liste_Assurances { get; set; }
         public virtual Etats_Dossiers Etats_Dossiers { get; set; }
         public virtual Personnes Personnes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liste_Participants> Liste_Participants { get; set; }
         public virtual Voyages Voyages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Assurances> Assurances { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Personnes> Personnes1 { get; set; }
     }
 }

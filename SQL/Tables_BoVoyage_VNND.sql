@@ -23,7 +23,7 @@ DROP TABLE OuisNons;
 
 ------------------------TABLE OUI/NON ENUM POUR PERSONNES (client et participant) ----------------------------
 CREATE TABLE OuisNons(
-	id_ouinon int identity NOT NULL,
+	id_ouinon INT IDENTITY,
 	valeur NVARCHAR(3) UNIQUE NOT NULL, 
 	PRIMARY KEY (id_ouinon)
 );
@@ -37,7 +37,7 @@ update OuisNons set valeur='Oui' where id_ouinon=2;
 
 ------------------------TABLE GERANT ENUM POUR AUTHENTIFICATIONS----------------------------
 CREATE TABLE Statuts(
-	id_statut int identity NOT NULL,
+	id_statut INT IDENTITY,
 	statut NVARCHAR(16) UNIQUE NOT NULL, -- mettre les 4 choix Client, Administrateur, Commercial, Marketting
 	PRIMARY KEY (id_statut),
 );
@@ -48,17 +48,19 @@ INSERT INTO Statuts (statut) VALUES ('Administrateur');
 
 ------------------------TABLE AUTHENTIFICATIONS-------------------------
 CREATE TABLE Authentifications (
+	id_auth INT IDENTITY,
     email NVARCHAR(64) UNIQUE NOT NULL,
 	[mot de passe] NVARCHAR(64) NOT NULL,
     statut int NOT NULL, --FK
-	PRIMARY KEY (email)
+	PRIMARY KEY (id_auth)
 );
 ALTER TABLE Authentifications ADD CONSTRAINT Fk_0Authentifications FOREIGN KEY(statut) REFERENCES Statuts(id_statut);
 
 ------------------------TABLE GERANT ENUM POUR PERSONNES ----------------------------
 CREATE TABLE Civilites(
+	id_civilite INT IDENTITY,
 	civilite NVARCHAR(8) UNIQUE NOT NULL, --mettre deux lignes M ou Mme 
-	PRIMARY KEY (civilite),
+	PRIMARY KEY (id_civilite),
 );
 INSERT INTO Civilites (civilite) VALUES ('M');
 INSERT INTO Civilites (civilite) VALUES ('Mme');
@@ -66,7 +68,7 @@ INSERT INTO Civilites (civilite) VALUES ('Mme');
 ------------------------TABLE PERSONNES-------------------------
 CREATE TABLE Personnes(
     id_personne INT IDENTITY,
-    civilite NVARCHAR(8) NOT NULL, --FK
+    civilite int NOT NULL, --FK
     prenom NVARCHAR(32) NOT NULL,
 	nom NVARCHAR(32) NOT NULL,  
 	adresse NVARCHAR(230) NOT NULL,
@@ -78,7 +80,7 @@ CREATE TABLE Personnes(
 	PRIMARY KEY(id_personne)
 );
 
-ALTER TABLE Personnes ADD CONSTRAINT Fk_1Civilites FOREIGN KEY(civilite) REFERENCES Civilites(civilite);
+ALTER TABLE Personnes ADD CONSTRAINT Fk_1Civilites FOREIGN KEY(civilite) REFERENCES Civilites(id_civilite);
 ALTER TABLE Personnes ADD CONSTRAINT Fk_Client FOREIGN KEY(client) REFERENCES OuisNons(id_ouinon);
 ALTER TABLE Personnes ADD CONSTRAINT Fk_Participant FOREIGN KEY(participant) REFERENCES OuisNons(id_ouinon);
 
@@ -94,8 +96,9 @@ CREATE TABLE Agences(
 ------------------------TABLE GERANT ENUM POUR DESTINATIONS----------------------------
 
 CREATE TABLE Continents(
+	id_continent INT IDENTITY,
 	continent NVARCHAR(16) NOT NULL, --mettre six lignes Afrique, Amerique, Antarctique, Asie, Europe, Océanie
-	PRIMARY KEY(continent)
+	PRIMARY KEY(id_continent)
 );
 INSERT INTO Continents (continent) VALUES ('Afrique');
 INSERT INTO Continents (continent) VALUES ('Amerique du Nord');
@@ -107,14 +110,14 @@ INSERT INTO Continents (continent) VALUES ('Océanie');
 ------------------------TABLE DESTINATIONS----------------------
 CREATE TABLE Destinations(
 	id_destination INT IDENTITY,
-	continent NVARCHAR(16) NOT NULL, --FK
+	continent int NOT NULL, --FK
 	pays NVARCHAR(32) NOT NULL,
 	region NVARCHAR(32),
 	descriptif NVARCHAR(MAX),
 	PRIMARY KEY(id_destination)
 );
 
-ALTER TABLE Destinations ADD CONSTRAINT Fk_2Continents FOREIGN KEY(continent) REFERENCES Continents(continent);
+ALTER TABLE Destinations ADD CONSTRAINT Fk_2Continents FOREIGN KEY(continent) REFERENCES Continents(id_continent);
 
 ------------------------TABLE VOYAGES---------------------------
 CREATE TABLE Voyages(
@@ -134,7 +137,7 @@ ALTER TABLE Voyages ADD CONSTRAINT Fk_4Agences FOREIGN KEY(agence) REFERENCES Ag
 
 ------------------------TABLE ASSURANCES--------------------------
 CREATE TABLE Assurances(
-	id_assurance INT IDENTITY(1,1),
+	id_assurance INT IDENTITY,
 	libelle NVARCHAR(64) NOT NULL unique,
 	prix FLOAT NOT NULL default 0,-- on mettra 1 pour les assurances non définies et un pourcentage supérieur à 1 qui multipliera le prix total du dossier
 	descriptif NVARCHAR(MAX),
@@ -144,13 +147,17 @@ CREATE TABLE Assurances(
 ------------------------TABLES GERANT ENUM POUR DOSSIERS----------------------------
 
 CREATE TABLE [Raisons Annulations](
+id_annul int identity not null,
 annulation_raison NVARCHAR(32)NOT NULL, -- mettre trois lignes Clients ou places Insuffisantes ou aucune
-PRIMARY KEY(annulation_raison)
+PRIMARY KEY(id_annul)
 );
 INSERT INTO [Raisons Annulations] (annulation_raison) VALUES (' ');
 INSERT INTO [Raisons Annulations] (annulation_raison) VALUES ('Client');
 INSERT INTO [Raisons Annulations] (annulation_raison) VALUES ('Places Insuffisantes');
 
+UPDATE [Raisons Annulations] set annulation_raison=' ' where id_annul=1;
+UPDATE [Raisons Annulations] set annulation_raison='Client' where id_annul=2;
+UPDATE [Raisons Annulations] set annulation_raison='Places Insuffisantes' where id_annul=3;
 
 
 CREATE TABLE [Etats Dossiers](
@@ -173,7 +180,7 @@ UPDATE [Etats Dossiers] set etat='Accepté' where id_etat=4;
 CREATE TABLE Dossiers(
 	id_dossier INT IDENTITY,
 	[numero carte bancaire] NVARCHAR(32) NOT NULL,
-	[raison annulation] NVARCHAR(32) default null, --FK
+	[raison annulation] int default null, --FK
 	etat int NOT NULL default 1, --FK
 	voyage INT NOT NULL, --FK
 	client INT NOT NULL, --FK
@@ -181,7 +188,7 @@ CREATE TABLE Dossiers(
 	PRIMARY KEY(id_dossier)
 );
 
-ALTER TABLE Dossiers ADD CONSTRAINT Fk_5Annulation FOREIGN KEY([raison annulation]) REFERENCES [Raisons Annulations](annulation_raison);
+ALTER TABLE Dossiers ADD CONSTRAINT Fk_5Annulation FOREIGN KEY([raison annulation]) REFERENCES [Raisons Annulations](id_annul);
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_6EtatDossier FOREIGN KEY(etat) REFERENCES [Etats Dossiers](id_etat);
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_7Client FOREIGN KEY(client) REFERENCES Personnes(id_personne);
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_8Voyage FOREIGN KEY(voyage) REFERENCES Voyages(id_voyage) ON DELETE CASCADE;
@@ -189,8 +196,10 @@ ALTER TABLE Dossiers ADD CONSTRAINT Fk_8Voyage FOREIGN KEY(voyage) REFERENCES Vo
 
 ------------------------TABLE [Liste Assurances] -------------------------
 CREATE TABLE [Liste Assurances](
+	id_listassurance INT IDENTITY,
 	assurance INT NOT NULL, --FK
 	dossier INT NOT NULL, --FK
+	PRIMARY KEY (id_listassurance)
 );
 
 ALTER TABLE [Liste Assurances] ADD CONSTRAINT Fk_5Assurance FOREIGN KEY(assurance) REFERENCES Assurances(id_assurance);
@@ -198,8 +207,10 @@ ALTER TABLE [Liste Assurances] ADD CONSTRAINT Fk_6Dossier FOREIGN KEY(dossier) R
 
 -----------------------TABLE [Liste Participants]--------------------------
 CREATE TABLE [Liste Participants](
+	id_listparticipant INT IDENTITY,
 	participant INT NOT NULL, --FK
 	dossier INT NOT NULL, --FK
+	PRIMARY KEY (id_listparticipant)
 );
 
 ALTER TABLE [Liste Participants] ADD CONSTRAINT Fk_6Personne FOREIGN KEY(participant) REFERENCES Personnes(id_personne);

@@ -9,7 +9,7 @@
 <body>
     <br />
     <p>
-        @Html.ActionLink("Ajouter un Voyage", "Sauvegarder")
+        @Html.ActionLink("Create New", "Create")
     </p>
 
     @using (Html.BeginForm(new { @class = "example" }))
@@ -36,7 +36,7 @@
                 Date retour
             </th>
             <th>
-                Places disponibles
+                Place disponible
             </th>
             <th>
                 Tarif tout compris
@@ -64,19 +64,12 @@
                     @Html.DisplayFor(modelItem => item.tarif_tout_compris)
                 </td>
                 <td>
-                    <ul>
-                        <li>
-                            Pays : @Html.DisplayFor(modelItem => item.Destinations.pays)
-                        </li>
-                        <li>
-                            R&eacutegion : @Html.DisplayFor(modelItem => item.Destinations.region)
-                        </li>
-                    </ul>
+                    @Html.DisplayFor(modelItem => item.Destinations.continent)
                 </td>
                 <td>
-                    @Html.ActionLink("Modifier", "Modifier", new { id = item.id_voyage }) |
-                    @Html.ActionLink("Informations", "Informations", new { id = item.id_voyage }) |
-                    @Html.ActionLink("Supprimer", "Supprimer", new { id = item.id_voyage })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id_voyage }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id_voyage }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id_voyage })
                 </td>
             </tr>
         }

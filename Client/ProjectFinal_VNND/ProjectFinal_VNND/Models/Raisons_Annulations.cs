@@ -20,6 +20,7 @@ namespace ProjectFinal_VNND.Models
             this.Dossiers = new HashSet<Dossiers>();
         }
     
+        public int id_annul { get; set; }
         public string annulation_raison { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

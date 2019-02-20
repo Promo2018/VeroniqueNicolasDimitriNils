@@ -21,7 +21,7 @@ namespace ProjectFinal_VNND.Models
         }
     
         public int id_destination { get; set; }
-        public string continent { get; set; }
+        public int continent { get; set; }
         public string pays { get; set; }
         public string region { get; set; }
         public string descriptif { get; set; }

@@ -12,18 +12,13 @@ namespace ProjectFinal_VNND.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuts
+    public partial class Liste_Assurances
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuts()
-        {
-            this.Authentifications = new HashSet<Authentifications>();
-        }
+        public int id_listassurance { get; set; }
+        public int assurance { get; set; }
+        public int dossier { get; set; }
     
-        public int id_statut { get; set; }
-        public string statut { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Authentifications> Authentifications { get; set; }
+        public virtual Assurances Assurances { get; set; }
+        public virtual Dossiers Dossiers { get; set; }
     }
 }

@@ -1,14 +1,16 @@
 ﻿@model ProjectFinal_VNND.Models.Dossiers
 
+
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Modifier</title>
+    <title>Create</title>
 </head>
 <body>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm()) 
     {
         @Html.AntiForgeryToken()
         
@@ -16,8 +18,6 @@
             <h4>Dossiers</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.id_dossier)
-    
             <div class="form-group">
                 @Html.LabelFor(model => model.numero_carte_bancaire, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -68,14 +68,14 @@
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Enregistrer" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
     
     <div>
-        @Html.ActionLink("Retour au Menu Précédent", "Index")
+        @Html.ActionLink("Back to List", "Index")
     </div>
 </body>
 </html>

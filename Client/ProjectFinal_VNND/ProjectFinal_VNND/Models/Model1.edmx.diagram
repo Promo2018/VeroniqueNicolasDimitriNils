@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
- <!-- EF Designer content (DO NOT Modifier MANUALLY BELOW HERE) -->
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="73cb8424f7af4fc2becaa036e3bb186f" Name="Diagram1">
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Agences" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Assurances" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Civilites" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Continents" Width="1.5" PointX="1.5" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Destinations" Width="1.5" PointX="0.75" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Dossiers" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Etats_Dossiers" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.OuisNons" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Personnes" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Raisons_Annulations" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Statuts" Width="1.5" PointX="5.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Voyages" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Authentifications" Width="1.5" PointX="8" PointY="5.875" IsExpanded="true" />
+      <Diagram DiagramId="787997ef6f6c434ab819b7283c31da2b" Name="Diagram1">
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Agences" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Assurances" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Authentifications" Width="1.5" PointX="10" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Civilites" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Continents" Width="1.5" PointX="1.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Destinations" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Dossiers" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Etats_Dossiers" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Liste_Assurances" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Liste_Participants" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.OuisNons" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Personnes" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Raisons_Annulations" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Statuts" Width="1.5" PointX="7.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage_VNNDModel.Voyages" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
         <AssociationConnector Association="BoVoyage_VNNDModel.Fk_4Agences" ManuallyRouted="false" />
+        <AssociationConnector Association="BoVoyage_VNNDModel.Fk_5Assurance" ManuallyRouted="false" />
+        <AssociationConnector Association="BoVoyage_VNNDModel.Fk_0Authentifications" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyage_VNNDModel.Fk_1Civilites" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyage_VNNDModel.Fk_2Continents" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyage_VNNDModel.Fk_3Destination" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyage_VNNDModel.Fk_5Annulation" ManuallyRouted="false" />
+        <AssociationConnector Association="BoVoyage_VNNDModel.Fk_6Dossier" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyage_VNNDModel.Fk_6EtatDossier" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyage_VNNDModel.Fk_7Client" ManuallyRouted="false" />
+        <AssociationConnector Association="BoVoyage_VNNDModel.Fk_7Dossier" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyage_VNNDModel.Fk_8Voyage" ManuallyRouted="false" />
+        <AssociationConnector Association="BoVoyage_VNNDModel.Fk_6Personne" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyage_VNNDModel.Fk_Client" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyage_VNNDModel.Fk_Participant" ManuallyRouted="false" />
-        <AssociationConnector Association="BoVoyage_VNNDModel.Fk_0Authentifications" ManuallyRouted="false" />
-        <AssociationConnector Association="BoVoyage_VNNDModel.Liste_Assurances" ManuallyRouted="false" />
-        <AssociationConnector Association="BoVoyage_VNNDModel.Liste_Participants" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
