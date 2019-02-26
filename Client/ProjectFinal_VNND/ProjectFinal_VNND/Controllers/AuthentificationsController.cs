@@ -21,43 +21,16 @@ namespace ProjectFinal_VNND.Controllers
             return View(authentifications.ToList());
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(Authentifications auth)
-        {
 
-            if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
-            {
-                string login = Request.Form["f_login"];
-                string password = Request.Form["f_pass"];
-                auth.email = login;
-                auth.mot_de_passe = password;
-                Session["login"] = login;
-                Session["password"] = password;
-                //Request.Form["f_login"] = "";
-                //Request.Form["f_pass"] = "";
-                auth.email = "";
-                auth.mot_de_passe = "";
-
-
-                return RedirectToAction("../Voyages/Index");
-
-            }
-            else
-            {
-                ViewBag.message = "ATTENTION \nIf you want to proceed you must fill out all required fields";
-                return View("Connection", auth);
-            }
-        }
-
-        public ActionResult Connection()
+        public ActionResult Connexion()
         {
             Authentifications qui = new Authentifications();
             ViewBag.message = "Login + Pass";
-            return View("Connection", qui);
+            return View("Connexion", qui);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Connection(Authentifications auth)
+        public ActionResult Connexion(Authentifications auth, Statuts stat)
         {
 
             if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
@@ -73,12 +46,17 @@ namespace ProjectFinal_VNND.Controllers
                 auth.email = "";
                 auth.mot_de_passe = "";
 
+                
+                var radioB = Request.Form["radioB"];
+                stat.statut = radioB;
+                Session["radioB"] = radioB;
+
                 return RedirectToAction("../Voyages/Index");
             }
             else
             {
                 ViewBag.message = "ATTENTION \nIf you want to proceed you must fill out all required fields";
-                return View("Connection", auth);
+                return View("Connexion", auth);
             }
         }
 

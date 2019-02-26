@@ -25,7 +25,6 @@ nav li {
 }
 
 nav {
-    
     width: 100%;
     background-color: white;
 }
@@ -39,6 +38,15 @@ nav {
         padding: 20px 30px;
         color: black;
     }
+
+        nav > ul > li > a:visited {
+            color: black;
+        }
+
+
+a:visited {
+    color: blue;
+}
 
 .submenu {
     display: none;
@@ -69,9 +77,9 @@ nav li:hover .submenu {
     background-color: RGBa(220, 220, 220, 0.15);
 }
 
-.subhover:hover {
+/*.subhover:hover {
     background-color: RGBa(228, 77, 38, 0.15)
-}
+}*/
 
 
 #p1 {
