@@ -30,9 +30,9 @@ namespace ProjectFinal_VNND.Controllers
                          select s;
 
 
-            if (prixMax == null) { prixMax = 9999999; }
+            if (prixMax == null | prixMax <= 0) { prixMax = 99999; }
             if (prixMin == null) { prixMin = 1; }
-            if (place == null) { place = 99999; }
+            if (place == null | place <= 0) { place = 99999; }
             if (aller == null) { aller = DateTime.ParseExact("01/01/0001", "dd/MM/yyyy", CultureInfo.InvariantCulture); }
             if (retour == null) { retour = DateTime.ParseExact("31/12/2100", "dd/MM/yyyy", CultureInfo.InvariantCulture); }
 

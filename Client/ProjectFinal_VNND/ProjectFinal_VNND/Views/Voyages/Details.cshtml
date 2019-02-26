@@ -88,7 +88,7 @@
     </div>
     <p>
         @Html.ActionLink("Modifier", "Edit", new { id = Model.id_voyage }) |
-        @Html.ActionLink("Réserver", "Sauvegarder", new { Controller = "Dossiers", action = "Create" })
+        @Html.ActionLink("Réserver", "Create", new { Controller = "Dossiers", action = "Create" })
         <br />
         @Html.ActionLink("Retour à la liste des Voyages", "Index")
     </p>

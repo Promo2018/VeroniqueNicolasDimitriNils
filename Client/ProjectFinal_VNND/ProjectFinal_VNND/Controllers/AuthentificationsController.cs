@@ -21,6 +21,67 @@ namespace ProjectFinal_VNND.Controllers
             return View(authentifications.ToList());
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Index(Authentifications auth)
+        {
+
+            if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
+            {
+                string login = Request.Form["f_login"];
+                string password = Request.Form["f_pass"];
+                auth.email = login;
+                auth.mot_de_passe = password;
+                Session["login"] = login;
+                Session["password"] = password;
+                //Request.Form["f_login"] = "";
+                //Request.Form["f_pass"] = "";
+                auth.email = "";
+                auth.mot_de_passe = "";
+
+
+                return RedirectToAction("../Voyages/Index");
+
+            }
+            else
+            {
+                ViewBag.message = "ATTENTION \nIf you want to proceed you must fill out all required fields";
+                return View("Connection", auth);
+            }
+        }
+
+        public ActionResult Connection()
+        {
+            Authentifications qui = new Authentifications();
+            ViewBag.message = "Login + Pass";
+            return View("Connection", qui);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Connection(Authentifications auth)
+        {
+
+            if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
+            {
+                string login = Request.Form["f_login"];
+                string password = Request.Form["f_pass"];
+
+                auth.email = login;
+                auth.mot_de_passe = password;
+
+                Session["login"] = login;
+                Session["password"] = password;
+                auth.email = "";
+                auth.mot_de_passe = "";
+
+                return RedirectToAction("../Voyages/Index");
+            }
+            else
+            {
+                ViewBag.message = "ATTENTION \nIf you want to proceed you must fill out all required fields";
+                return View("Connection", auth);
+            }
+        }
+
         // GET: Authentifications/Details/5
         public ActionResult Details(int? id)
         {

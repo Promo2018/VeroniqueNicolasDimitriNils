@@ -66,7 +66,7 @@ namespace ProjectFinal_VNND.Models
                 totalAssurance = totalAssurance + Convert.ToDecimal(n.Assurances.prix);        //  Calculation of ALL Assurances chosen (if any)  
             }
 
-            decimal prixTotal3 = prixTC*(numVoyageurs - reductionT) * (1 + totalAssurance);
+            decimal prixTotal3 = prixTC*(numVoyageurs + 1 - reductionT) * (1 + totalAssurance); //Le +1 correspond au client ajouté
 
             float price = (float)prixTotal3;
 
