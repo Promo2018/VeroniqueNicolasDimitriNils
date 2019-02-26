@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="@Url.Content("../Content/Style.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/Style.css")" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -17,9 +17,9 @@
             <div class="row">
                 <div class="column">
                     <div class="container">
-                        <img src="../../Content/entete.jpg" alt="Voyage" class="image" style="width:100%">
+                        <img src="~/Content/entete.jpg" alt="Voyage" class="image" style="width:100%">
                         <div class="middle">
-                            <div class="text"> <a href="../../Voyages/Index">BoVoyage</a> </div>
+                            <div class="text"> <a href="~/Voyages/Index">BoVoyage</a> </div>
                         </div>
                     </div>
                 </div>
@@ -29,20 +29,20 @@
                 <p id="p1">Utilisateur : @Session["email"]</p>
                 <ul>
                     
-                    <li class="menu"><a href="../Dossiers/Index">Dossiers</a>
+                    <li class="menu"><a href="~/Dossiers/Index">Dossiers</a>
                         <ul class="submenu">
-                            <li class="menu"><a href="../../Assurances/Index">Assurances</a></li>
+                            <li class="menu"><a href="~/Assurances/Index">Assurances</a></li>
                         </ul>
                     </li>
                     
                     <li class="menu">
                         <a href="../../Voyages/Index">Voyages</a>
                         <ul class="submenu">
-                            <li class="subhover"><a href="../../Agences/Index">Agences</a></li>
-                            <li class="subhover"><a href="../../Destinations/Index">Destinations</a></li>
+                            <li class="subhover"><a href="~/Agences/Index">Agences</a></li>
+                            <li class="subhover"><a href="~/Destinations/Index">Destinations</a></li>
                         </ul>
                     </li>
-                    <li class="menu"><a href="../../Personnes/Index">Clients</a></li>
+                    <li class="menu"><a href="~/Personnes/Index">Clients</a></li>
                 </ul>
             </nav>
 

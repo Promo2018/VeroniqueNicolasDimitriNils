@@ -37,5 +37,42 @@ namespace ProjectFinal_VNND.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liste_Participants> Liste_Participants { get; set; }
         public virtual Voyages Voyages { get; set; }
+        public float PrixTotal
+        {
+            get
+            {
+                float prixTotal2 = CalculPrix();            // Get de prixTotal 
+                return prixTotal2;
+            }
+        }
+
+
+
+        public float CalculPrix()
+        {
+            var prixTC = Voyages.tarif_tout_compris;       // Price of voyage from Voyages table
+            var reductionPrix = Convert.ToDecimal(0.6);     // Declaration of 60% reduction
+            decimal numVoyageurs = 0;       // Number of travelers
+            decimal reductionT = 0; 
+            foreach (Liste_Participants p in Liste_Participants)     // Liste_Participants - list of Participants 
+            {
+                numVoyageurs++;
+                reductionT = (reductionT + p.Personnes.reduction)/100;
+            }
+            
+            decimal totalAssurance = 0;
+            foreach (Liste_Assurances n in Liste_Assurances)
+            {
+                totalAssurance = totalAssurance + Convert.ToDecimal(n.Assurances.prix);        //  Calculation of ALL Assurances chosen (if any)  
+            }
+
+            decimal prixTotal3 = prixTC*(numVoyageurs - reductionT) * (1 + totalAssurance);
+
+            float price = (float)prixTotal3;
+
+            return price;
+        }
+
+
     }
 }

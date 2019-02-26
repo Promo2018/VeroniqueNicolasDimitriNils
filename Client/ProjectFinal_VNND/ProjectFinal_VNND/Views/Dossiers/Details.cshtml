@@ -69,11 +69,18 @@
                     @*client*@
                     <li> @Model.Personnes.civilite @Model.Personnes.prenom @Model.Personnes.nom</li>
                     @*boucle pour chaque participant dans le dossier symbolisé par une entree dans la table intermediaire liste_particpants*@
-                    @foreach(Liste_Participants entree in Model.Liste_Participants)
+                    @foreach (Liste_Participants entree in Model.Liste_Participants)
                     {
                         <li> @entree.Personnes.civilite @entree.Personnes.prenom @entree.Personnes.nom</li>
                     }
                 </ul>
+            </dd>
+            <dt>
+                Prix Total
+            </dt>
+
+            <dd>
+                @Model.PrixTotal
             </dd>
 
         </dl>

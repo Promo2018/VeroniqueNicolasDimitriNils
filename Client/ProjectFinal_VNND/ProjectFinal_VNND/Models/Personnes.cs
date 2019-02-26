@@ -44,12 +44,12 @@ namespace ProjectFinal_VNND.Models
         {
             get
             {
-                int Age = DateTime.Now.Year - date_naissance.Year;
+                int age2 = DateTime.Now.Year - date_naissance.Year;
                 if (DateTime.Now.Month < date_naissance.Month || DateTime.Now.Month == date_naissance.Month && DateTime.Now.Day < date_naissance.Day)
-                { Age--; }
+                { age2--; }
                 else
                 { };
-                return Age;
+                return age2;
             }
         }
         //calcul de la reduction
