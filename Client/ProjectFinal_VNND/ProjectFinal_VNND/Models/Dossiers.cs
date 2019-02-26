@@ -50,25 +50,28 @@ namespace ProjectFinal_VNND.Models
 
         public float CalculPrix()
         {
-            var prixTC = Voyages.tarif_tout_compris;       // Price of voyage from Voyages table
-            var reductionPrix = Convert.ToDecimal(0.6);     // Declaration of 60% reduction
-            decimal numVoyageurs = 0;       // Number of travelers
-            decimal reductionT = 0; 
-            foreach (Liste_Participants p in Liste_Participants)     // Liste_Participants - list of Participants 
+            float price = -1;
+            if (Voyages != null)
             {
-                numVoyageurs++;
-                reductionT = (reductionT + p.Personnes.reduction)/100;
-            }
-            
-            decimal totalAssurance = 0;
-            foreach (Liste_Assurances n in Liste_Assurances)
-            {
-                totalAssurance = totalAssurance + Convert.ToDecimal(n.Assurances.prix);        //  Calculation of ALL Assurances chosen (if any)  
-            }
+                decimal prixTC = Voyages.tarif_tout_compris;       // Price of voyage from Voyages table
+                decimal numVoyageurs = 0;       // Number of travelers
+                decimal reductionT = 0;
+                foreach (Liste_Participants p in Liste_Participants)     // Liste_Participants - list of Participants 
+                {
+                    numVoyageurs++;
+                    reductionT = (reductionT + p.Personnes.reduction) / 100;
+                }
 
-            decimal prixTotal3 = prixTC*(numVoyageurs + 1 - reductionT) * (1 + totalAssurance); //Le +1 correspond au client ajouté
+                decimal totalAssurance = 0;
+                foreach (Liste_Assurances n in Liste_Assurances)
+                {
+                    totalAssurance = totalAssurance + Convert.ToDecimal(n.Assurances.prix);        //  Calculation of ALL Assurances chosen (if any)  
+                }
 
-            float price = (float)prixTotal3;
+                decimal prixTotal3 = prixTC * (numVoyageurs + 1 - reductionT) * (1 + totalAssurance); //Le +1 correspond au client ajouté
+
+                price = (float)prixTotal3;
+            }
 
             return price;
         }
