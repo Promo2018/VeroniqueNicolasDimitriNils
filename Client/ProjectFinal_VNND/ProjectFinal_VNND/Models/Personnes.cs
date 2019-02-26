@@ -39,5 +39,20 @@ namespace ProjectFinal_VNND.Models
         public virtual ICollection<Liste_Participants> Liste_Participants { get; set; }
         public virtual OuisNons OuisNons { get; set; }
         public virtual OuisNons OuisNons1 { get; set; }
+        //calcul de l'age
+        public int age
+        {
+            get
+            {
+                int Age = DateTime.Now.Year - date_naissance.Year;
+                if (DateTime.Now.Month < date_naissance.Month || DateTime.Now.Month == date_naissance.Month && DateTime.Now.Day < date_naissance.Day)
+                { Age--; }
+                else
+                { };
+                return Age;
+            }
+        }
+        //calcul de la reduction
+        public int reduction { get { int red = 0; if (age < 12) { red = 40; } return red; } }
     }
 }

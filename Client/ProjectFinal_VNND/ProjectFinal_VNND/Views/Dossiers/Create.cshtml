@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
+    <title>Ajouter un Dossier</title>
 </head>
 <body>
     @using (Html.BeginForm()) 
@@ -24,23 +24,8 @@
                     @Html.EditorFor(model => model.numero_carte_bancaire, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.numero_carte_bancaire, "", new { @class = "text-danger" })
                 </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.raison_annulation, "raison_annulation", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("raison_annulation", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.raison_annulation, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.etat, "etat", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("etat", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.etat, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            </div>     
+
     
             <div class="form-group">
                 @Html.LabelFor(model => model.voyage, "voyage", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -56,26 +41,19 @@
                     @Html.DropDownList("client", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.client, "", new { @class = "text-danger" })
                 </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.dernier_suivi, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.dernier_suivi, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.dernier_suivi, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            </div>    
+
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Sauvegarder" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Retour à la liste des Dossiers", "Index")
     </div>
 </body>
 </html>

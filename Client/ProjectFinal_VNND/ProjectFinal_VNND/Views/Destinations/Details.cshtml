@@ -1,12 +1,13 @@
 ﻿@model ProjectFinal_VNND.Models.Destinations
 
 
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
+    <title>Informations</title>
 </head>
 <body>
     <div>
@@ -14,42 +15,43 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.pays)
+                Continent
             </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.pays)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.region)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.region)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.descriptif)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.descriptif)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Continents.continent)
-            </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Continents.continent)
             </dd>
-    
+
+            <dt>
+                Pays
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pays)
+            </dd>
+
+            <dt>
+                R&eacutegion
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.region)
+            </dd>
+
+            <dt>
+                Description du Voyage
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.descriptif)
+            </dd>
+
+
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.id_destination }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.id_destination }) |
+        @Html.ActionLink("Retour au Menu Destination", "Index")
     </p>
 </body>
 </html>

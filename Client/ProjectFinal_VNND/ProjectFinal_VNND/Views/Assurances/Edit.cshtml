@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
+    <title>Modifier</title>
 </head>
 <body>
     @using (Html.BeginForm())
@@ -21,7 +21,7 @@
             @Html.HiddenFor(model => model.id_assurance)
     
             <div class="form-group">
-                @Html.LabelFor(model => model.libelle, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.libelle, "Type d'Assurance", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.libelle, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.libelle, "", new { @class = "text-danger" })
@@ -29,7 +29,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.prix, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.prix, "Coût (Pourcentage du prix sous forme décimale)", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.prix, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.prix, "", new { @class = "text-danger" })
@@ -37,7 +37,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.descriptif, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.descriptif,"Conditions d'Application", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.descriptif, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.descriptif, "", new { @class = "text-danger" })
@@ -46,14 +46,14 @@
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <input type="submit" value="Enregistrer" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Retour au Menu Assurance", "Index")
     </div>
 </body>
 </html>

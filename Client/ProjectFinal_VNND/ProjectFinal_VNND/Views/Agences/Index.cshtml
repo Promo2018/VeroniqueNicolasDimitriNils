@@ -5,11 +5,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Liste des Agences</title>
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Ajouter une Agence", "Create")
     </p>
 
     @using (Html.BeginForm())
@@ -32,12 +32,11 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.agence)
+                    @Html.DisplayFor(Model => item.agence)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id_agence }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id_agence }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id_agence })
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.id_agence }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.id_agence })
                 </td>
             </tr>
         }

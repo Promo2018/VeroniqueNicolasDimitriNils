@@ -7,10 +7,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
+    <title>Supprimer</title>
 </head>
 <body>
-    <h3>Are you sure you want to delete this?</h3>
+    <h3>Etes-vous sure de vouloir supprimer ce Dossier?</h3>
     <div>
         <h4>Dossiers</h4>
         <hr />
@@ -48,11 +48,11 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Personnes.prenom)
+                @Html.DisplayNameFor(model => model.Personnes.civilite)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Personnes.prenom)
+                @Html.DisplayFor(model => model.Personnes.civilite)
             </dd>
     
             <dt>
@@ -69,8 +69,8 @@
             @Html.AntiForgeryToken()
     
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
+                <input type="submit" value="Supprimer" class="btn btn-default" /> |
+                @Html.ActionLink("Retour à la liste des Dossiers", "Index")
             </div>
         }
     </div>

@@ -1,13 +1,11 @@
 ﻿@model ProjectFinal_VNND.Models.Personnes
 
-
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
+    <title>Informations</title>
 </head>
 <body>
     <div>
@@ -15,82 +13,89 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.prenom)
+                Civilit&eacute
             </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.prenom)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.nom)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.nom)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.adresse)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.adresse)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.telephone)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.telephone)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.date_naissance)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.date_naissance)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.email)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.email)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Civilites.civilite)
-            </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Civilites.civilite)
             </dd>
-    
             <dt>
-                @Html.DisplayNameFor(model => model.OuisNons.valeur)
+                Pr&eacutenom
             </dt>
-    
+
+            <dd>
+                @Html.DisplayFor(model => model.prenom)
+            </dd>
+
+            <dt>
+                Nom
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nom)
+            </dd>
+
+            <dt>
+                Adresse
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.adresse)
+            </dd>
+
+            <dt>
+                Téléphone
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.telephone)
+            </dd>
+
+            <dt>
+                Date de Naissance
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.date_naissance)
+            </dd>
+            <dd>
+                @Html.DisplayFor(model => model.date_naissance)
+            </dd>
+            <dt>
+                R&eacuteduction
+            </dt>
+
+            <dt>
+                E-mail
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
+
+
+
+            <dt>
+                Client
+            </dt>
+
             <dd>
                 @Html.DisplayFor(model => model.OuisNons.valeur)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.OuisNons1.valeur)
+                Participant
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.OuisNons1.valeur)
             </dd>
-    
+
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.id_personne }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.id_personne }) |
+        @Html.ActionLink("Retour à la liste des Voyageurs", "Index")
     </p>
 </body>
 </html>

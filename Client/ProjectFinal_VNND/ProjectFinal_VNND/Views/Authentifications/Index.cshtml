@@ -6,11 +6,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Liste des Comptes utilisateurs</title>
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Ajouter")
     </p>
     <table class="table">
         <tr>
@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.Statuts.statut)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.id_auth }) |
-                @Html.ActionLink("Details", "Details", new { id=item.id_auth }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.id_auth })
+                @Html.ActionLink("Edit", "Modifier", new { id=item.id_auth }) |
+                @Html.ActionLink("Details", "Informations", new { id=item.id_auth }) |
+                @Html.ActionLink("Delete", "Supprimer", new { id=item.id_auth })
             </td>
         </tr>
     }

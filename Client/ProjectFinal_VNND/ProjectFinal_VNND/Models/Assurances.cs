@@ -22,9 +22,12 @@ namespace ProjectFinal_VNND.Models
     
         public int id_assurance { get; set; }
         public string libelle { get; set; }
+        //presentation décimal du prix en pourcentage
         public double prix { get; set; }
         public string descriptif { get; set; }
-    
+        // prix de l'assurrance en % du prix total presenté en %
+        public string prix100 { get { return ((int)Math.Round(prix * 100)).ToString(); } }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liste_Assurances> Liste_Assurances { get; set; }
     }
