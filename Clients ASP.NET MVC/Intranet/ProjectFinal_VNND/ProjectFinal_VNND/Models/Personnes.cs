@@ -58,7 +58,7 @@ namespace ProjectFinal_VNND.Models
         //calcul de la reduction
         public int reduction { get { int red = 0; if (age < 12) { red = 40; } return red; } }
         //affichage pour la droplist
-        public string nomcomplet { get { string complet = id_personne.ToString() + ". " + Civilites.civilite +" "+prenom+" "+NOM; return complet; } }
-        public string NOM { get { return nom.ToUpper(); } set { NOM = nom.ToUpper(); } }
+        public string nomcomplet { get { string complet = id_personne.ToString() + ". " + Civilites.civilite +" "+prenom+" "+NOMCAP; return complet; } }
+        public string NOMCAP { get { return nom.ToUpper(); } set { NOMCAP = nom.ToUpper(); } }
     }
 }
