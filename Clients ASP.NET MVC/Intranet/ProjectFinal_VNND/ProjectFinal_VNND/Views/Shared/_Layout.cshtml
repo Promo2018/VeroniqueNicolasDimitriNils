@@ -27,7 +27,7 @@
         </div>
 
         <nav>
-            <p id="p1">Utilisateur : @Session["login"] @Session["password"]</p>
+            <p id="p1">Utilisateur : @Session["status"] @Session["login"] @Session["password"] <button class="button" type="button" onclick="location.href='@Url.Action("LogOff","Authentifications")'">LogOff</button> </p>
 
             <ul>
 

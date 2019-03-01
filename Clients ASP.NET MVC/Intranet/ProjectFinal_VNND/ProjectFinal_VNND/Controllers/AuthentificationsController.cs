@@ -122,6 +122,15 @@ namespace ProjectFinal_VNND.Controllers
             return View(authentifications);
         }
 
+        public ActionResult LogOff(Authentifications authentifications)
+        {
+            Session["login"] = null;
+            Session["status"] = null;
+            Session["password"] = null;
+
+            return RedirectToAction("../Voyages/Index");
+        }
+
         // GET: Authentifications/Edit/5
         public ActionResult Edit(int? id)
         {

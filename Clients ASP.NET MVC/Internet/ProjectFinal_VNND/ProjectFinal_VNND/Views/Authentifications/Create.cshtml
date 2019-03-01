@@ -9,10 +9,10 @@
     <title>Ajouter un Compte utilisateur</title>
 </head>
 <body>
-    @using (Html.BeginForm()) 
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
+
         <div class="form-horizontal">
             <h4>Compte utilisateur</h4>
             <hr />
@@ -24,7 +24,7 @@
                     @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 Mot de Passe
                 <div class="col-md-10">
@@ -32,15 +32,7 @@
                     @Html.ValidationMessageFor(model => model.mot_de_passe, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
-            <div class="form-group">
-                Statut
-                <div class="col-md-10">
-                    @Html.DropDownList("statut", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.statut, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
+            <br>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Sauvegarder" class="btn btn-default" />
@@ -48,9 +40,8 @@
             </div>
         </div>
     }
-    
-    <div>
-        @Html.ActionLink("Retour à la liste des Comptes utilisateur", "Index")
-    </div>
+    <br>
+    <b><font color="red">@ViewBag.Message</font></b>
+
 </body>
 </html>

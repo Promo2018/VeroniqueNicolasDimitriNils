@@ -33,8 +33,7 @@ namespace ProjectFinal_VNND.Controllers
                 auth.mot_de_passe = password;
                 Session["login"] = login;
                 Session["password"] = password;
-                //Request.Form["f_login"] = "";
-                //Request.Form["f_pass"] = "";
+
                 auth.email = "";
                 auth.mot_de_passe = "";
 
@@ -111,15 +110,37 @@ namespace ProjectFinal_VNND.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id_auth,email,mot_de_passe,statut")] Authentifications authentifications)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Authentifications.Add(authentifications);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    authentifications.statut = 1;                       // forcing status = CLIENT (statut = 1)
+
+                    db.Authentifications.Add(authentifications);
+                    db.SaveChanges();
+                    Session["login"] = authentifications.email;
+
+                    Session["status"] = "Client :";
+                    return RedirectToAction("../Personnes/Create");    // create/personnes
+                }
+
+                ViewBag.statut = new SelectList(db.Statuts, "id_statut", "statut");
+                return View(authentifications);
+            }
+            catch (Exception)
+            {
+                ViewBag.Message = "Veuillez insérer un identifiant et un mot de passe!";
+                return View(authentifications);
             }
 
-            ViewBag.statut = new SelectList(db.Statuts, "id_statut", "statut", authentifications.statut);
-            return View(authentifications);
+        }
+
+        public ActionResult LogOff(Authentifications authentifications)
+        {
+            Session["login"] = null;
+            Session["status"] = null;
+
+            return RedirectToAction("../Voyages/Index");
         }
 
         // GET: Authentifications/Edit/5

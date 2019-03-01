@@ -60,20 +60,41 @@ namespace ProjectFinal_VNND.Controllers
             return View();
         }
 
-        // POST: Personnes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //// POST: Personnes/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        personnes.client = 1;
+        //        personnes.participant = 1;
+        //        db.Personnes.Add(personnes);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite", personnes.civilite);
+        //    ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
+        //    ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
+        //    return View(personnes);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        public ActionResult Create([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant")] Personnes personnes)
         {
+
+            personnes.email = (string)Session["login"];     /*emailclient;*/
+
             if (ModelState.IsValid)
             {
-                personnes.client = 1;
-                personnes.participant = 1;
+                //personnes.email = emailclient;
                 db.Personnes.Add(personnes);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("../Voyages/Index");
             }
 
             ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite", personnes.civilite);
@@ -81,6 +102,7 @@ namespace ProjectFinal_VNND.Controllers
             ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
             return View(personnes);
         }
+
 
         // GET: Personnes/Edit/5
         public ActionResult Edit(int? id)
