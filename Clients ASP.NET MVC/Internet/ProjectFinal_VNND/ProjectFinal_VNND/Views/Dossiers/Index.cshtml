@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ProjectFinal_VNND.Models.Dossiers>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Liste des Dossiers</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Créer un Dossier", "Create")
+    </p>
+
+    @using (Html.BeginForm(new { @class = "example" }))
+    {
+        <p>
+            Rechercher  @Html.TextBox("nom", "", new { placeholder = "Nom ..." })
+            @Html.TextBox("prenom", "", new { placeholder = "Prénom ..." })
+            @Html.TextBox("continent", "", new { placeholder = "Continent ..." })
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                Numero de Dossier
+            </th>
+            <th>
+                Client
+            </th>
+            <th>
+                Etat
+            </th>
+            <th>
+                Date de dernier suivi
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_dossier)
+            </td>
+            <td>
+                @item.Personnes.Civilites.civilite  @Html.DisplayFor(modelItem => item.Personnes.prenom)  @item.Personnes.NOM
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Etats_Dossiers.etat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dernier_suivi)
+            </td>
+
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.id_dossier }) |
+                @Html.ActionLink("Informations", "Details", new { id = item.id_dossier }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.id_dossier })
+            </td>
+        </tr>
+                    }
+
+    </table>
+</body>
+</html>

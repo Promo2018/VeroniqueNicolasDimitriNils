@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProjectFinal_VNND.Models.Agences>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Liste des Agences</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Ajouter une Agence", "Create")
+    </p>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Rechercher: @Html.TextBox("nomAgence", "", new { placeholder = "Nom de l'agence ..." })
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                Numero D'Agence (ID Agence)
+            </th>
+            <th>
+                Agence
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.id_agence
+            </td>
+            <td>
+                @Html.DisplayFor(Model => item.agence)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.id_agence }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.id_agence })
+            </td>
+        </tr>
+        }
+
+    </table>
+    <br />
+    <a href="/Voyages" id="autre"> Retour à la liste des Voyages</a>
+</body>
+</html>

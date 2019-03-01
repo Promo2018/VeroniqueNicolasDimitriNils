@@ -1,0 +1,49 @@
+﻿@model ProjectFinal_VNND.Models.Assurances
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Informations</title>
+</head>
+<body>
+    <div>
+        <h4>Assurances</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Type d'Assurance
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.libelle)
+            </dd>
+
+            <dt>
+                Coût (en % du prix Total)
+            </dt>
+
+            <dd>
+                @Model.prix100
+            </dd>
+
+            <dt>
+                Conditions d'Application
+            </dt>
+
+            <dd>
+                @Html.DisplayTextFor(model => model.descriptif)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.id_assurance }) |
+        @Html.ActionLink("Retour au Menu Agence", "Index")
+    </p>
+</body>
+</html>
+

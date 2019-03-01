@@ -1,0 +1,38 @@
+﻿@model ProjectFinal_VNND.Models.Agences
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Supprimer</title>
+</head>
+<body>
+    <h3>Etes-vous sure de vouloir supprimer cette Agence?</h3>
+    <div>
+        <h4>Agences</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Agence
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.agence)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Supprimer" class="btn btn-default" /> |
+                @Html.ActionLink("Retour au Menu Agence", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

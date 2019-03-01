@@ -1,0 +1,81 @@
+﻿@model ProjectFinal_VNND.Models.Voyages
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ajouter un Voyage</title>
+</head>
+<body>
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>Voyages</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                Date d'Aller
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.date_aller, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.date_aller, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                Date de Retour
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.date_retour, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.date_retour, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                Nombre de Places Disponibles
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.places_disponibles, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.places_disponibles, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                Tarif Tout Compris
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tarif_tout_compris, new { htmlAttributes = new { @class = "form-control" } }) &euro;
+                    @Html.ValidationMessageFor(model => model.tarif_tout_compris, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                Agence
+                <div class="col-md-10">
+                    @Html.DropDownList("agence", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.agence, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+               Destination
+                <div class="col-md-10">
+                    @Html.DropDownList("destination", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.destination, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Sauvegarder" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Retour à la liste des Voyages", "Index")
+    </div>
+</body>
+</html>

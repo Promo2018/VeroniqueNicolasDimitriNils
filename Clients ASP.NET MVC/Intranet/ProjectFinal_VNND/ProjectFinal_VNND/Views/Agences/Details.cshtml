@@ -1,0 +1,31 @@
+﻿@model ProjectFinal_VNND.Models.Agences
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Informations</title>
+</head>
+<body>
+    <div>
+        <h4>Agences</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Agence
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.agence)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.id_agence }) |
+        @Html.ActionLink("Retour au Menu Précédent", "Index")
+    </p>
+</body>
+</html>

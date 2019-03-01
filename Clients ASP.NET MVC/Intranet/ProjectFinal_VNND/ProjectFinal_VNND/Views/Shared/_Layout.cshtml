@@ -1,0 +1,62 @@
+﻿
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/style.css")" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <header>
+
+        <div class="row">
+            <div class="column">
+                <div class="container">
+                    <img src="~/Content/entete.jpg" alt="Voyage" class="image" style="width:100%">
+                    <div class="middle">
+                        <div class="text"> <a href="../../Voyages/Index">BoVoyage</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav>
+            <p id="p1">Utilisateur : @Session["login"] @Session["password"]</p>
+
+            <ul>
+
+                <li class="menu">
+                    <a href="../../Dossiers/Index">Dossiers</a>
+                    <ul class="submenu">
+                        <li class="menu"><a href="../../Assurances/Index">Assurances</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu">
+                    <a href="../../Voyages/Index">Voyages</a>
+                    <ul class="submenu">
+                        <li><a href="../../Agences/Index">Agences</a></li>
+                        <li><a href="../../Destinations/Index">Destinations</a></li>
+                    </ul>
+                </li>
+                <li class="menu"><a href="../../Personnes/Index">Clients</a></li>
+                <li class="menu"><a href="../../Authentifications/Connection">Connection</a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <div id="main">
+        <center> @RenderBody()</center>
+    </div>
+    <footer>
+        <p> BoVoyages @DateTime.Now.Year </p>
+
+    </footer>
+</body>
+</html>

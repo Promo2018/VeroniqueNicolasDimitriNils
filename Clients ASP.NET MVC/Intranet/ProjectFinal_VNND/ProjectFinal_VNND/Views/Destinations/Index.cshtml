@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ProjectFinal_VNND.Models.Destinations>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Liste des Destination</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Ajouter une Destination", "Create")
+    </p>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Rechercher @Html.TextBox("continent", "", new { placeholder = "Continent ..." })
+            et/ou @Html.TextBox("pays", "", new { placeholder = "Pays ..." })
+            et/ou @Html.TextBox("region", "", new { placeholder = "Region ..." })
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                ID Destination
+            </th>
+            <th>
+                Continent
+            </th>
+            <th>
+                Pays
+            </th>
+            <th>
+                R&eacutegion
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.id_destination
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Continents.continent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.region)
+            </td>
+
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.id_destination }) |
+                @Html.ActionLink("Informations", "Details", new { id = item.id_destination }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.id_destination })
+            </td>
+        </tr>
+        }
+
+    </table>
+    <br />
+    <a href="/Voyages" id="autre"> Retour à la liste des Voyages</a>
+</body>
+</html>
