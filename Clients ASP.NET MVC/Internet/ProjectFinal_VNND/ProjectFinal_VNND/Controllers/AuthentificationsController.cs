@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using ProjectFinal_VNND.Models;
 
@@ -17,67 +16,139 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Authentifications
         public ActionResult Index()
         {
-            var authentifications = db.Authentifications.Include(a => a.Statuts);
-            return View(authentifications.ToList());
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(Authentifications auth)
-        {
-
-            if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
+            if (Session["client"] != null)
             {
-                string login = Request.Form["f_login"];
-                string password = Request.Form["f_pass"];
-                auth.email = login;
-                auth.mot_de_passe = password;
-                Session["login"] = login;
-                Session["password"] = password;
+                Authentifications authcli=new Authentifications();
+                Personnes client = Session["client"] as Personnes;
+                foreach (Authentifications a in db.Authentifications)
+                {
+                    if (a.email == client.email)
+                    {
+                        authcli = a;
+                    }
+                }
 
-                auth.email = "";
-                auth.mot_de_passe = "";
+                List<Authentifications> moi = new List<Authentifications>();
+                moi.Add(authcli);
 
-
-                return RedirectToAction("../Voyages/Index");
-
-            }
+            return View(moi); }
             else
-            {
-                ViewBag.message = "ATTENTION \nIf you want to proceed you must fill out all required fields";
-                return View("Connection", auth);
+            {   
+                ViewBag.message="Veuillez vous connecter pour acceder à cette page";
+                Authentifications auth = new Authentifications();
+                return RedirectToAction("../Authentifications/Connexion", auth); ;
             }
         }
 
-        public ActionResult Connection()
+        public ActionResult Connexion()
         {
             Authentifications qui = new Authentifications();
-            ViewBag.message = "Login + Pass";
-            return View("Connection", qui);
+
+            return View("Connexion", qui);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Connection(Authentifications auth)
+        public ActionResult Connexion(Authentifications auth)
         {
-
             if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
             {
+                //on recupere identifiant et mdp entrés dans la page
                 string login = Request.Form["f_login"];
                 string password = Request.Form["f_pass"];
+                //on aurait aussi pu faire ca : 
+                //auth.email = login;
+                /*auth.mot_de_passe = password;
+                liste complete des authentification */
+                var listauth = db.Authentifications;
+                //on verifie que l'email existe en tant que login dans la table des authentifications
+                if (listauth.Any(i => i.email == login))
+                {
+                    // on recupere l'objet authentification dans une liste
+                    List<Authentifications> listauth2 = new List<Authentifications>();
+                    foreach (Authentifications a in listauth.ToList() as List<Authentifications>)
+                    {
+                        if (a.email == login)
+                        {
+                            listauth2.Add(a);
+                        }
+                    }
+                    //on verifie que cet e-mail ne correspond qu'a un login dans la BDD
+                    if (listauth2.Count == 1)
+                    {
+                        // on recupere l'objet authentification
+                        Authentifications emailvalid = listauth2[0];
+                        //on verifie que 
+                        if (emailvalid.mot_de_passe == password)
+                        {
+                            // on veridfie que c'est bien un client qui se connecte
+                            if (emailvalid.Statuts.statut != "Client")
+                            {
+                                ViewBag.message = "### Veuillez utiliser un \"Compte client\" pour vous connecter à l'application pour les clients ###";
+                                return View("Connexion", auth);
+                            }
 
-                auth.email = login;
-                auth.mot_de_passe = password;
+                            else
+                            {
+                                // on verifie que le client qui se connecte existe dans la table "personnes"
+                                if (db.Personnes.Any(i => i.email == emailvalid.email))
+                                {
+                                    // on recupere l'objet personne qui correspond au client sous forme de liste
+                                    List<Personnes> clients = new List<Personnes>();
+                                    foreach (Personnes p in db.Personnes)
+                                    {
+                                        if (p.email == emailvalid.email)
+                                        {
+                                            clients.Add(p);
+                                        }
+                                    }
+                                    // on verifie l'unicité de l'email dans la BDD
+                                    if (clients.Count != 1)
+                                    {
 
-                Session["login"] = login;
-                Session["password"] = password;
-                auth.email = "";
-                auth.mot_de_passe = "";
+                                        Personnes client = clients[0];
+                                        // on recupere toutes les infos dans la session
+                                        Session["login"] = emailvalid.email;
+                                        Session["client"] = client;
+                                        return RedirectToAction("../Voyages/Index");
 
-                return RedirectToAction("../Voyages/Index");
+                                    }
+                                    else
+                                    {
+                                        ViewBag.message = " Erreur aucune ou plusieurs personnes avec cet e-mail dans la BDD###";
+                                        return View("Connexion", auth);
+                                    }
+                                }
+                                else
+                                {
+                                    ViewBag.message = "### Erreur pas de Personne correspondante dans la BDD ###";
+                                    return View("Connexion", auth);
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ViewBag.message = "Mot de Passe incorrecte";
+                            return View("Connexion", auth);
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.message = "### Erreur plusieurs correspondances pour cet e-mail dans la base de données ###";
+                        return View("Connexion", auth);
+
+                    }
+                }
+                else
+                {
+                    ViewBag.message = "Ce compte n'existe pas, veuillez vous inscrire pour créer un compte ou corriger votre identifiant";
+                    return View("Connexion", auth);
+                }
             }
             else
             {
-                ViewBag.message = "ATTENTION \nIf you want to proceed you must fill out all required fields";
-                return View("Connection", auth);
+                ViewBag.message = "ATTENTION \n Vous devez entrer un mot de passe et un email!";
+                return View("Connexion", auth);
             }
         }
 
@@ -95,6 +166,7 @@ namespace ProjectFinal_VNND.Controllers
             }
             return View(authentifications);
         }
+            
 
         // GET: Authentifications/Create
         public ActionResult Create()
@@ -138,7 +210,7 @@ namespace ProjectFinal_VNND.Controllers
         public ActionResult LogOff(Authentifications authentifications)
         {
             Session["login"] = null;
-            Session["status"] = null;
+            Session["client"] = null;
 
             return RedirectToAction("../Voyages/Index");
         }
@@ -168,6 +240,7 @@ namespace ProjectFinal_VNND.Controllers
         {
             if (ModelState.IsValid)
             {
+                authentifications.statut = 1;
                 db.Entry(authentifications).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

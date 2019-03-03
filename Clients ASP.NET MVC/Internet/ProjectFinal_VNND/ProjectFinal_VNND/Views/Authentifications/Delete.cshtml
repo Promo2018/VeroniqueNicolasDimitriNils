@@ -6,21 +6,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
+    <title>Supprimer Mon Compte</title>
 </head>
 <body>
-    <h3>Etes vous sures de vouloir supprimer ce Compte?</h3>
+    <h3>Etes vous sures de vouloir supprimer votre Compte?</h3>
     <div>
         <h4>Authentifications</h4>
         <hr />
         <dl class="dl-horizontal">
-            <dt>
-                ID du Compte
-            </dt>
 
-            <dd>
-                @Model.id_auth
-            </dd>
             <dt>
                 Adresse E-Mail
             </dt>
@@ -28,13 +22,7 @@
             <dd>
                 @Html.DisplayFor(model => model.email)
             </dd>
-            <dt>
-                Statut
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Statuts.statut)
-            </dd>
         </dl>
     
         @using (Html.BeginForm()) {
@@ -42,7 +30,7 @@
     
             <div class="form-actions no-color">
                 <input type="submit" value="Supprimer" class="btn btn-default" /> |
-                @Html.ActionLink("Retour à la liste des Comptes utilisateurs", "Index")
+                @Html.ActionLink("Retour à Mon Compte", "Index")
             </div>
         }
     </div>

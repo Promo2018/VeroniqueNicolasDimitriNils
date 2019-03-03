@@ -233,7 +233,7 @@
     <Content Include="Views\Personnes\Details.cshtml" />
     <Content Include="Views\Personnes\Edit.cshtml" />
     <Content Include="Views\Personnes\Index.cshtml" />
-    <Content Include="Views\Authentifications\Connection.cshtml" />
+    <Content Include="Views\Authentifications\Connexion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

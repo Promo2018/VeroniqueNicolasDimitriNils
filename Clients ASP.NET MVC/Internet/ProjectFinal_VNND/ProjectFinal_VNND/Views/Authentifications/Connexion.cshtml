@@ -10,25 +10,19 @@
 <body>
     @using (Html.BeginForm())
     {
-
         <h1>Merci de vous authentifier</h1>
         <p>
-
-
-            @Html.RadioButtonFor(model => Model.statut, "Client") Client<br />
-
-            @Html.RadioButtonFor(model => Model.statut, "Commercial") Commercial<br />
-
             <br />
-
             Identifiant: @Html.TextBox("f_login", Model.email, new { placeholder = "Email ..." })<br />
             Mot de passe:  @Html.Password("f_pass", Model.mot_de_passe, new { placeholder = " ******** ", type = "password" })<br />
+            <br />
             <input type="submit" value="valider" />
         </p>
-
     }
-
-
+    <br />
+    <p>
+        @ViewBag.message     
+    </p>
 </body>
 </html>
 
