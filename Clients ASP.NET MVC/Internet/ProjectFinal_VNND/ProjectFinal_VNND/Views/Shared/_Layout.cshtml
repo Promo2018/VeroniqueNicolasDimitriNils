@@ -29,7 +29,9 @@
         <nav>
             <p id="p1">
                 @if (Session["client"] != null)
-                {<span>Compte : @Session["login"] | Bonjour @ViewBag.messagecon  @Html.Raw((Session["client"] as Personnes).prenom)  @Html.Raw((Session["client"] as Personnes).NOMCAP) ! </span>} <button class="button" type="button" onclick="location.href='@Url.Action("LogOff","Authentifications")'">LogOff</button>
+                {<span>Compte : @Session["login"] | Bonjour @Html.Raw((Session["client"] as Personnes).Civilites.civilite) @Html.Raw((Session["client"] as Personnes).prenom)  @Html.Raw((Session["client"] as Personnes).NOMCAP) ! </span>} 
+                @if (Session["login"] != null)
+                {<button class="button" type="button" onclick="location.href='@Url.Action("LogOff", "Authentifications")'">D&eacute;connexion</button>}
             </p>
 
             <ul>

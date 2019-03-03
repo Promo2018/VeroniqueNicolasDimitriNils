@@ -18,7 +18,8 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Voyages
         public ActionResult Index()
         {
-            var voyages = db.Voyages.Include(v => v.Agences).Include(v => v.Destinations);
+            //on affiche seulement les voyages ou il reste des places pour les clients
+            var voyages = db.Voyages.Where(i => i.places_disponibles > 0).Include(v => v.Agences).Include(v => v.Destinations);
             return View(voyages.ToList());
         }
 
@@ -65,7 +66,7 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Voyages/Create
         public ActionResult Create()
         {
-            ViewBag.agence = new SelectList(db.Agences, "id_agence", "agencecomplete");
+            ViewBag.agence = new SelectList(db.Agences.OrderBy(i => i.id_agence), "id_agence", "agencecomplete");
             ViewBag.destination = new SelectList(db.Destinations, "id_destination", "destinationcomplete");
             return View();
         }
@@ -101,7 +102,7 @@ namespace ProjectFinal_VNND.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.agence = new SelectList(db.Agences, "id_agence", "agencecomplete", voyages.agence);
+            ViewBag.agence = new SelectList(db.Agences.OrderBy(i => i.id_agence), "id_agence", "agencecomplete", voyages.agence);
             ViewBag.destination = new SelectList(db.Destinations, "id_destination", "destinationcomplete", voyages.destination);
             return View(voyages);
         }

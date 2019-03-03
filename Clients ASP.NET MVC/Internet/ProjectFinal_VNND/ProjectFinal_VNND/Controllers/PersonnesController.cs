@@ -86,21 +86,58 @@ namespace ProjectFinal_VNND.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant")] Personnes personnes)
         {
-
+            Authentifications auth = new Authentifications();
             personnes.email = (string)Session["login"];     /*emailclient;*/
 
             if (ModelState.IsValid)
             {
-                //personnes.email = emailclient;
                 db.Personnes.Add(personnes);
                 db.SaveChanges();
-                return RedirectToAction("../Voyages/Index");
-            }
 
-            ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite", personnes.civilite);
-            ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
-            ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
-            return View(personnes);
+                // on verifie que le client que l'on viens de creer existe dans la table "personnes"
+                if (db.Personnes.Any(i => i.email == personnes.email))
+                {
+                    // on recupere l'objet personne qui correspond au client sous forme de liste
+                    List<Personnes> clients = new List<Personnes>();
+                    foreach (Personnes p in db.Personnes.Include(p => p.Civilites).Include(p => p.OuisNons).Include(p => p.OuisNons1))
+                    {
+                        if (p.email == personnes.email)
+                        {
+                            clients.Add(p);
+                        }
+                    }
+                    // on verifie l'unicité de l'email dans la BDD
+                    if (clients.Count == 1)
+                    {
+
+                        Personnes client = clients[0];
+                        // on recupere toutes les infos dans la session
+ 
+                        Session["client"] = client;
+
+                        ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite", personnes.civilite);
+                        ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
+                        ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
+
+                        return RedirectToAction("../Voyages/Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.message = " Erreur aucune ou plusieurs personnes avec cet e-mail dans la BDD###";
+                        return RedirectToAction("../Voyages/Index");
+                    }
+                }
+                else
+                {
+                    ViewBag.message = "### Erreur pas de Personne correspondante dans la BDD ###";
+                    return RedirectToAction("../Voyages/Index");
+
+                }
+
+            }
+            return RedirectToAction("../Voyages/Index");
+
         }
 
 

@@ -50,106 +50,136 @@ namespace ProjectFinal_VNND.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Connexion(Authentifications auth)
         {
-            if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
+            try
             {
-                //on recupere identifiant et mdp entrés dans la page
-                string login = Request.Form["f_login"];
-                string password = Request.Form["f_pass"];
-                //on aurait aussi pu faire ca : 
-                //auth.email = login;
-                /*auth.mot_de_passe = password;
-                liste complete des authentification */
-                var listauth = db.Authentifications;
-                //on verifie que l'email existe en tant que login dans la table des authentifications
-                if (listauth.Any(i => i.email == login))
+                if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
                 {
-                    // on recupere l'objet authentification dans une liste
-                    List<Authentifications> listauth2 = new List<Authentifications>();
-                    foreach (Authentifications a in listauth.ToList() as List<Authentifications>)
+                    //on recupere identifiant et mdp entrés dans la page
+                    string login = Request.Form["f_login"];
+                    string password = Request.Form["f_pass"];
+                    //on aurait aussi pu faire ca : 
+                    //auth.email = login;
+                    /*auth.mot_de_passe = password;
+                     */
+
+                    //certains caracteres font bugger le champ mot de passe
+                    List<string> interdits = new List<string>() { "<", ">" };
+                    foreach (string i in interdits)
                     {
-                        if (a.email == login)
+                        if (password.Contains(i))
                         {
-                            listauth2.Add(a);
+                            ViewBag.message = "### Votre mot de passe ne doit pas contenir le caractère " + i + " ###";
+                            return View("Connexion", auth);
                         }
+
                     }
-                    //on verifie que cet e-mail ne correspond qu'a un login dans la BDD
-                    if (listauth2.Count == 1)
+                    /*
+                    liste complete des authentification */
+                    var listauth = db.Authentifications;
+                    //on verifie que l'email existe en tant que login dans la table des authentifications
+                    if (listauth.Any(i => i.email == login))
                     {
-                        // on recupere l'objet authentification
-                        Authentifications emailvalid = listauth2[0];
-                        //on verifie que 
-                        if (emailvalid.mot_de_passe == password)
+                        // on recupere l'objet authentification dans une liste
+                        List<Authentifications> listauth2 = new List<Authentifications>();
+                        foreach (Authentifications a in listauth.ToList() as List<Authentifications>)
                         {
-                            // on veridfie que c'est bien un client qui se connecte
-                            if (emailvalid.Statuts.statut != "Client")
+                            if (a.email == login)
                             {
-                                ViewBag.message = "### Veuillez utiliser un \"Compte client\" pour vous connecter à l'application pour les clients ###";
-                                return View("Connexion", auth);
+                                listauth2.Add(a);
                             }
-
-                            else
+                        }
+                        //on verifie que cet e-mail ne correspond qu'a un login dans la BDD
+                        if (listauth2.Count == 1)
+                        {
+                            // on recupere l'objet authentification
+                            Authentifications emailvalid = listauth2[0];
+                            //on verifie que 
+                            if (emailvalid.mot_de_passe == password)
                             {
-                                // on verifie que le client qui se connecte existe dans la table "personnes"
-                                if (db.Personnes.Any(i => i.email == emailvalid.email))
+                                // on veridfie que c'est bien un client qui se connecte
+                                if (emailvalid.Statuts.statut != "Client")
                                 {
-                                    // on recupere l'objet personne qui correspond au client sous forme de liste
-                                    List<Personnes> clients = new List<Personnes>();
-                                    foreach (Personnes p in db.Personnes)
+                                    ViewBag.message = "### Veuillez utiliser un \"Compte client\" pour vous connecter à l'application pour les clients ###";
+                                    return View("Connexion", auth);
+                                }
+
+                                else
+                                {
+                                    // on verifie que le client qui se connecte existe dans la table "personnes"
+                                    if (db.Personnes.Any(i => i.email == emailvalid.email))
                                     {
-                                        if (p.email == emailvalid.email)
+                                        // on recupere l'objet personne qui correspond au client sous forme de liste
+                                        List<Personnes> clients = new List<Personnes>();
+                                        foreach (Personnes p in db.Personnes.Include(p=>p.Civilites).Include(p => p.OuisNons).Include(p => p.OuisNons1))
                                         {
-                                            clients.Add(p);
+                                            if (p.email == emailvalid.email)
+                                            {
+                                                clients.Add(p);
+                                            }
                                         }
-                                    }
-                                    // on verifie l'unicité de l'email dans la BDD
-                                    if (clients.Count != 1)
-                                    {
+                                        // on verifie l'unicité de l'email dans la BDD
+                                        if (clients.Count == 1)
+                                        {
 
-                                        Personnes client = clients[0];
-                                        // on recupere toutes les infos dans la session
-                                        Session["login"] = emailvalid.email;
-                                        Session["client"] = client;
-                                        return RedirectToAction("../Voyages/Index");
+                                            Personnes client = clients[0];
+                                            // on recupere toutes les infos dans la session
+                                            Session["login"] = emailvalid.email;
+                                            Session["client"] = client;
+                                            return RedirectToAction("../Voyages/Index");
 
+                                        }
+                                        else
+                                        {
+                                            ViewBag.message = " Erreur aucune ou plusieurs personnes avec cet e-mail dans la BDD###";
+                                            return View("Connexion", auth);
+                                        }
                                     }
                                     else
                                     {
-                                        ViewBag.message = " Erreur aucune ou plusieurs personnes avec cet e-mail dans la BDD###";
+                                        ViewBag.message = "### Erreur pas de Personne correspondante dans la BDD ###";
                                         return View("Connexion", auth);
+
                                     }
                                 }
-                                else
-                                {
-                                    ViewBag.message = "### Erreur pas de Personne correspondante dans la BDD ###";
-                                    return View("Connexion", auth);
-
-                                }
+                            }
+                            else
+                            {
+                                ViewBag.message = "Mot de Passe incorrecte";
+                                return View("Connexion", auth);
                             }
                         }
                         else
                         {
-                            ViewBag.message = "Mot de Passe incorrecte";
+                            ViewBag.message = "### Erreur plusieurs correspondances pour cet e-mail dans la base de données ###";
                             return View("Connexion", auth);
+
                         }
-                    }
-                    else
-                    {
-                        ViewBag.message = "### Erreur plusieurs correspondances pour cet e-mail dans la base de données ###";
-                        return View("Connexion", auth);
 
                     }
+                else
+                    {
+                    ViewBag.message = "Ce compte n'existe pas, veuillez vous inscrire pour créer un compte ou corriger votre identifiant";
+                    return View("Connexion", auth);
+
+                    }
+
                 }
                 else
                 {
-                    ViewBag.message = "Ce compte n'existe pas, veuillez vous inscrire pour créer un compte ou corriger votre identifiant";
-                    return View("Connexion", auth);
-                }
-            }
-            else
-            {
                 ViewBag.message = "ATTENTION \n Vous devez entrer un mot de passe et un email!";
                 return View("Connexion", auth);
+
+                }
+
             }
+            catch (Exception erreur)
+            {
+                ViewBag.message = "#### Erreur de connexion inconnue ###"+"\n\n\t\t"+erreur;
+                return View("Connexion", auth);
+
+            }
+
+
         }
 
         // GET: Authentifications/Details/5
@@ -210,8 +240,6 @@ namespace ProjectFinal_VNND.Controllers
                         db.Authentifications.Add(authentifications);
                         db.SaveChanges();
                         Session["login"] = authentifications.email;
-
-                        Session["status"] = "Client :";
                         return RedirectToAction("../Personnes/Create");    // create/personnes
 
                     }
