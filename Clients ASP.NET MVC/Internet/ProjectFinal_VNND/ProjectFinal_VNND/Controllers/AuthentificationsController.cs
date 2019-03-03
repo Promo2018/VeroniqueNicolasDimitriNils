@@ -182,26 +182,60 @@ namespace ProjectFinal_VNND.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id_auth,email,mot_de_passe,statut")] Authentifications authentifications)
         {
+
             try
             {
+
                 if (ModelState.IsValid)
                 {
-                    authentifications.statut = 1;                       // forcing status = CLIENT (statut = 1)
 
-                    db.Authentifications.Add(authentifications);
-                    db.SaveChanges();
-                    Session["login"] = authentifications.email;
+                    if (authentifications.email == "" || authentifications.email == null || authentifications.mot_de_passe == "" || authentifications.mot_de_passe == null)
+                    {
+                        ViewBag.Message = "Veuillez insérer un identifiant et un mot de passe!";
+                        ViewBag.statut = new SelectList(db.Statuts, "id_statut", "statut");
+                        return View(authentifications);
+                    }
 
-                    Session["status"] = "Client :";
-                    return RedirectToAction("../Personnes/Create");    // create/personnes
+                    else if (db.Personnes.Any(i => i.email == authentifications.email))
+                    {
+                        ViewBag.Message4 = "Cette personne existe déjà dans notre base de données, veuillez utiliser un autre email ou contacter notre service clientèle ...";
+                        ViewBag.statut = new SelectList(db.Statuts, "id_statut", "statut");
+                        return View(authentifications);
+                    }
+
+                    else
+                    {
+                        authentifications.statut = 1;                       // forcing status = CLIENT (statut = 1)
+
+                        db.Authentifications.Add(authentifications);
+                        db.SaveChanges();
+                        Session["login"] = authentifications.email;
+
+                        Session["status"] = "Client :";
+                        return RedirectToAction("../Personnes/Create");    // create/personnes
+
+                    }
+                }
+                else
+                {
+                    ViewBag.statut = new SelectList(db.Statuts, "id_statut", "statut");
+                    return View(authentifications);
                 }
 
-                ViewBag.statut = new SelectList(db.Statuts, "id_statut", "statut");
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                ViewBag.Message2 = "Cet email est déjà enregistré dans la base de données, veuillez insérer un autre email s'il vous plaît...";
                 return View(authentifications);
             }
+            //catch (System.Data.Entity.Validation.DbEntityValidationException)
+            //{
+            //    ViewBag.Message = "Veuillez insérer un identifiant et un mot de passe!";
+            //    return View(authentifications);
+            //}
             catch (Exception)
             {
-                ViewBag.Message = "Veuillez insérer un identifiant et un mot de passe!";
+                ViewBag.Message3 = "Unknown (yet) Error";
                 return View(authentifications);
             }
 
