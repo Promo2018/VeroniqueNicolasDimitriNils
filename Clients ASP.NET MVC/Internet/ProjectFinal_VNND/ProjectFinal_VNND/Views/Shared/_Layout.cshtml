@@ -38,22 +38,29 @@
             <ul>
                 <li class="menu">
                     <a href="../../Voyages/Index">Voyages</a>
-                    <ul class="submenu">
-                        <li class="menu">
-                            <a href="../../Dossiers/Index"> Mes Reservations </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu">
-                    <a href="../../Personnes/Index">Mon Profil</a>
-                    <ul class="submenu">
-                        <li class="menu"><a href="../../Authentifications/Index">Mon Compte</a></li>
-                    </ul>
-                </li>
+                    @if (Session["client"] != null)
+                    {
+                        <ul class="submenu">
+                            <li class="menu">
+                                <a href="../../Dossiers/Index"> Mes Reservations </a>
+                            </li>
+                        </ul>
+                    }
+                    </li>
+                @if (Session["client"] != null)
+                {
+                    <li class="menu">
+                        <a href="../../Personnes/Index">Mon Profil</a>
+                        <ul class="submenu">
+                            <li class="menu"><a href="../../Authentifications/Index">Mon Compte</a></li>
+                        </ul>
+                    </li>
+                }
+
 
 
                 <li class="menu"><a href="../../Authentifications/Connexion">Connexion</a></li>
-                <li class="menu"><a href="../../Authentifications/Create">Créer un Compte</a></li>            
+                <li class="menu"><a href="../../Authentifications/Create">Créer un Compte</a></li>
 
             </ul>
         </nav>

@@ -18,7 +18,9 @@ namespace ProjectFinal_VNND.Controllers
         public ActionResult Index()
         {
             var personnes = db.Personnes.Include(p => p.Civilites).Include(p => p.OuisNons).Include(p => p.OuisNons1);
-            return View(personnes.ToList());
+            
+            int idclient = (int)(Session["client"] as Personnes).id_personne;
+            return View(personnes.Where(i => i.id_personne == idclient).ToList());
         }
 
         [HttpPost]
@@ -93,6 +95,8 @@ namespace ProjectFinal_VNND.Controllers
 
             if (ModelState.IsValid)
             {
+                personnes.client = 1;
+                personnes.participant = 1;
                 db.Personnes.Add(personnes);
                 db.SaveChanges();
 
@@ -199,7 +203,6 @@ namespace ProjectFinal_VNND.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreerParticipant([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
         {
-
             if (ModelState.IsValid)
             {
 
@@ -209,6 +212,20 @@ namespace ProjectFinal_VNND.Controllers
                 {
                     Participants = new List<int>();
                 }
+
+                if (personnes.email != null && personnes.email != "")
+                {
+                    if (db.Personnes.Any(i => i.email == personnes.email ))
+                        {
+
+                            ViewBag.message1 = " Erreur aucune ou plusieurs personnes avec cet e-mail dans la BDD###";
+                            ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite", personnes.civilite);
+                            ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
+                            ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
+                            return View(personnes);
+                        }
+                }
+
                 personnes.client = 1;
                 personnes.participant = 2;
                 db.Personnes.Add(personnes);
@@ -271,6 +288,10 @@ namespace ProjectFinal_VNND.Controllers
         {
             if (ModelState.IsValid)
             {
+                personnes.id_personne = (Session["client"] as Personnes).id_personne;
+                personnes.email = (Session["client"] as Personnes).email;
+                personnes.client = (Session["client"] as Personnes).client;
+                personnes.participant = (Session["client"] as Personnes).participant;
                 db.Entry(personnes).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -280,6 +301,38 @@ namespace ProjectFinal_VNND.Controllers
             ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
             return View(personnes);
         }
+
+        // POST: Personnes/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+
+        // GET : Modification automatique du statut client de Non à Oui lorsque la personne paie la réservation. 
+        public ActionResult ChangeStatutClient([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        {
+            if (ModelState.IsValid)
+            {
+                personnes.client = 2;              
+                personnes.id_personne = (Session["client"] as Personnes).id_personne;
+                personnes.civilite = (Session["client"] as Personnes).civilite;
+                personnes.prenom = (Session["client"] as Personnes).prenom;
+                personnes.nom = (Session["client"] as Personnes).nom;
+                personnes.date_naissance = (Session["client"] as Personnes).date_naissance;
+                personnes.adresse = (Session["client"] as Personnes).adresse;
+                personnes.telephone = (Session["client"] as Personnes).telephone;
+                personnes.email = (Session["client"] as Personnes).email;
+                personnes.participant = (Session["client"] as Personnes).participant;
+
+                db.Entry(personnes).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("SoustractionPlace", "Voyages", new { id = (int)Session["f_idvoyage"] });
+            }
+            ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite", personnes.civilite);
+            ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
+            ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
+            return View(personnes);
+        }
+
 
         // GET: Personnes/Delete/5
         public ActionResult Delete(int? id)

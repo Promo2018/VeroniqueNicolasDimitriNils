@@ -24,11 +24,15 @@ namespace ProjectFinal_VNND.Models
 
         public int id_personne { get; set; }
         public int civilite { get; set; }
+        //[Required(ErrorMessage = "Veuillez saisir le prenom")]
         public string prenom { get; set; }
+        //[Required(ErrorMessage = "Veuillez saisir le nom")]
         public string nom { get; set; }
         [DataType(DataType.MultilineText)]
         [UIHint("DisplayPostalAddr")]
+        //[Required(ErrorMessage = "Veuillez saisir l'adresse")]
         public string adresse { get; set; }
+        //[Required(ErrorMessage = "Veuillez saisir le numéro de téléphone")]
         public string telephone { get; set; }
         public System.DateTime date_naissance { get; set; }
         public Nullable<int> client { get; set; }

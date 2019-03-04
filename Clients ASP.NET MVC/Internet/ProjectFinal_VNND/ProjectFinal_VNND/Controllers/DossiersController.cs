@@ -176,7 +176,7 @@ namespace ProjectFinal_VNND.Controllers
                 db.Entry(dossiers).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("SoustractionPlace", "Voyages", new { id = (int)Session["f_idvoyage"] });
+                return RedirectToAction("ChangeStatutClient", "Personnes", new { id = (int)Session["f_idvoyage"] });
             }
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison", dossiers.raison_annulation);
             ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);

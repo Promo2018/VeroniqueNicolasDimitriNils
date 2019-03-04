@@ -273,7 +273,7 @@ namespace ProjectFinal_VNND.Controllers
         {
             Session.Clear();
 
-            return RedirectToAction("../Voyages/Index");
+            return RedirectToAction("Index", "Voyages");
         }
 
         // GET: Authentifications/Edit/5
@@ -333,7 +333,7 @@ namespace ProjectFinal_VNND.Controllers
             Authentifications authentifications = db.Authentifications.Find(id);
             db.Authentifications.Remove(authentifications);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("LogOff", "Authentifications");
         }
 
         protected override void Dispose(bool disposing)
