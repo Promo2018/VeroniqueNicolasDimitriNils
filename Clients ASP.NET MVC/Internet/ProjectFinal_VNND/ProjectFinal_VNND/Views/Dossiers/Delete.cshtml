@@ -13,7 +13,7 @@
 </head>
 <body>
     <h3>Etes-vous sure de vouloir supprimer ce Dossier?</h3>
-    <div>
+    <div class=" details">
         <h4>Dossiers</h4>
         <hr />
         <dl class="dl-horizontal">
@@ -31,7 +31,7 @@
             <dd>
                 @Html.DisplayFor(model => model.dernier_suivi)
             </dd>
-            @if (Model.Raisons_Annulations.annulation_raison != null && Model.Raisons_Annulations.annulation_raison != "")
+            @if (Model.raison_annulation != null && Model.etat == 3 && Model.raison_annulation != 1)
             {
                 <dt>
                     Raison d'Annulation
