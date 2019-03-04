@@ -271,8 +271,7 @@ namespace ProjectFinal_VNND.Controllers
 
         public ActionResult LogOff(Authentifications authentifications)
         {
-            Session["login"] = null;
-            Session["client"] = null;
+            Session.Clear();
 
             return RedirectToAction("../Voyages/Index");
         }

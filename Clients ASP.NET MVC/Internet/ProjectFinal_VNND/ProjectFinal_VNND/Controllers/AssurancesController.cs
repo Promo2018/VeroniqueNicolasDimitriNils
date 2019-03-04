@@ -23,13 +23,27 @@ namespace ProjectFinal_VNND.Controllers
         [HttpPost]
         public ActionResult Index(string type)
         {
-
             var assurances = from s in db.Assurances
-                            select s;
+                             select s;
 
             if (!String.IsNullOrEmpty(type))
             {
                 assurances = assurances.Where(s => s.libelle.Contains(type));
+            }
+
+            string assur1 = Request.Form["f_idassurance"];
+            Session["f_idassurance"] = assur1;
+
+            string assur = Request.Form["assur"];
+
+            if (assur == "Oui")
+            {
+                return RedirectToAction("Create", "Dossiers");
+            }
+            else if (assur == "Non")
+            {
+                Session["f_idassurance"] = null;
+                return RedirectToAction("Create", "Dossiers");
             }
 
             return View(assurances.ToList());

@@ -51,6 +51,8 @@ namespace ProjectFinal_VNND.Controllers
             return View(personnes);
         }
 
+
+        // Inscription d'un "Client"
         // GET: Personnes/Create
         public ActionResult Create()
         {
@@ -81,7 +83,7 @@ namespace ProjectFinal_VNND.Controllers
         //    ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
         //    return View(personnes);
         //}
-
+         
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant")] Personnes personnes)
@@ -140,6 +142,107 @@ namespace ProjectFinal_VNND.Controllers
 
         }
 
+        //Ajout ou non du client dans la liste des participants qui est mise en session. Cela depend de sa réponse, soit il participe et paie le voyage, soit il paie le voyage uniquement.
+        public ActionResult ClientPartic()
+        {
+            ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite");
+            ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur");
+            ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ClientPartic([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        {
+            if (ModelState.IsValid)
+            {
+
+                List<int> Participants = Session["listParticipant"] as List<int>;
+                string clientPart = Request.Form["f_reponse"];
+                if (Participants == null)
+                {
+                    Participants = new List<int>();
+                    if (clientPart == "Oui")
+                    {
+                        personnes.id_personne = (Session["client"] as Personnes).id_personne;
+                        Participants.Add(personnes.id_personne);
+                        Session["listParticipant"] = Participants;
+                        Session["nbParticipant"] = Participants.Count;
+                        return RedirectToAction("CreerParticipant");
+                    }
+                    if (clientPart == "Non")
+                    {
+                        return RedirectToAction("CreerParticipant");
+                    }
+                }
+
+                return RedirectToAction("Create");
+            }
+            return View(personnes);
+        }
+
+        //Ajout des participants pour un voyage
+        // GET: Personnes/Create
+        public ActionResult CreerParticipant()
+        {
+            ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite");
+            ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur");
+            ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur");
+            return View();
+        }
+
+        // POST: Personnes/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreerParticipant([Bind(Include = "id_personne,civilite,prenom,nom,adresse,telephone,date_naissance,client,participant,email")] Personnes personnes)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                List<int> Participants = Session["listParticipant"] as List<int>;
+
+                if (Participants == null)
+                {
+                    Participants = new List<int>();
+                }
+                personnes.client = 1;
+                personnes.participant = 2;
+                db.Personnes.Add(personnes);
+                db.SaveChanges();
+                Participants.Add(personnes.id_personne);
+
+                Session["listParticipant"] = Participants;
+                Session["nbParticipant"] = Participants.Count;
+
+                if (Participants.Count < 9)
+                {
+                    if (Participants.Count < (int)Session["f_place"])
+                    {
+
+                    }
+                    else
+                    {
+                        ViewBag.message = " Attention : Vous ne pouvez plus ajouter de participants. Le nombre de place disponible serait insuffisant";
+                        return View(personnes);
+                    }
+
+                }
+                else
+                {
+                    ViewBag.message = " Attention : vous avez atteint le seuil maximal de 9 participants pour une réservation. Vous ne pouvez donc pas en ajouter plus. ";
+                    return View(personnes);
+                }
+                return RedirectToAction("CreerParticipant");
+            }
+            ViewBag.civilite = new SelectList(db.Civilites, "id_civilite", "civilite", personnes.civilite);
+            ViewBag.client = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.client);
+            ViewBag.participant = new SelectList(db.OuisNons, "id_ouinon", "valeur", personnes.participant);
+            return View(personnes);
+        }
 
         // GET: Personnes/Edit/5
         public ActionResult Edit(int? id)
@@ -202,6 +305,32 @@ namespace ProjectFinal_VNND.Controllers
             db.Personnes.Remove(personnes);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET : Suppression des personnes créées (participants au voyage) dans le cas de l'annulation d'une réservation en cours
+        public ActionResult DossNonConf(int? id)
+        {
+            if (Session["listParticipant"] == null)
+            {
+                return RedirectToAction("DossNonConf", "Liste_Assurances", new { id = Session["f_idDossier"] });
+            }
+
+            foreach (var idliste in Session["listParticipant"] as List<int>)
+            {
+
+                id = idliste;
+                if (id != (Session["client"] as Personnes).id_personne)
+                {
+                    Personnes personnes = db.Personnes.Find(id);
+                    if (personnes == null)
+                    {
+                        return RedirectToAction("DossNonConf", "Liste_Assurances", new { id = Session["f_idDossier"] });
+                    }
+                    db.Personnes.Remove(personnes);
+                }
+                db.SaveChanges();
+            }
+            return RedirectToAction("DossNonConf", "Liste_Assurances", new { id = Session["f_idDossier"] });
         }
 
         protected override void Dispose(bool disposing)

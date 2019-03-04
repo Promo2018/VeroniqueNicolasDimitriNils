@@ -118,6 +118,8 @@
     <Compile Include="Controllers\AuthentificationsController.cs" />
     <Compile Include="Controllers\DestinationsController.cs" />
     <Compile Include="Controllers\DossiersController.cs" />
+    <Compile Include="Controllers\Liste_AssurancesController.cs" />
+    <Compile Include="Controllers\Liste_ParticipantsController.cs" />
     <Compile Include="Controllers\PersonnesController.cs" />
     <Compile Include="Controllers\VoyagesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,6 +236,21 @@
     <Content Include="Views\Personnes\Edit.cshtml" />
     <Content Include="Views\Personnes\Index.cshtml" />
     <Content Include="Views\Authentifications\Connexion.cshtml" />
+    <Content Include="Views\Voyages\Reserver.cshtml" />
+    <Content Include="Views\Personnes\ClientPartic.cshtml" />
+    <Content Include="Views\Personnes\CreerParticipant.cshtml" />
+    <Content Include="Views\Dossiers\DetailsConfirmation.cshtml" />
+    <Content Include="Views\Dossiers\Confirmation.cshtml" />
+    <Content Include="Views\Liste_Assurances\Create.cshtml" />
+    <Content Include="Views\Liste_Assurances\Delete.cshtml" />
+    <Content Include="Views\Liste_Assurances\Details.cshtml" />
+    <Content Include="Views\Liste_Assurances\Edit.cshtml" />
+    <Content Include="Views\Liste_Assurances\Index.cshtml" />
+    <Content Include="Views\Liste_Participants\Create.cshtml" />
+    <Content Include="Views\Liste_Participants\Delete.cshtml" />
+    <Content Include="Views\Liste_Participants\Details.cshtml" />
+    <Content Include="Views\Liste_Participants\Edit.cshtml" />
+    <Content Include="Views\Liste_Participants\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

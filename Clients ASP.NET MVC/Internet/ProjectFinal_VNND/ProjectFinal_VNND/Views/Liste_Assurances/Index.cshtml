@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ProjectFinal_VNND.Models.Liste_Assurances>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Assurances.libelle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dossiers.id_dossier)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assurances.libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dossiers.id_dossier)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id_listassurance }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id_listassurance }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id_listassurance })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

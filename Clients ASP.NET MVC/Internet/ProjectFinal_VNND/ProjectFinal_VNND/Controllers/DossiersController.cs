@@ -51,30 +51,46 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers);
         }
 
-        // GET: Dossiers/Create
-        public ActionResult Create()
+        // Affichage de tout les détails de la réservation du voyage avant le payement, afin que le client puisse voir le prix
+        public ActionResult DetailsConfirmation(int? id)
         {
-            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison");
-            ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat");
-            ViewBag.client = new SelectList(db.Personnes, "id_personne", "nomcomplet");
-            ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "voyagecomplet");
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Dossiers dossiers = db.Dossiers.Find(id);
+            if (dossiers == null)
+            {
+                return HttpNotFound();
+            }
+
+            string confimer = Request.Form["Conf"];
+            if (confimer == "Oui")
+            {
+                return RedirectToAction("Confirmation", "Dossiers", new { id = Session["f_idDossier"] });
+            }
+            if (confimer == "Non")
+            {
+                return RedirectToAction("DossNonConf", "Liste_Participants", new { id = Session["f_idDossier"] });
+            }
+
+            return View(dossiers);
         }
 
-        // POST: Dossiers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // GET : Création d'un dossier (création par défaut avec les datas récupérées en session, évite de générer une page de confirmation)
         public ActionResult Create([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
         {
             if (ModelState.IsValid)
             {
+                dossiers.numero_carte_bancaire = "";
                 dossiers.etat = 1;
                 dossiers.dernier_suivi = DateTime.Now;
+                dossiers.voyage = (int)Session["f_idvoyage"];
+                dossiers.client = (Session["client"] as Personnes).id_personne;
                 db.Dossiers.Add(dossiers);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                Session["f_idDossier"] = dossiers.id_dossier;
+                return RedirectToAction("Create", "Liste_Participants");
             }
 
             ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison", dossiers.raison_annulation);
@@ -123,6 +139,52 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers);
         }
 
+
+        // confirmation du dossier avec l'entrée de la CB qui est en fait un Edit au niveau du dossier avec uniquement le champ de la CB. Le dossier a été crée avant dans le processus
+        // de réservation d'un voyage (création d'un dossier)
+        public ActionResult Confirmation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Dossiers dossiers = db.Dossiers.Find(id);
+            if (dossiers == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison", dossiers.raison_annulation);
+            ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "id_personne", dossiers.client);
+            ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
+            return View(dossiers);
+        }
+
+        // POST: Dossiers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Confirmation([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
+        {
+            if (ModelState.IsValid)
+            {
+                dossiers.etat = 1;
+                dossiers.dernier_suivi = DateTime.Now;
+                dossiers.voyage = (int)Session["f_idvoyage"];
+                dossiers.client = (Session["client"] as Personnes).id_personne;
+                db.Entry(dossiers).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("SoustractionPlace", "Voyages", new { id = (int)Session["f_idvoyage"] });
+            }
+            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison", dossiers.raison_annulation);
+            ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "prenom", dossiers.client);
+            ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "id_voyage", dossiers.voyage);
+            return View(dossiers);
+        }
+
         // GET: Dossiers/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -147,6 +209,39 @@ namespace ProjectFinal_VNND.Controllers
             db.Dossiers.Remove(dossiers);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        //GET : Suppression du dossier dans le cas de l'annulation d'une réservation en cours (réservation = dossier)
+        public ActionResult DossNonConf(int? id)
+        {
+            
+
+            if (Session["f_idDossier"] == null)
+            {
+                Session.Remove("f_idassurance");
+                Session.Remove("f_idvoyage");
+                Session.Remove("f_voyage");
+                Session.Remove("listParticipant");
+                Session.Remove("f_place");
+                Session.Remove("nbParticipant");
+
+                return RedirectToAction("Index", "Voyages");
+            }
+            id = (int)Session["f_idDossier"];
+            Dossiers dossiers = db.Dossiers.Find(id);
+            db.Dossiers.Remove(dossiers);
+            db.SaveChanges();
+
+            Session.Remove("f_idassurance");
+            Session.Remove("f_idvoyage");
+            Session.Remove("f_voyage");
+            Session.Remove("listParticipant");
+            Session.Remove("f_place");
+            Session.Remove("nbParticipant");
+            Session.Remove("f_idDossier");
+
+            return RedirectToAction("Index", "Voyages");
         }
 
         protected override void Dispose(bool disposing)

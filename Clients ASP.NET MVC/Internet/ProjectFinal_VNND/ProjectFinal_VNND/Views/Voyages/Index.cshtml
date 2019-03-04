@@ -8,9 +8,7 @@
 </head>
 <body>
     <br />
-    <p>
-        @Html.ActionLink("Ajouter un Voyage", "Create")
-    </p>
+
 
     @using (Html.BeginForm(new { @class = "example" }))
     {
@@ -80,9 +78,8 @@
                 </ul>
             </td>
             <td>
-                @Html.ActionLink("Modifier", "Edit", new { id = item.id_voyage }) |
                 @Html.ActionLink("Informations", "Details", new { id = item.id_voyage }) |
-                @Html.ActionLink("Supprimer", "Delete", new { id = item.id_voyage })
+                @Html.ActionLink("Reserver", "Reserver", new { id = item.id_voyage })
             </td>
         </tr>
         }

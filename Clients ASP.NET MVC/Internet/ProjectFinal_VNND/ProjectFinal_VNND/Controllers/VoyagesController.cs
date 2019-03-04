@@ -63,6 +63,33 @@ namespace ProjectFinal_VNND.Controllers
             return View(voyages);
         }
 
+        // GET : permet de récupérer l'id et l'objet voyage si l'on clique sur le bouton "Réserver"
+        public ActionResult Reserver(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Voyages voyages = db.Voyages.Find(id);
+            if (voyages == null)
+            {
+                return HttpNotFound();
+            }
+
+            Session["f_idvoyage"] = voyages.id_voyage;
+            Session["f_voyage"] = voyages;
+            Session["f_place"] = voyages.places_disponibles;
+
+            if (Session["login"] == null) //changer != en ==
+            {
+                return RedirectToAction("Connexion", "Authentifications");
+            }
+            else
+            {
+                return View(voyages);
+            }
+        }
+
         // GET: Voyages/Create
         public ActionResult Create()
         {
@@ -118,6 +145,35 @@ namespace ProjectFinal_VNND.Controllers
             {
                 db.Entry(voyages).State = EntityState.Modified;
                 db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.agence = new SelectList(db.Agences, "id_agence", "agencecomplete", voyages.agence);
+            ViewBag.destination = new SelectList(db.Destinations, "id_destination", "destinationcomplete", voyages.destination);
+            return View(voyages);
+        }
+
+        //GET : Soustraction du nombre de participants au nombre de places disponibles d'un voyage lors de la réservation d'un voyage (création d'un dossier)
+        public ActionResult SoustractionPlace([Bind(Include = "id_voyage,date_aller,date_retour,places_disponibles,tarif_tout_compris,agence,destination")] Voyages voyages)
+        {
+            if (ModelState.IsValid)
+            {
+                voyages.id_voyage = (int)Session["f_idvoyage"];
+                voyages.date_aller = (Session["f_voyage"] as Voyages).date_aller;
+                voyages.date_retour = (Session["f_voyage"] as Voyages).date_retour;
+                voyages.tarif_tout_compris = (Session["f_voyage"] as Voyages).tarif_tout_compris;
+                voyages.places_disponibles = (int)Session["f_place"] - (int)Session["nbParticipant"];
+                voyages.agence = (Session["f_voyage"] as Voyages).agence;
+                voyages.destination = (Session["f_voyage"] as Voyages).destination;
+                db.Entry(voyages).State = EntityState.Modified;
+                db.SaveChanges();
+
+                Session.Remove("f_idassurance");
+                Session.Remove("f_idvoyage");
+                Session.Remove("f_voyage");
+                Session.Remove("listParticipant");
+                Session.Remove("f_place");
+                Session.Remove("nbParticipant");
+                Session.Remove("f_idDossier");
                 return RedirectToAction("Index");
             }
             ViewBag.agence = new SelectList(db.Agences, "id_agence", "agencecomplete", voyages.agence);

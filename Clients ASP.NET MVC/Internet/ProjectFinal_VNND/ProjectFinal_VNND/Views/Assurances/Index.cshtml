@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<ProjectFinal_VNND.Models.Assurances>
-    @using ProjectFinal_VNND.Models; 
 
 
 <!DOCTYPE html>
@@ -10,9 +9,6 @@
     <title>Liste des Assurances</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Ajouter une Assurance", "Create")
-    </p>
 
     @using (Html.BeginForm())
     {
@@ -30,8 +26,13 @@
             <th>
                 Coût (en % du prix Total)
             </th>
+            <th>
+                Conditions d'Application
+            </th>
             <th></th>
         </tr>
+
+
 
         @foreach (var item in Model)
         {
@@ -43,15 +44,35 @@
                     @item.prix100
                 </td>
                 <td>
-                    @Html.ActionLink("Modifier", "Edit", new { id = item.id_assurance }) |
-                    @Html.ActionLink("Informations", "Details", new { id = item.id_assurance }) |
-                    @Html.ActionLink("Supprimer", "Delete", new { id = item.id_assurance })
+                    @Html.DisplayFor(modelItem => item.descriptif)
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        <p> Veuillez confirmer la souscription à cette assurance?</p>
+                        <div>
+                            @Html.Hidden("f_idassurance", item.id_assurance)
+                            @Html.RadioButton("assur", "Oui", new { @checked = "checked" }) Oui
+                            @Html.RadioButton("assur", "Non")Non
+                            <input type="submit" value="Confirmer" class="btn btn-default" />
+                        </div>
+                    }
                 </td>
             </tr>
         }
 
+
+
     </table>
-    <br />
-    <a href="/Dossiers" id="autre"> Retour à la liste des Dossiers</a>
 </body>
+<footer>
+
+    @using (Html.BeginForm("DossNonConf", "Personnes"))
+    {
+        <div>
+            <input type="submit" value="Annuler la réservation en cours" class="btn btn-default" />
+        </div>
+    }
+
+</footer>
 </html>

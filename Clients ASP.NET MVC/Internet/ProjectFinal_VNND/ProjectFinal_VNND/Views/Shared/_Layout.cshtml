@@ -27,9 +27,10 @@
         </div>
 
         <nav>
+
             <p id="p1">
                 @if (Session["client"] != null)
-                {<span>Compte : @Session["login"] | Bonjour @Html.Raw((Session["client"] as Personnes).Civilites.civilite) @Html.Raw((Session["client"] as Personnes).prenom)  @Html.Raw((Session["client"] as Personnes).NOMCAP) ! </span>} 
+                {<span>Compte : @Session["login"] | Bonjour @Html.Raw((Session["client"] as Personnes).Civilites.civilite) @Html.Raw((Session["client"] as Personnes).prenom)  @Html.Raw((Session["client"] as Personnes).NOMCAP) ! </span>}
                 @if (Session["login"] != null)
                 {<button class="button" type="button" onclick="location.href='@Url.Action("LogOff", "Authentifications")'">D&eacute;connexion</button>}
             </p>
@@ -52,7 +53,7 @@
 
 
                 <li class="menu"><a href="../../Authentifications/Connexion">Connexion</a></li>
-                <li class="menu"><a href="../../Authentifications/Create">Créer un Compte</a></li>
+                <li class="menu"><a href="../../Authentifications/Create">Créer un Compte</a></li>            
 
             </ul>
         </nav>
