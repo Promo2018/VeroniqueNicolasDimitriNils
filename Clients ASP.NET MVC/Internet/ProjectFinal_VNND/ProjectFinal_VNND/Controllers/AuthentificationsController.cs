@@ -58,7 +58,7 @@ namespace ProjectFinal_VNND.Controllers
         {
             try
             {
-                if (Request.Form["f_login"] != "" || Request.Form["f_pass"] != "")
+                if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
                 {
                     //on recupere identifiant et mdp entrés dans la page
                     string login = Request.Form["f_login"];
