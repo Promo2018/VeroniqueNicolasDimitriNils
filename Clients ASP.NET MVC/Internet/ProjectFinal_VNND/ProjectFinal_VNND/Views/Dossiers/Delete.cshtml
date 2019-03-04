@@ -1,5 +1,6 @@
 ﻿@model ProjectFinal_VNND.Models.Dossiers
-    @using ProjectFinal_VNND.Models;
+@using ProjectFinal_VNND.Models;
+@using System.Globalization;
 
 
 
@@ -30,15 +31,16 @@
             <dd>
                 @Html.DisplayFor(model => model.dernier_suivi)
             </dd>
+            @if (Model.Raisons_Annulations.annulation_raison != null && Model.Raisons_Annulations.annulation_raison != "")
+            {
+                <dt>
+                    Raison d'Annulation
+                </dt>
 
-            <dt>
-                Raison d'Annulation
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Raisons_Annulations.annulation_raison)
-            </dd>
-
+                <dd>
+                    @Html.DisplayFor(model => model.Raisons_Annulations.annulation_raison)
+                </dd>
+            }
             <dt>
                 Client
             </dt>
@@ -46,7 +48,7 @@
             <dd>
                 <ul>
                     <li>
-                        Numero Unique :@Model.Personnes.id_personne
+                        Numero Unique :@Model.Personnes.id_personne (Reference client)
                     </li>
                     <li>
                         @Model.Personnes.Civilites.civilite @Model.Personnes.prenom @Model.Personnes.NOMCAP
@@ -62,13 +64,13 @@
             <dd>
                 <ul>
                     <li>
-                        ID Voyage : @Model.Voyages.id_voyage
+                        ID Voyage : @Model.Voyages.id_voyage (Reference Voyage)
                     </li>
                     <li>
-                        Date d'aller : @Model.Voyages.date_aller
+                        Date d'aller : @Model.Voyages.date_aller.ToString("g", CultureInfo.CreateSpecificCulture("fr-FR"))
                     </li>
                     <li>
-                        Date de retour: @Model.Voyages.date_retour
+                        Date de retour: @Model.Voyages.date_retour.ToString("g", CultureInfo.CreateSpecificCulture("fr-FR"))
                     </li>
                     <li>
                         <ul>
@@ -100,12 +102,9 @@
             </dt>
             <dd>
                 <ul>
-                    @*client*@
-                    <li> @Model.Personnes.civilite @Model.Personnes.prenom @Model.Personnes.NOMCAP</li>
-                    @*boucle pour chaque participant dans le dossier symbolisé par une entree dans la table intermediaire liste_particpants*@
                     @foreach (Liste_Participants entreep in Model.Liste_Participants)
                     {
-                        <li> @entreep.Personnes.civilite @entreep.Personnes.prenom @entreep.Personnes.nom</li>
+                        <li> @entreep.Personnes.civilite @entreep.Personnes.prenom @entreep.Personnes.NOMCAP</li>
                     }
                 </ul>
             </dd>
@@ -127,23 +126,20 @@
             <dd>
                 @Model.PrixTotal &euro;
             </dd>
-            <dt>
-                Numéro de Carte Bancaire
-            </dt>
 
-            <dd>
-                @Model.numero_carte_bancaire
-            </dd>
         </dl>
-    
-        @using (Html.BeginForm()) {
-            @Html.AntiForgeryToken()
-    
-            <div class="form-actions no-color">
-                <input type="submit" value="Supprimer" class="btn btn-default" /> |
-                @Html.ActionLink("Retour à la liste des Dossiers", "Index")
-            </div>
-        }
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retour à la liste des Dossiers", "Index")
+        </div>
+    }
     </div>
 </body>
 </html>

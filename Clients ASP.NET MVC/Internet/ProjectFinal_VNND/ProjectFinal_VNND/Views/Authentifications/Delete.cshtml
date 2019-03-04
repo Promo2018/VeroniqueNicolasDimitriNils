@@ -18,18 +18,27 @@
             <dt>
                 Adresse E-Mail
             </dt>
-
             <dd>
                 @Html.DisplayFor(model => model.email)
             </dd>
 
         </dl>
-    
-        @using (Html.BeginForm()) {
+
+        @using (Html.BeginForm())
+        {
             @Html.AntiForgeryToken()
-    
+
             <div class="form-actions no-color">
-                <input type="submit" value="Supprimer" class="btn btn-default" /> |
+                <input type="submit" value="Supprimer" class="btn btn-default" />
+
+                <br />
+                <span style="color : red">Attention ! Une fois votre compte supprimé vous ne pourrez pas recréer un compte avec le même e-mail sans l'intervention d'un Administrateur BoVoyage</span>
+                <br />
+                <span style="color : red">Contactez votre Agence BoVoyage pour plus d'information : administrateur@BoVoyage.fr</span>
+
+
+            </div>
+            <div>
                 @Html.ActionLink("Retour à Mon Compte", "Index")
             </div>
         }

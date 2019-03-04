@@ -13,28 +13,34 @@ namespace ProjectFinal_VNND.Controllers
     {
         private BoVoyage_VNNDEntities db = new BoVoyage_VNNDEntities();
 
+        public ActionResult Redirection()
+        {
+            ViewBag.message = "Veuillez vous connecter pour acceder à cette page";
+            return View();
+        }
+
         // GET: Authentifications
         public ActionResult Index()
         {
             if (Session["client"] != null)
             {
-                Authentifications authcli=new Authentifications();
+
                 Personnes client = Session["client"] as Personnes;
+                List<Authentifications> moi = new List<Authentifications>();
                 foreach (Authentifications a in db.Authentifications)
                 {
                     if (a.email == client.email)
                     {
-                        authcli = a;
+                        moi.Add(a);
                     }
                 }
-
-                List<Authentifications> moi = new List<Authentifications>();
-                moi.Add(authcli);
-
-            return View(moi); }
+                return View(moi);
+            }
             else
-            {   
-                ViewBag.message="Veuillez vous connecter pour acceder à cette page";
+            {
+                if ((TempData["message"] as string) != "" && TempData["message"] != null)
+                { ViewBag.message = TempData["message"]; }
+
                 Authentifications auth = new Authentifications();
                 return RedirectToAction("../Authentifications/Connexion", auth); ;
             }
@@ -52,7 +58,7 @@ namespace ProjectFinal_VNND.Controllers
         {
             try
             {
-                if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
+                if (Request.Form["f_login"] != "" || Request.Form["f_pass"] != "")
                 {
                     //on recupere identifiant et mdp entrés dans la page
                     string login = Request.Form["f_login"];
@@ -301,6 +307,7 @@ namespace ProjectFinal_VNND.Controllers
         {
             if (ModelState.IsValid)
             {
+                authentifications.email = (string)Session["login"];
                 authentifications.statut = 1;
                 db.Entry(authentifications).State = EntityState.Modified;
                 db.SaveChanges();

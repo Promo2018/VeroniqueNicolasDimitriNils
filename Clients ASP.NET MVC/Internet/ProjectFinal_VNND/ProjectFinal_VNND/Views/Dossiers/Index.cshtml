@@ -29,9 +29,6 @@
                 Numero de Dossier
             </th>
             <th>
-                Client
-            </th>
-            <th>
                 Etat
             </th>
             <th>
@@ -47,9 +44,6 @@
                 @Html.DisplayFor(modelItem => item.id_dossier)
             </td>
             <td>
-                @item.Personnes.Civilites.civilite  @Html.DisplayFor(modelItem => item.Personnes.prenom)  @item.Personnes.NOMCAP
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Etats_Dossiers.etat)
             </td>
             <td>
@@ -57,9 +51,7 @@
             </td>
 
             <td>
-                @Html.ActionLink("Modifier", "Edit", new { id = item.id_dossier }) |
-                @Html.ActionLink("Informations", "Details", new { id = item.id_dossier }) |
-                @Html.ActionLink("Supprimer", "Delete", new { id = item.id_dossier })
+                @Html.ActionLink("Informations", "Details", new { id = item.id_dossier })
             </td>
         </tr>
                     }
