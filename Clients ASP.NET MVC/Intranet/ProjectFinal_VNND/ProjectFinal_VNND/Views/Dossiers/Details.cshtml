@@ -10,7 +10,7 @@
     <title>Informations</title>
 </head>
 <body>
-    <div>
+    <div class=" details">
         <h4>Dossiers</h4>
         <hr />
         <dl class="dl-horizontal">
@@ -42,7 +42,7 @@
             </dt>
 
             <dd>
-                <ul>
+                <ul class="dest2">
                     <li>
                         Numero Unique :@Model.Personnes.id_personne
                     </li>
@@ -64,7 +64,7 @@
                 Voyage
             </dt>
             <dd>
-                <ul>
+                <ul class="dest2">
                     <li>
                         ID Voyage : @Model.Voyages.id_voyage
                     </li>
@@ -75,7 +75,7 @@
                         Date de retour: @Model.Voyages.date_retour
                     </li>
                     <li>
-                        <ul>
+                        <ul class="dest2">
                             <lh>
                                 Destination
                             </lh>
@@ -103,7 +103,7 @@
                 Liste Des Participants
             </dt>
             <dd>
-                <ul>
+                <ul class="dest2">
                     @*client*@
                     <li> @Model.Personnes.civilite @Model.Personnes.prenom @Model.Personnes.NOMCAP</li>
                     @*boucle pour chaque participant dans le dossier symbolisé par une entree dans la table intermediaire liste_particpants*@
@@ -117,7 +117,7 @@
                 Liste Des Assurances Souscrites
             </dt>
             <dd>
-                <ul>
+                <ul class="dest2">
                     @foreach (Liste_Assurances entreea in Model.Liste_Assurances)
                     {
                         <li> @entreea.Assurances.libelle</li>
