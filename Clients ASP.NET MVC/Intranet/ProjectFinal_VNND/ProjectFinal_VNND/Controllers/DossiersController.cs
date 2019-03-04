@@ -123,6 +123,95 @@ namespace ProjectFinal_VNND.Controllers
             return View(dossiers);
         }
 
+        // GET: Dossiers/Edit/5
+        public ActionResult Suivi(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Dossiers dossiers = db.Dossiers.Find(id);
+            if (dossiers == null)
+            {
+                return HttpNotFound();
+            }
+
+            Session["numero_carte_bancaire"] = dossiers.numero_carte_bancaire;
+            Session["voyage"] = dossiers.voyage;
+            Session["client"] = dossiers.client;
+
+            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison", dossiers.raison_annulation);
+            ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "nomcomplet", dossiers.client);
+            ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "voyagecomplet", dossiers.voyage);
+            return View(dossiers);
+        }
+
+        // POST: Dossiers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Suivi([Bind(Include = "id_dossier,numero_carte_bancaire,raison_annulation,etat,voyage,client,dernier_suivi")] Dossiers dossiers)
+        {
+
+            if (ModelState.IsValid)
+            {
+                string radioB = Request.Form["radioB"];
+                Session["radioB"] = radioB;
+                dossiers.dernier_suivi = DateTime.Now;
+                dossiers.numero_carte_bancaire = (string)Session["numero_carte_bancaire"];
+                dossiers.voyage = (int)Session["voyage"];
+                dossiers.client = (int)Session["client"];
+
+                if (radioB == "nonSolvable")
+                {
+                    dossiers.etat = 3;
+                    dossiers.raison_annulation = 1;
+                    ViewBag.mess = "Client est insolvable, ce dossier est REJETÉ";
+                    Session["radioB"] = null;
+                }
+                else if (radioB == "solvable")
+                {
+                    dossiers.etat = 2;
+                    Session["radioB"] = null;
+
+                }
+                else if (radioB == "suff")
+                {
+                    dossiers.etat = 4;
+                    Session["radioB"] = null;
+                }
+                else if (radioB == "insuff")
+                {
+                    dossiers.etat = 3;
+                    dossiers.raison_annulation = 3;
+
+                    Session["radioB"] = null;
+                }
+                else if (radioB == "annClient")
+                {
+                    dossiers.etat = 3;
+                    dossiers.raison_annulation = 2;
+                    ViewBag.mess = "Annulee par le client, ce dossier est REJETÉ";
+                    Session["radioB"] = null;
+                }
+
+                db.Entry(dossiers).State = EntityState.Modified;
+                db.SaveChanges();
+
+
+                return RedirectToAction("Details", "Dossiers", new { id = dossiers.id_dossier });
+            }
+            ViewBag.raison_annulation = new SelectList(db.Raisons_Annulations, "id_annul", "annulation_raison", dossiers.raison_annulation);
+            ViewBag.etat = new SelectList(db.Etats_Dossiers, "id_etat", "etat", dossiers.etat);
+            ViewBag.client = new SelectList(db.Personnes, "id_personne", "nomcomplet", dossiers.client);
+            ViewBag.voyage = new SelectList(db.Voyages, "id_voyage", "voyagecomplet", dossiers.voyage);
+            return View(dossiers);
+        }
+
+
+
         // GET: Dossiers/Delete/5
         public ActionResult Delete(int? id)
         {
