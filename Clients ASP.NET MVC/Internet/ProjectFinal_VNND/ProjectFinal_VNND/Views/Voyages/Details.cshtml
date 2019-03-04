@@ -10,7 +10,7 @@
     <title>Informations</title>
 </head>
 <body>
-    <div>
+    <div class=" details">
         <h4>Voyages</h4>
         <hr />
         <dl class="dl-horizontal">
@@ -64,7 +64,7 @@
                 Destination
             </dt>
             <dd>
-                <ul>
+                <ul class="dest2">
                     <li>
                         ID Destination : @Model.Destinations.id_destination
                     </li>
@@ -78,7 +78,7 @@
                         Description du Voyage
                     </li>
                     @Html.DisplayFor(model => model.Destinations.descriptif)
-                </ul>
+                </ulclass="table">
             </dd>
 
         </dl>
