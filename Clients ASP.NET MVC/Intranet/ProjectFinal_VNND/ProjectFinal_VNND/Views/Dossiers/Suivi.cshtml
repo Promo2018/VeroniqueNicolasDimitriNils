@@ -1,0 +1,106 @@
+﻿@model ProjectFinal_VNND.Models.Dossiers
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Modifier</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Dossiers</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id_dossier)
+
+            <br />
+
+            @if (Model.etat == 2)
+            {
+                <div style="background-color:greenyellow">
+                    Nombre de places:
+
+                    @using (Html.BeginForm())
+                    {
+
+                        <p>
+                            @Html.RadioButton("radioB", "suff", new { @checked = "checked" }) Suffisant <br />
+                            @Html.RadioButton("radioB", "insuff") Insuffisant <br />
+
+                            <input type="submit" value="valider" />
+                        </p>
+                        <p style="color:red;">
+                            @Html.RadioButton("radioB", "annClient") Annulation par Client <br />
+                            <input type="submit" value="valider" />
+                        </p>
+
+                    }
+
+                </div>
+            }
+
+            @if (Model.etat == 1)
+            {
+                <div style="background-color:lightblue">
+                    Solvabilite:
+
+                    @using (Html.BeginForm())
+                    {
+
+                        <p>
+                            @Html.RadioButton("radioB", "solvable", new { @checked = "checked" }) Solvable<br />
+                            @Html.RadioButton("radioB", "nonSolvable") Pas de solvabilité<br />
+
+                            <input type="submit" value="valider" />
+                        </p>
+                        <p style="color:red;">
+                            @Html.RadioButton("radioB", "annClient") Annulation par Client <br />
+                            <input type="submit" value="valider" />
+                        </p>
+
+                    }
+
+                </div>
+            }
+
+            @if (Model.etat == 3)
+            {
+
+                <font color="red"> <p> Ce dossier est <b>REJETÉ</b> </p> </font>
+                if (Model.raison_annulation == 1)
+                {<p color="red"> Client non solvable </p> }
+                if (Model.raison_annulation == 3)
+                {<p color="red"> Nombre de places insuffisant </p> }
+                if (Model.raison_annulation == 2)
+                {<p color="red"> Annulation client </p> }
+
+
+                @*<div style="background-color:red">
+                        <h1>Ce dossier est <b>REJETÉ</b></h1>
+                    </div>*@
+            }
+
+            @if (Model.etat == 4)
+            {
+                <div style="background-color:lawngreen">
+                    <h1>Ce dossier est déjà <b>ACCEPTÉ</b></h1>
+                    <p style="color:red;">
+                        @Html.RadioButton("radioB", "annClient") Annulation par Client <br />
+                        <input type="submit" value="valider" />
+                    </p>
+                </div>
+            }
+        </div>
+    }
+
+    <br />
+    <div>
+        @Html.ActionLink("Retour à la liste des Dossiers", "Index")
+    </div>
+</body>
+</html>
