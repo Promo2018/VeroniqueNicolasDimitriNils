@@ -4,18 +4,19 @@
     margin: 0px;
     padding: 0px;
     color: blue;
-    scrollbar-3dlight-color: aquamarine;
+    /*scrollbar-3dlight-color: aquamarine;*/
 }
 
-    body input { 
-        background-color: transparent;
-        resize : both;
-        font-size: x-large;
+    body input {
+        background-color: white;
+        border-radius: 7px;
+        resize: both;
+        font-size: large;
         color: black;
         font-family: Calibri, sans-serif;
         font-weight: bold;
-        font-stretch:expanded;
-        box-sizing:content-box ;
+        font-stretch: expanded;
+        box-sizing: content-box;
     }
 
 
@@ -24,9 +25,8 @@
     background-color: white;
     border: 1px solid black; /*3px dotted blue ;*/
     border-radius: 30px;
-    box-shadow: lightgrey 10px 10px; /*pour ombre derriere table*/
     color: black;
-    scrollbar-3dlight-color: aquamarine;
+    /*scrollbar-3dlight-color: aquamarine;*/
     text-align: center;
     vertical-align : middle;
 }
@@ -36,7 +36,7 @@ th {
     background-color: white;
     background-image: linear-gradient(top, blue, green);
     border-bottom: 10px groove white;
-    font-size: xx-large;
+    font-size: x-large;
     color: blue;
 }
 

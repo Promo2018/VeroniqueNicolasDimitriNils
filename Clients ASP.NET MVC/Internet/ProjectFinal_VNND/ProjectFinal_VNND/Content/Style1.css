@@ -24,6 +24,7 @@ nav > ul {
         position: sticky;
         border: 7px groove white; /* change here*/
         border-radius: 15px 15px;
+        font-size:large;
     }
 
 nav li {
@@ -61,24 +62,22 @@ nav li:hover .submenu {
 
 .submenu li a {
     padding: 10px 10px;
-    font-size: x-large;
+    font-size: large;
     color: blue; /* change here*/
     width: auto;
 }
     .submenu li a:active {
         padding: 10px 10px;
-        font-size: x-large;
+        font-size: large;
         color: blue; /* change here*/
         width: auto;
     }
 
 .submenu li a:hover {
-    color: black;
-    text-shadow: 0.5px 0 0 grey, 0 0.5px 0 grey, 0 -0.5px 0 grey, -0.5px 0 0 grey, 0.5px 0.5px 0 grey, 0.5px -0.5px 0 grey, -0.5px 0.5px 0 grey, -0.5px -0.5px 0 grey;
-    font-weight: bold;
-    font-size: x-large;
-    background-color: lightcyan;
-    border-radius: 15px 15px;
+    font-weight: normal;
+    font-size: large;
+    background-color: white;
+    border-radius: 10px 10px;
 }
 
 .submenu li {
