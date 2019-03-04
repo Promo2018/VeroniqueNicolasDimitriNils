@@ -63,12 +63,14 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.date_naissance)
+                @Html.DisplayFor(model => model.date_naissance) (@Model.age ans)
             </dd>
             <dt>
                 R&eacuteduction
             </dt>
-
+            <dd>
+                @Model.reduction %
+            </dd>
             <dt>
                 E-mail
             </dt>

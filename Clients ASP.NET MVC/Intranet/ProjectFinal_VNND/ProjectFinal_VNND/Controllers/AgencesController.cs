@@ -17,23 +17,19 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Agences
         public ActionResult Index()
         {
-            return View(db.Agences.OrderBy(a => a.id_agence).ToList());
-        }
 
-        [HttpPost]
-        public ActionResult Index(string nomAgence)
-        {
-
-            var agences = from s in db.Agences
-                          select s;
-
-            if (!String.IsNullOrEmpty(nomAgence))
+            if (Session["client"] != null)
             {
-                agences = agences.Where(s => s.agence.Contains(nomAgence));
+                return View(db.Agences.OrderBy(a => a.id_agence).ToList());
+            }
+            else
+            //redirection vers connexion si pas connecté
+            {
+                string message = "Veuillez vous connecter pour acceder à cette page";
+                Authentifications auth = new Authentifications();
+                return RedirectToAction("Connexion", "Authentifications", new { auth, message }); ;
             }
 
-
-            return View(agences.ToList());
         }
 
         // GET: Agences/Details/5

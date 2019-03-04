@@ -17,7 +17,18 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Assurances
         public ActionResult Index()
         {
-            return View(db.Assurances.ToList());
+            if (Session["client"] != null)
+            {
+                return View(db.Assurances.ToList());
+            }
+            else
+            //redirection vers connexion si pas connecté
+            {
+                string message = "Veuillez vous connecter pour acceder à cette page";
+                Authentifications auth = new Authentifications();
+                return RedirectToAction("Connexion", "Authentifications", new { auth, message }); ;
+            }
+
         }
 
         [HttpPost]

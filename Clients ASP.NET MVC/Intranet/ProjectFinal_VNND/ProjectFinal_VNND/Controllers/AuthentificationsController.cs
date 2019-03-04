@@ -17,8 +17,136 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Authentifications
         public ActionResult Index()
         {
-            var authentifications = db.Authentifications.Include(a => a.Statuts);
-            return View(authentifications.ToList());
+            if (Session["client"] != null)
+            {
+                var authentifications = db.Authentifications.Include(a => a.Statuts);
+                return View(authentifications.ToList());
+
+            }
+            else
+            {
+                string message = "Veuillez vous connecter pour acceder à cette page";
+                Authentifications auth = new Authentifications();
+                return RedirectToAction("Connexion", "Authentifications", new { auth, message }); ;
+            }
+
+        }
+        // GET: Connexion
+        public ActionResult Connexion()
+        {
+            Authentifications qui = new Authentifications();
+
+            return View("Connexion", qui);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Connexion(Authentifications auth)
+        {
+            Authentifications auth2 = new Authentifications();
+            try
+            {
+                if (Request.Form["f_login"] != "" && Request.Form["f_pass"] != "")
+                {
+                    //on recupere identifiant et mdp entrés dans la page
+                    string login = Request.Form["f_login"];
+                    string password = Request.Form["f_pass"];
+                    //on aurait aussi pu faire ca : 
+                    //auth.email = login;
+                    /*auth.mot_de_passe = password;
+                     */
+
+                    //certains caracteres font bugger le champ mot de passe
+                    List<string> interdits = new List<string>() { "<", ">" };
+                    foreach (string i in interdits)
+                    {
+                        if (password.Contains(i))
+                        {
+                            ViewBag.message = "### Votre mot de passe ne doit pas contenir le caractère " + i + " ###";
+                            return View("Connexion", auth2);
+                        }
+
+                    }
+                    /*
+                    liste complete des authentification */
+                    var listauth = db.Authentifications;
+                    //on verifie que l'email existe en tant que login dans la table des authentifications
+                    if (listauth.Any(i => i.email == login))
+                    {
+                        // on recupere l'objet authentification dans une liste
+                        List<Authentifications> listauth2 = new List<Authentifications>();
+                        foreach (Authentifications a in listauth.ToList() as List<Authentifications>)
+                        {
+                            if (a.email == login)
+                            {
+                                listauth2.Add(a);
+                            }
+                        }
+                        //on verifie que cet e-mail ne correspond qu'a un login dans la BDD
+                        if (listauth2.Count == 1)
+                        {
+                            // on recupere l'objet authentification
+                            Authentifications emailvalid = listauth2[0];
+                            //on verifie que 
+                            if (emailvalid.mot_de_passe == password)
+                            {
+                                // on veridfie que c'est bien un client qui se connecte
+                                if (emailvalid.Statuts.statut == "Client")
+                                {
+                                    ViewBag.message = "### Veuillez utiliser un \"Compte employé\" pour vous connecter à l'application BoVoyage Intranet ###";
+                                    return View("Connexion", auth2);
+                                }
+
+                                else if (emailvalid.Statuts.statut == "Commercial" || emailvalid.Statuts.statut == "Administrateur" || emailvalid.Statuts.statut == "Marketing")
+                                {
+                                    Session["login"] = emailvalid.email;
+                                    Session["statut"] = emailvalid.Statuts.statut;
+                                    return RedirectToAction("../Voyages/Index");
+
+                                }
+                                else
+                                {
+                                    ViewBag.message = "### Erreur statut ! Ni client Ni Employé! ###";
+                                    return View("Connexion", auth2);
+                                }
+                            }
+                            else
+                            {
+                                ViewBag.message = "Mot de Passe incorrecte";
+                                return View("Connexion", auth2);
+                            }
+                        }
+                        else
+                        {
+                            ViewBag.message = "### Erreur plusieurs correspondances pour cet e-mail dans la base de données ###";
+                            return View("Connexion", auth2);
+
+                        }
+
+                    }
+                    else
+                    {
+                        ViewBag.message = "Ce compte n'existe pas, veuillez vous inscrire pour créer un compte ou corrigez votre identifiant";
+                        return View("Connexion", auth2);
+
+                    }
+
+                }
+                else
+                {
+                    ViewBag.message = "Rentrez un mot de Passe et un E-mail pour vous connecter";
+                    return View("Connexion", auth2);
+                }
+
+
+            }
+            catch (Exception erreur)
+            {
+                ViewBag.message = "#### Erreur de connexion inconnue ###" + "\n\n\t\t" + erreur;
+                return View("Connexion", auth2);
+
+            }
+
+
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -52,7 +180,6 @@ namespace ProjectFinal_VNND.Controllers
         public ActionResult Connection()
         {
             Authentifications qui = new Authentifications();
-            ViewBag.message = "Login + Pass";
             return View("Connection", qui);
         }
 
@@ -124,11 +251,9 @@ namespace ProjectFinal_VNND.Controllers
 
         public ActionResult LogOff(Authentifications authentifications)
         {
-            Session["login"] = null;
-            Session["status"] = null;
-            Session["password"] = null;
-
-            return RedirectToAction("../Voyages/Index");
+            Session.Clear();
+            string message = "Vous êtes déconnecté";
+            return RedirectToAction("../Authentifications/Connexion", message);
         }
 
         // GET: Authentifications/Edit/5
@@ -200,3 +325,4 @@ namespace ProjectFinal_VNND.Controllers
         }
     }
 }
+

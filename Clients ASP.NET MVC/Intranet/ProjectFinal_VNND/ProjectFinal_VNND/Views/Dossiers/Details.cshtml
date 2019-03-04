@@ -24,23 +24,22 @@
             <dt>
                 Date du dernier suivi de dossier
             </dt>
-
             <dd>
                 @Html.DisplayFor(model => model.dernier_suivi)
             </dd>
+            @if (Model.Raisons_Annulations.annulation_raison != null && Model.Raisons_Annulations.annulation_raison != "")
+            {
+                <dt>
+                    Raison d'Annulation
+                </dt>
 
-            <dt>
-                Raison d'Annulation
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Raisons_Annulations.annulation_raison)
-            </dd>
-
+                <dd>
+                    @Html.DisplayFor(model => model.Raisons_Annulations.annulation_raison)
+                </dd>
+            }
             <dt>
                 Client
             </dt>
-
             <dd>
                 <ul class="dest2">
                     <li>
@@ -55,11 +54,8 @@
                     <li>
                         E-mail : @Model.Personnes.email
                     </li>
-
                 </ul>
-
             </dd>
-
             <dt>
                 Voyage
             </dt>
@@ -104,12 +100,10 @@
             </dt>
             <dd>
                 <ul class="dest2">
-                    @*client*@
-                    <li> @Model.Personnes.civilite @Model.Personnes.prenom @Model.Personnes.NOMCAP</li>
                     @*boucle pour chaque participant dans le dossier symbolisé par une entree dans la table intermediaire liste_particpants*@
                     @foreach (Liste_Participants entreep in Model.Liste_Participants)
                     {
-                        <li> @entreep.Personnes.civilite @entreep.Personnes.prenom @entreep.Personnes.nom</li>
+                        <li> @entreep.Personnes.civilite @entreep.Personnes.prenom @entreep.Personnes.NOMCAP</li>
                     }
                 </ul>
             </dd>
@@ -127,23 +121,18 @@
             <dt>
                 Prix Total
             </dt>
-
             <dd>
                 @Model.PrixTotal &euro;
             </dd>
             <dt>
                 Numéro de Carte Bancaire
             </dt>
-
             <dd>
                 @Model.numero_carte_bancaire
             </dd>
-
         </dl>
     </div>
-
     <button class="button" type="button" onclick="location.href='@Url.Action("Suivi","Dossiers", new { id = Model.id_dossier })'">Suivi Dossier</button><br />
-
     <p>
         @Html.ActionLink("Modifier", "Edit", new { id = Model.id_dossier }) |
         @Html.ActionLink("Retour à la liste des Dossiers", "Index")

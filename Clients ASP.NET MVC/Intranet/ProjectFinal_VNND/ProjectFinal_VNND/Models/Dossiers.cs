@@ -11,7 +11,7 @@ namespace ProjectFinal_VNND.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Dossiers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +20,7 @@ namespace ProjectFinal_VNND.Models
             this.Liste_Assurances = new HashSet<Liste_Assurances>();
             this.Liste_Participants = new HashSet<Liste_Participants>();
         }
-    
+
         public int id_dossier { get; set; }
         public string numero_carte_bancaire { get; set; }
         public Nullable<int> raison_annulation { get; set; }
@@ -28,7 +28,7 @@ namespace ProjectFinal_VNND.Models
         public int voyage { get; set; }
         public int client { get; set; }
         public Nullable<System.DateTime> dernier_suivi { get; set; }
-    
+
         public virtual Raisons_Annulations Raisons_Annulations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liste_Assurances> Liste_Assurances { get; set; }
@@ -50,7 +50,7 @@ namespace ProjectFinal_VNND.Models
 
         public float CalculPrix()
         {
-            float price = -1 ;
+            float price = -1;
             if (Voyages != null)
             {
                 decimal prixTC = Voyages.tarif_tout_compris;       // Price of voyage from Voyages table
@@ -68,7 +68,7 @@ namespace ProjectFinal_VNND.Models
                     totalAssurance = totalAssurance + Convert.ToDecimal(n.Assurances.prix);        //  Calculation of ALL Assurances chosen (if any)  
                 }
 
-                decimal prixTotal3 = prixTC * (numVoyageurs + 1 - reductionT) * (1 + totalAssurance); //Le +1 correspond au client ajouté
+                decimal prixTotal3 = prixTC * (numVoyageurs - reductionT) * (1 + totalAssurance); // calcul final du prix total
 
                 price = (float)prixTotal3;
             }

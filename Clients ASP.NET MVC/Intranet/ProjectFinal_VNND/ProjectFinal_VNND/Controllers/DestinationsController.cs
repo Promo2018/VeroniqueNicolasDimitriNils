@@ -17,8 +17,19 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Destinations
         public ActionResult Index()
         {
-            var destinations = db.Destinations.Include(d => d.Continents);
-            return View(destinations.ToList());
+
+            if (Session["client"] != null)
+            {
+                var destinations = db.Destinations.Include(d => d.Continents);
+                return View(destinations.ToList());
+            }
+            else
+            //redirection vers connexion si pas connecté
+            {
+                string message = "Veuillez vous connecter pour acceder à cette page";
+                Authentifications auth = new Authentifications();
+                return RedirectToAction("Connexion", "Authentifications", new { auth, message }); ;
+            }
         }
 
         [HttpPost]

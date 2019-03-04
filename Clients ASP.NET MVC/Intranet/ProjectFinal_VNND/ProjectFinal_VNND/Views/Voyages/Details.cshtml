@@ -1,4 +1,5 @@
 ﻿@model ProjectFinal_VNND.Models.Voyages
+    @using System.Globalization;
 
 
 
@@ -10,7 +11,7 @@
     <title>Informations</title>
 </head>
 <body>
-    <div class=" details">
+    <div>
         <h4>Voyages</h4>
         <hr />
         <dl class="dl-horizontal">
@@ -25,7 +26,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.date_aller)
+                @Model.date_aller.ToString("g", CultureInfo.CreateSpecificCulture("fr-FR"))
             </dd>
 
             <dt>
@@ -33,7 +34,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.date_retour)
+                @Model.date_retour.ToString("g", CultureInfo.CreateSpecificCulture("fr-FR"))
             </dd>
 
             <dt>
@@ -64,7 +65,7 @@
                 Destination
             </dt>
             <dd>
-                <ul class="dest">
+                <ul>
                     <li>
                         ID Destination : @Model.Destinations.id_destination
                     </li>

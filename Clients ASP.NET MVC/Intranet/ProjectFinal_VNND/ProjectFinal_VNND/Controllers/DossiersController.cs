@@ -17,8 +17,21 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Dossiers
         public ActionResult Index()
         {
-            var dossiers = db.Dossiers.Include(d => d.Raisons_Annulations).Include(d => d.Etats_Dossiers).Include(d => d.Personnes).Include(d => d.Voyages);
-            return View(dossiers.ToList());
+
+
+            if (Session["client"] != null)
+            {
+                var dossiers = db.Dossiers.Include(d => d.Raisons_Annulations).Include(d => d.Etats_Dossiers).Include(d => d.Personnes).Include(d => d.Voyages).Include(d => d.Raisons_Annulations.annulation_raison);
+                return View(dossiers.ToList());
+            }
+            else
+            //redirection vers connexion si pas connecté
+            {
+                string message = "Veuillez vous connecter pour acceder à cette page";
+                Authentifications auth = new Authentifications();
+                return RedirectToAction("Connexion", "Authentifications", new { auth, message }); ;
+            }
+
         }
 
         [HttpPost]

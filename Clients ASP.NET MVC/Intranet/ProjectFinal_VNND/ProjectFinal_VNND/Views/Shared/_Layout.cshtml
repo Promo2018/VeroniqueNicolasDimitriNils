@@ -24,30 +24,38 @@
                 </div>
             </div>
         </div>
+        @if (Session["login"] != null)
+        {
+            <span> Vous &ecirc;tes  connecté avec le compte "@Session["statut"]" : @Session["login"]</span>
 
-        <nav>
-            <p id="p1">Utilisateur : @Session["status"] @Session["login"] @Session["password"] <button class="button" type="button" onclick="location.href='@Url.Action("LogOff","Authentifications")'">LogOff</button> </p>
+            <nav>
+                <p id="p1">
 
-            <ul>
+                    <button class="button" type="button" onclick="location.href='@Url.Action("LogOff", "Authentifications")'">D&eacute;connexion</button>
+                </p>
+                <ul>
 
-                <li class="menu">
-                    <a href="../../Dossiers/Index">Dossiers</a>
+                    <li class="menu">
+                        <a href="../../Dossiers/Index">Dossiers</a>
+                        <ul class="submenu">
+                            <li class="menu"><a href="../../Assurances/Index">Assurances</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu">
+                        <a href="../../Voyages/Index">Voyages</a>
+                        <ul class="submenu">
+                            <li><a href="../../Agences/Index">Agences</a></li>
+                            <li><a href="../../Destinations/Index">Destinations</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu"><a href="../../Personnes/Index">Voyageurs</a></li>
                     <ul class="submenu">
-                        <li class="menu"><a href="../../Assurances/Index">Assurances</a></li>
+                        <li class="menu"><a href="../../Authentifications/Index">Comptes Clients</a></li>
                     </ul>
-                </li>
-
-                <li class="menu">
-                    <a href="../../Voyages/Index">Voyages</a>
-                    <ul class="submenu">
-                        <li><a href="../../Agences/Index">Agences</a></li>
-                        <li><a href="../../Destinations/Index">Destinations</a></li>
-                    </ul>
-                </li>
-                <li class="menu"><a href="../../Personnes/Index">Clients</a></li>
-                <li class="menu"><a href="../../Authentifications/Connection">Connection</a></li>
-            </ul>
-        </nav>
+                </ul>
+            </nav>
+        }
 
     </header>
     <div id="main">

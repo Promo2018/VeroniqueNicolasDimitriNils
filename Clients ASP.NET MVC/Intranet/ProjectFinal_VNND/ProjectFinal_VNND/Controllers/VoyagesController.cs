@@ -18,8 +18,20 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Voyages
         public ActionResult Index()
         {
-            var voyages = db.Voyages.Include(v => v.Agences).Include(v => v.Destinations);
-            return View(voyages.ToList());
+            if (Session["client"] != null)
+            {
+                var voyages = db.Voyages.Include(v => v.Agences).Include(v => v.Destinations);
+                return View(voyages.ToList());
+
+            }
+            else
+            //redirection vers connexion si pas connecté
+            {
+                string message = "Veuillez vous connecter pour acceder à cette page";
+                Authentifications auth = new Authentifications();
+                return RedirectToAction("Connexion", "Authentifications", new { auth, message }); ;
+            }
+
         }
 
         [HttpPost]

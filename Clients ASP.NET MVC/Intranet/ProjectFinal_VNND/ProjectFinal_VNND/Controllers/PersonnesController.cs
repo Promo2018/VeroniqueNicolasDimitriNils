@@ -17,8 +17,19 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Personnes
         public ActionResult Index()
         {
-            var personnes = db.Personnes.Include(p => p.Civilites).Include(p => p.OuisNons).Include(p => p.OuisNons1);
-            return View(personnes.ToList());
+            if (Session["client"] != null)
+            {
+                var personnes = db.Personnes.Include(p => p.Civilites).Include(p => p.OuisNons).Include(p => p.OuisNons1);
+                return View(personnes.ToList());
+            }
+            else
+            //redirection vers connexion si pas connecté
+            {
+                string message = "Veuillez vous connecter pour acceder à cette page";
+                Authentifications auth = new Authentifications();
+                return RedirectToAction("Connexion", "Authentifications", new { auth, message }); ;
+            }
+
         }
 
         [HttpPost]
