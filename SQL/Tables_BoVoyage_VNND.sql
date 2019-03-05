@@ -2,7 +2,6 @@
 --DROP DATABASE BoVoyage_VNND;
 --CREATE DATABASE BoVoyage_VNND;
 USE BoVoyage_VNND;
---use Northwind;
 /*
 DROP TABLE [Liste Participants];
 DROP TABLE [Liste Assurances];
@@ -55,11 +54,13 @@ CREATE TABLE Authentifications (
 	PRIMARY KEY (id_auth)
 );
 ALTER TABLE Authentifications ADD CONSTRAINT Fk_0Authentifications FOREIGN KEY(statut) REFERENCES Statuts(id_statut);
+/*ALTER TABLE [dbo].Authentifications DROP CONSTRAINT [UQ__Authenti__AB6E6164848E60B6];*/
+
 
 ------------------------TABLE GERANT ENUM POUR PERSONNES ----------------------------
 CREATE TABLE Civilites(
 	id_civilite INT IDENTITY,
-	civilite NVARCHAR(8) UNIQUE NOT NULL, --mettre deux lignes M ou Mme 
+	civilite NVARCHAR(8) UNIQUE NOT NULL,  
 	PRIMARY KEY (id_civilite),
 );
 INSERT INTO Civilites (civilite) VALUES ('M');
@@ -76,13 +77,15 @@ CREATE TABLE Personnes(
 	[date naissance] DATE NOT NULL,
 	client INT default 1, -- FK
 	participant INT default 1, --FK
-	email NVARCHAR(64) UNIQUE, -- à faire trigger pour contrainte non null si client true
+	email NVARCHAR(64) UNIQUE, 
 	PRIMARY KEY(id_personne)
 );
 
 ALTER TABLE Personnes ADD CONSTRAINT Fk_1Civilites FOREIGN KEY(civilite) REFERENCES Civilites(id_civilite);
 ALTER TABLE Personnes ADD CONSTRAINT Fk_Client FOREIGN KEY(client) REFERENCES OuisNons(id_ouinon);
 ALTER TABLE Personnes ADD CONSTRAINT Fk_Participant FOREIGN KEY(participant) REFERENCES OuisNons(id_ouinon);
+/*ALTER TABLE [dbo].[Personnes] DROP CONSTRAINT [UQ__Personne__AB6E616412C40C37]*/
+
 
 ------------------------TABLE AGENCES-------------------------------
 
@@ -97,7 +100,7 @@ CREATE TABLE Agences(
 
 CREATE TABLE Continents(
 	id_continent INT IDENTITY,
-	continent NVARCHAR(16) NOT NULL, --mettre six lignes Afrique, Amerique, Antarctique, Asie, Europe, Océanie
+	continent NVARCHAR(16) NOT NULL, 
 	PRIMARY KEY(id_continent)
 );
 INSERT INTO Continents (continent) VALUES ('Afrique');
@@ -139,7 +142,7 @@ ALTER TABLE Voyages ADD CONSTRAINT Fk_4Agences FOREIGN KEY(agence) REFERENCES Ag
 CREATE TABLE Assurances(
 	id_assurance INT IDENTITY,
 	libelle NVARCHAR(64) NOT NULL unique,
-	prix FLOAT NOT NULL default 0,-- on mettra 1 pour les assurances non définies et un pourcentage supérieur à 1 qui multipliera le prix total du dossier
+	prix FLOAT NOT NULL default 0,
 	descriptif NVARCHAR(MAX),
 	PRIMARY KEY(id_assurance)
 );
@@ -148,7 +151,7 @@ CREATE TABLE Assurances(
 
 CREATE TABLE [Raisons Annulations](
 id_annul int identity not null,
-annulation_raison NVARCHAR(32)NOT NULL, -- mettre trois lignes Clients ou places Insuffisantes ou aucune
+annulation_raison NVARCHAR(32)NOT NULL, 
 PRIMARY KEY(id_annul)
 );
 INSERT INTO [Raisons Annulations] (annulation_raison) VALUES (' ');
@@ -162,7 +165,7 @@ UPDATE [Raisons Annulations] set annulation_raison='Places Insuffisantes' where 
 
 CREATE TABLE [Etats Dossiers](
 id_etat int identity not null,
-etat NVARCHAR(16)NOT NULL, --mettre quatre lignes 'enAttente' OR 'enCours' OR 'refusee' OR 'acceptee'
+etat NVARCHAR(16)NOT NULL, 
 PRIMARY KEY(id_etat)
 );
 INSERT INTO [Etats Dossiers] (etat) VALUES ('en attente');
@@ -179,12 +182,12 @@ UPDATE [Etats Dossiers] set etat='Accepté' where id_etat=4;
 ------------------------TABLE DOSSIERS----------------------------
 CREATE TABLE Dossiers(
 	id_dossier INT IDENTITY,
-	[numero carte bancaire] NVARCHAR(32) NOT NULL,
+	[numero carte bancaire] NVARCHAR(32), 
 	[raison annulation] int default null, --FK
 	etat int NOT NULL default 1, --FK
 	voyage INT NOT NULL, --FK
 	client INT NOT NULL, --FK
-	[dernier suivi] DATE default getdate(), ---- date dernier changement d'etat
+	[dernier suivi] DATE default getdate(), 
 	PRIMARY KEY(id_dossier)
 );
 
@@ -192,7 +195,7 @@ ALTER TABLE Dossiers ADD CONSTRAINT Fk_5Annulation FOREIGN KEY([raison annulatio
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_6EtatDossier FOREIGN KEY(etat) REFERENCES [Etats Dossiers](id_etat);
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_7Client FOREIGN KEY(client) REFERENCES Personnes(id_personne);
 ALTER TABLE Dossiers ADD CONSTRAINT Fk_8Voyage FOREIGN KEY(voyage) REFERENCES Voyages(id_voyage) ON DELETE CASCADE;
-
+--ALTER TABLE Dossiers ALTER COLUMN [numero carte bancaire] NVARCHAR(32);
 
 ------------------------TABLE [Liste Assurances] -------------------------
 CREATE TABLE [Liste Assurances](
