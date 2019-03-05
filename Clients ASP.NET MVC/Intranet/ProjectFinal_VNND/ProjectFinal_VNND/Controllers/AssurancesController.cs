@@ -17,7 +17,7 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Assurances
         public ActionResult Index()
         {
-            if (Session["client"] != null)
+            if (Session["login"] != null)
             {
                 return View(db.Assurances.ToList());
             }

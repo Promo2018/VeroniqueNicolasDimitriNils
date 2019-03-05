@@ -31,13 +31,16 @@
                 @Html.DisplayFor(model => model.dernier_suivi)
             </dd>
 
-            <dt>
-                Raison d'Annulation
-            </dt>
+            @if (Model.etat == 3 && Model.raison_annulation != null && Model.raison_annulation != 1)
+            {
+                <dt>
+                    Raison d'Annulation
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Raisons_Annulations.annulation_raison)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Raisons_Annulations.annulation_raison)
+                </dd>
+            }
 
             <dt>
                 Client

@@ -17,7 +17,7 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Authentifications
         public ActionResult Index()
         {
-            if (Session["client"] != null)
+            if (Session["login"] != null)
             {
                 var authentifications = db.Authentifications.Include(a => a.Statuts);
                 return View(authentifications.ToList());

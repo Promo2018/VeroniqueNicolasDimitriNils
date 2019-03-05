@@ -18,7 +18,7 @@ namespace ProjectFinal_VNND.Controllers
         public ActionResult Index()
         {
 
-            if (Session["client"] != null)
+            if (Session["login"] != null)
             {
                 var destinations = db.Destinations.Include(d => d.Continents);
                 return View(destinations.ToList());

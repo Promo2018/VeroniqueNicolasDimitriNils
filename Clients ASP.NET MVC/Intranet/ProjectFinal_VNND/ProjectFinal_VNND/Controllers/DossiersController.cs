@@ -19,9 +19,9 @@ namespace ProjectFinal_VNND.Controllers
         {
 
 
-            if (Session["client"] != null)
+            if (Session["login"] != null)
             {
-                var dossiers = db.Dossiers.Include(d => d.Raisons_Annulations).Include(d => d.Etats_Dossiers).Include(d => d.Personnes).Include(d => d.Voyages).Include(d => d.Raisons_Annulations.annulation_raison);
+                var dossiers = db.Dossiers.Include(d => d.Raisons_Annulations).Include(d => d.Etats_Dossiers).Include(d => d.Personnes).Include(d => d.Voyages);
                 return View(dossiers.ToList());
             }
             else

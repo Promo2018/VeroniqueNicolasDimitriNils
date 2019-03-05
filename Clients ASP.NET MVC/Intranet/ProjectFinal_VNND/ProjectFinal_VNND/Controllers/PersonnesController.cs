@@ -17,7 +17,7 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Personnes
         public ActionResult Index()
         {
-            if (Session["client"] != null)
+            if (Session["login"] != null)
             {
                 var personnes = db.Personnes.Include(p => p.Civilites).Include(p => p.OuisNons).Include(p => p.OuisNons1);
                 return View(personnes.ToList());

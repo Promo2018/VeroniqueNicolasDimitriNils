@@ -18,7 +18,7 @@ namespace ProjectFinal_VNND.Controllers
         public ActionResult Index()
         {
 
-            if (Session["client"] != null)
+            if (Session["login"] != null)
             {
                 return View(db.Agences.OrderBy(a => a.id_agence).ToList());
             }

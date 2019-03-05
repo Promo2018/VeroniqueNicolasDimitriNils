@@ -18,7 +18,7 @@ namespace ProjectFinal_VNND.Controllers
         // GET: Voyages
         public ActionResult Index()
         {
-            if (Session["client"] != null)
+            if (Session["login"] != null)
             {
                 var voyages = db.Voyages.Include(v => v.Agences).Include(v => v.Destinations);
                 return View(voyages.ToList());
