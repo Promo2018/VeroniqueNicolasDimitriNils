@@ -14,7 +14,7 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            <p> Veuillez confirmer si vous êtes participant ou non au voyage</p>
+            <p> Veuillez confirmer si vous êtes participant ou non au voyage.</p>
 
             <div>
                 @Html.RadioButton("f_reponse", "Oui", new { @checked = "checked" }) Oui<br />
