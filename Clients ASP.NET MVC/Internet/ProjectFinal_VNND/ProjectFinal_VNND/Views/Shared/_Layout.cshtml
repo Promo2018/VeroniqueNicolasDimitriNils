@@ -46,7 +46,7 @@
                             </li>
                         </ul>
                     }
-                    </li>
+                </li>
                 @if (Session["client"] != null)
                 {
                     <li class="menu">
@@ -69,9 +69,8 @@
     <div id="main">
         <center> @RenderBody()</center>
     </div>
-    <footer>
-        <p> BoVoyages @DateTime.Now.Year </p>
-
-    </footer>
 </body>
+<foot>
+    <p> BoVoyages @DateTime.Now.Year </p>
+</foot>
 </html>

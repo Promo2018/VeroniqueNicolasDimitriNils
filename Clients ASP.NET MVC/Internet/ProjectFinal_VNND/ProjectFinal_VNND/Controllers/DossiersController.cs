@@ -31,7 +31,7 @@ namespace ProjectFinal_VNND.Controllers
                     }
 
                 }
-                return View(mesdossiers);
+                return View(mesdossiers.OrderBy(a => a.id_dossier).ToList());
             }
             else
             {
@@ -52,8 +52,8 @@ namespace ProjectFinal_VNND.Controllers
             {
                 dossier = dossier.Where(s => s.Personnes.nom.Contains(nom) && s.Personnes.prenom.Contains(prenom)
                 && s.Voyages.Destinations.Continents.continent.Contains(continent));
-            }
-            return View(dossier.ToList());
+            }            
+            return View(dossier.OrderBy(a => a.id_dossier).ToList());
         }
 
         // GET: Dossiers/Details/5
@@ -64,6 +64,10 @@ namespace ProjectFinal_VNND.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Dossiers dossiers = db.Dossiers.Find(id);
+            //var dossiers = db.Dossiers.Include(d => d.Personnes.Civilites);
+            //dossiers = dossiers.Where(d => d.client == id);
+            //List<Dossiers> dossiers2 = dossiers.ToList();
+            //    Dossiers dossier = dossiers2[0];
             if (dossiers == null)
             {
                 return HttpNotFound();

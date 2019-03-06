@@ -33,14 +33,14 @@ namespace ProjectFinal_VNND.Controllers
 
             if (prixMax == null | prixMax <= 0) { prixMax = 99999; }
             if (prixMin == null) { prixMin = 1; }
-            if (place == null | place <= 0) { place = 99999; }
+            if (place == null | place <= 0) { place = 1; }
             if (aller == null) { aller = DateTime.ParseExact("01/01/0001", "dd/MM/yyyy", CultureInfo.InvariantCulture); }
             if (retour == null) { retour = DateTime.ParseExact("31/12/2100", "dd/MM/yyyy", CultureInfo.InvariantCulture); }
 
 
             if (!String.IsNullOrEmpty(searchPattern) || prixMax > 0 || prixMin > 0 || place > 0 || aller != null || retour != null)
             {
-                voyage = voyage.Where(s => s.tarif_tout_compris <= prixMax && s.tarif_tout_compris >= prixMin && s.places_disponibles <= place
+                voyage = voyage.Where(s => s.tarif_tout_compris <= prixMax && s.tarif_tout_compris >= prixMin && s.places_disponibles >= place
                 && s.date_aller >= aller && s.date_retour <= retour
                 && (s.Destinations.Continents.continent.Contains(searchPattern) || s.Destinations.pays.Contains(searchPattern) || s.Destinations.region.Contains(searchPattern)));
 
