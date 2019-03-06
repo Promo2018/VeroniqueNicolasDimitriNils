@@ -102,16 +102,15 @@
                 Liste Des Participants
             </dt>
             <dd>
-                <ul>
-                    @*client*@
-                    <li> @Model.Personnes.civilite @Model.Personnes.prenom @Model.Personnes.NOMCAP</li>
+                <ul class="dest2">
                     @*boucle pour chaque participant dans le dossier symbolisé par une entree dans la table intermediaire liste_particpants*@
                     @foreach (Liste_Participants entreep in Model.Liste_Participants)
                     {
-                        <li> @entreep.Personnes.civilite @entreep.Personnes.prenom @entreep.Personnes.nom</li>
+                        <li> @entreep.Personnes.Civilites.civilite @entreep.Personnes.prenom @entreep.Personnes.NOMCAP</li>
                     }
                 </ul>
             </dd>
+            <dt>
             <dt>
                 Liste Des Assurances Souscrites
             </dt>

@@ -22,7 +22,7 @@ namespace ProjectFinal_VNND.Controllers
             if (Session["login"] != null)
             {
                 var dossiers = db.Dossiers.Include(d => d.Raisons_Annulations).Include(d => d.Etats_Dossiers).Include(d => d.Personnes).Include(d => d.Voyages);
-                return View(dossiers.ToList());
+                return View(dossiers.OrderBy(a => a.id_dossier).ToList());                
             }
             else
             //redirection vers connexion si pas connecté
@@ -46,7 +46,7 @@ namespace ProjectFinal_VNND.Controllers
                 dossier = dossier.Where(s => s.Personnes.nom.Contains(nom) && s.Personnes.prenom.Contains(prenom)
                 && s.Voyages.Destinations.Continents.continent.Contains(continent));
             }
-            return View(dossier.ToList());
+            return View(dossier.OrderBy(a => a.id_dossier).ToList());
         }
 
         // GET: Dossiers/Details/5
@@ -56,6 +56,7 @@ namespace ProjectFinal_VNND.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //Dossiers dossier = db.Dossiers.Include(d => d.Personnes.Civilites).Include(d => d.Personnes.Civilites.civilite ).SingleOrDefault(d => d.id_dossier == id);
             Dossiers dossiers = db.Dossiers.Find(id);
             if (dossiers == null)
             {

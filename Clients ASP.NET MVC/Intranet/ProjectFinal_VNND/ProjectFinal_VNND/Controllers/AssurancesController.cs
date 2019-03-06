@@ -43,7 +43,7 @@ namespace ProjectFinal_VNND.Controllers
                 assurances = assurances.Where(s => s.libelle.Contains(type));
             }
 
-            return View(assurances.ToList());
+            return View(assurances.OrderBy(a => a.id_assurance).ToList());
         }
 
         // GET: Assurances/Details/5

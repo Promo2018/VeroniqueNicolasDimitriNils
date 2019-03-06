@@ -44,7 +44,7 @@ namespace ProjectFinal_VNND.Controllers
                 destination = destination.Where(s => s.Continents.continent.Contains(continent) && s.pays.Contains(pays) && s.region.Contains(region));
             }
 
-            return View(destination.ToList());
+            return View(destination.OrderBy(a => a.id_destination).ToList());
         }
 
         // GET: Destinations/Details/5

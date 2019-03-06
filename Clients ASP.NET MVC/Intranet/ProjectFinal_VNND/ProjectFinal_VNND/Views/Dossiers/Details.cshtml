@@ -46,7 +46,7 @@
                         Numero Unique :@Model.Personnes.id_personne
                     </li>
                     <li>
-                        @Model.Personnes.Civilites.civilite @Model.Personnes.prenom @Model.Personnes.NOMCAP
+                        @Html.DisplayFor(model => model.Personnes.Civilites.civilite) @Model.Personnes.prenom @Model.Personnes.NOMCAP
                     </li>
                     <li>
                         Tél : @Model.Personnes.telephone
@@ -103,7 +103,7 @@
                     @*boucle pour chaque participant dans le dossier symbolisé par une entree dans la table intermediaire liste_particpants*@
                     @foreach (Liste_Participants entreep in Model.Liste_Participants)
                     {
-                        <li> @entreep.Personnes.civilite @entreep.Personnes.prenom @entreep.Personnes.NOMCAP</li>
+                        <li> @entreep.Personnes.Civilites.civilite @entreep.Personnes.prenom @entreep.Personnes.NOMCAP</li>
                     }
                 </ul>
             </dd>

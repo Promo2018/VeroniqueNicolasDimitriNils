@@ -20,7 +20,7 @@ namespace ProjectFinal_VNND.Controllers
             if (Session["login"] != null)
             {
                 var personnes = db.Personnes.Include(p => p.Civilites).Include(p => p.OuisNons).Include(p => p.OuisNons1);
-                return View(personnes.ToList());
+                return View(personnes.OrderBy(a => a.id_personne).ToList());
             }
             else
             //redirection vers connexion si pas connecté
@@ -44,7 +44,7 @@ namespace ProjectFinal_VNND.Controllers
                 personnes = personnes.Where(s => s.nom.Contains(nom) && s.prenom.Contains(prenom));
             }
 
-            return View(personnes.ToList());
+            return View(personnes.OrderBy(a => a.id_personne).ToList());
         }
 
         // GET: Personnes/Details/5

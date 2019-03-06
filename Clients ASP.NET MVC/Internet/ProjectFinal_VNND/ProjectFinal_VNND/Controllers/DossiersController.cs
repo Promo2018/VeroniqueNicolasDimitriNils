@@ -64,10 +64,6 @@ namespace ProjectFinal_VNND.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Dossiers dossiers = db.Dossiers.Find(id);
-            //var dossiers = db.Dossiers.Include(d => d.Personnes.Civilites);
-            //dossiers = dossiers.Where(d => d.client == id);
-            //List<Dossiers> dossiers2 = dossiers.ToList();
-            //    Dossiers dossier = dossiers2[0];
             if (dossiers == null)
             {
                 return HttpNotFound();
