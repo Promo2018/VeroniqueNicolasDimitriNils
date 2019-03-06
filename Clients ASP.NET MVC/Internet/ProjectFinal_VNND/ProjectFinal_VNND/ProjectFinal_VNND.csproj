@@ -98,8 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Style.css" />
-    <Content Include="Content\Style1.css" />
-    <Content Include="Content\StyleBody.css" />
+    <Content Include="Content\Styleinternet.css" />
+    <Content Include="Content\StyleBodyinternet.css" />
     <Content Include="Global.asax" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -253,6 +253,7 @@
     <Content Include="Views\Liste_Participants\Details.cshtml" />
     <Content Include="Views\Liste_Participants\Edit.cshtml" />
     <Content Include="Views\Liste_Participants\Index.cshtml" />
+    <Content Include="Views\Shared\_Layoutfooter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

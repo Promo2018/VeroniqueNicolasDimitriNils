@@ -1,16 +1,18 @@
 ﻿body {
-    background-color: lightcyan;
+    background-color: white;
     font-family: 'Source code pro', Calibri, sans-serif;
     margin: 0px;
     padding: 0px;
     color: blue;
-    /*scrollbar-3dlight-color: aquamarine;*/
+    position: sticky;
+    box-sizing: padding-box;
+    min-height: 1000px;
 }
 
     body input {
         background-color: white;
         border-radius: 7px;
-        resize: both;
+        resize: both; /* à voir*/
         font-size: large;
         color: black;
         font-family: Calibri, sans-serif;
@@ -28,7 +30,17 @@
     color: black;
     /*scrollbar-3dlight-color: aquamarine;*/
     text-align: center;
-    vertical-align : middle;
+    vertical-align: middle;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.voyage{
+    padding: 10px 10px 10px 10px;
+}
+
+div.bordure {
+    padding: 200px 500px;
 }
 
 th {
@@ -38,10 +50,11 @@ th {
     border-bottom: 10px groove white;
     font-size: x-large;
     color: blue;
+    text-align: center;
 }
 
 tr:hover {
-    background-color: lightcyan; /*Changer couleur*/
+    background-color: white; /*Changer couleur*/
 }
 
 th, td {
@@ -79,10 +92,10 @@ td a:link, a:visited, a:active { /*lien non visité, visité ou sélectionné*/
 }
 
     td a:hover { /*lien survolé par la souris*/
-        background-color: lightcyan;
+        background-color: lightgoldenrodyellow;
         color: black;
         font-weight: normal;
-        border: 3px solid lightgray;
+        border: 2px solid lightgray;
         border-radius: 20px;
     }
 
@@ -91,15 +104,10 @@ div.details {
     background-color: white;
     border: 1px solid black; /*3px dotted blue ;*/
     border-radius: 30px;
-    padding-top: 50px;
-    padding-right: 80px;
-    padding-bottom: 50px;
-    padding-left: 80px;    
-    box-shadow: lightgrey 10px 10px; /*pour ombre derriere table*/
     color: black;
     text-align: center;
     vertical-align: middle;
-
-
+    position: sticky;
+    width: 80%;
 }
 

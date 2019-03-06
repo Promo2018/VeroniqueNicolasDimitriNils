@@ -1,11 +1,36 @@
-﻿body {
+﻿header {
+    position:  relative;
+    background: white;
+    height: 15%;
+    top: 0;
+    left: 0;
+    right: 0;
+    width:auto;
+}
+
+footer {
+    position: absolute;
+    background: white;
+    height: 5%;
+    bottom:0px;
+    width: auto;
+}
+
+body {
     font-family: 'source code pro', calibri, sans-serif;
-    font-size: x-large;  /*change here*/
+    font-size: x-large; /*change here*/
     margin: 10px; /*change here 0 -> 10*/
     padding: 0px;
     color-interpolation: auto;
     background-attachment: fixed;
 }
+/*tfoot{
+
+}*/
+
+#blabla{
+    max-height:inherit;
+} 
 
 nav > ul {
     margin: 0px;
@@ -119,6 +144,10 @@ fieldset {
     backface-visibility: visible;
 }
 
+.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
+    height: 400px;
+}
+
 .middle {
     opacity: 1;
     position: absolute;
@@ -136,7 +165,7 @@ fieldset {
     font-size: 170px;
     opacity: 0.8;
     padding: 16px 32px;
-    text-shadow: 2px 0 0 grey, 0 2px 0 grey, 0 -2px 0 grey, -2px 0 0 grey, 2px 2px 0 grey, 2px -2px 0 grey, -2px 2px 0 grey, -2px -2px 0 grey;
+    text-shadow: 2.5px 0 0 grey, 0 2.5px 0 grey, 0 -2.5px 0 grey, -2.5px 0 0 grey, 2.5px 2.5px 0 grey, 2.5px -2.5px 0 grey, -2.5px 2.5px 0 grey, -2.5px -2.5px 0 grey;
 }
 
     .text > a {
@@ -160,6 +189,19 @@ fieldset {
     text-align: right;
     margin-right: 30px;
 }
+
+footer {
+    position: relative;
+    background-color: white;
+    height: 5px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+div main {
+    position: relative;
+}
+
 
 /* Clear floats after the columns */
 
