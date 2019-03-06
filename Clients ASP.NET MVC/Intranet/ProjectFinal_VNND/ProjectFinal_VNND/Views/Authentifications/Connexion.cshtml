@@ -16,7 +16,7 @@
             Identifiant: @Html.TextBox("f_login", Model.email, new { placeholder = "Email ..." })<br />
             Mot de passe:  @Html.Password("f_pass", Model.mot_de_passe, new { placeholder = " ******** ", type = "password" })<br />
             <br />
-            <input type="submit" value="valider" />
+            <input type="submit" value="Valider" />
         </p>
         @Request.QueryString["message"];
     }

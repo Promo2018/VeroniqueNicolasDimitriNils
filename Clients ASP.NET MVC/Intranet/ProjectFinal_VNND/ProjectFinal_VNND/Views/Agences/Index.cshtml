@@ -15,7 +15,7 @@
     @using (Html.BeginForm())
     {
         <p>
-            Rechercher: @Html.TextBox("nomAgence", "", new { placeholder = "Nom de l'agence ..." })
+            @Html.TextBox("nomAgence", "", new { placeholder = "Nom de l'agence ..." })
             <button type="submit"><i class="fa fa-search"></i></button>
         </p>
     }

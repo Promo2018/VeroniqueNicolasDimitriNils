@@ -10,15 +10,6 @@
 </head>
 <body>
 
-    @using (Html.BeginForm(new { @class = "example" }))
-    {
-        <p>
-            Rechercher  @Html.TextBox("nom", "", new { placeholder = "Nom ..." })
-            @Html.TextBox("prenom", "", new { placeholder = "Prénom ..." })
-            @Html.TextBox("continent", "", new { placeholder = "Continent ..." })
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </p>
-    }
 
     <table class="table">
         <tr>

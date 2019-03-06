@@ -9,14 +9,6 @@
 </head>
 <body>
 
-    @using (Html.BeginForm(new { @class = "example" }))
-    {
-    <p>
-        @Html.TextBox("prenom", "", new { placeholder = "Prénom ..." })
-        @Html.TextBox("nom", "", new { placeholder = "Nom ..." })
-        <button type="submit"><i class="fa fa-search"></i></button>
-    </p>
-    }
 
     <table class="table">
         <tr>

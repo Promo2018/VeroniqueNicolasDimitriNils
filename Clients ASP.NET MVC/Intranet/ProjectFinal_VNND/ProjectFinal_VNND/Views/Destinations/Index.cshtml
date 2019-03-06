@@ -15,9 +15,9 @@
     @using (Html.BeginForm())
     {
         <p>
-            Rechercher @Html.TextBox("continent", "", new { placeholder = "Continent ..." })
-            et/ou @Html.TextBox("pays", "", new { placeholder = "Pays ..." })
-            et/ou @Html.TextBox("region", "", new { placeholder = "Region ..." })
+            @Html.TextBox("continent", "", new { placeholder = "Continent ..." })
+            @Html.TextBox("pays", "", new { placeholder = "Pays ..." })
+            @Html.TextBox("region", "", new { placeholder = "Region ..." })
             <button type="submit"><i class="fa fa-search"></i></button>
         </p>
     }
