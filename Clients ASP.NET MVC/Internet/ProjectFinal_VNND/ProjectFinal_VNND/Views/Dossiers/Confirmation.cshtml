@@ -22,7 +22,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.numero_carte_bancaire)
                     <div>
-                        @Html.EditorFor(model => model.numero_carte_bancaire, new { htmlAttributes = new { @class = "form-middle" } })
+                        @Html.EditorFor(model => model.numero_carte_bancaire, new { htmlAttributes = new { @class = "form-middle" , placeholder = " XXXX-XXXX-XXXX-XXXX"} })
                         @Html.ValidationMessageFor(model => model.numero_carte_bancaire, "", new { @class = "text-danger" })
                     </div>
                 </div>
