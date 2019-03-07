@@ -9,53 +9,54 @@
 </head>
 <body>
 
+    <div class="bordure">
+        <table class="table">
+            <tr>
+                <th>
+                    Numero Unique <br /> (ID Voyageur)
+                </th>
+                <th>
+                    Civilit&eacute
+                </th>
+                <th>
+                    Pr&eacutenom
+                </th>
+                <th>
+                    Nom
+                </th>
 
-    <table class="table">
-        <tr>
-            <th>
-                Numero Unique <br /> (ID Voyageur)
-            </th>
-            <th>
-                Civilit&eacute
-            </th>
-            <th>
-                Pr&eacutenom
-            </th>
-            <th>
-                Nom
-            </th>
+                <th>
+                    E-Mail
+                </th>
+                <th></th>
+            </tr>
 
-            <th>
-                E-Mail
-            </th>
-            <th></th>
-        </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.id_personne.
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Civilites.civilite)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.prenom)
+                    </td>
+                    <td>
+                        @item.NOMCAP
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.id_personne }) |
+                        @Html.ActionLink("Informations", "Details", new { id = item.id_personne })
+                    </td>
+                </tr>
+            }
 
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @item.id_personne.
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Civilites.civilite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.prenom)
-            </td>
-            <td>
-                @item.NOMCAP
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @Html.ActionLink("Modifier", "Edit", new { id = item.id_personne }) |
-                @Html.ActionLink("Informations", "Details", new { id = item.id_personne })                
-            </td>
-        </tr>
-        }
-
-    </table>
+        </table>
+        </div>
 </body>
 </html>

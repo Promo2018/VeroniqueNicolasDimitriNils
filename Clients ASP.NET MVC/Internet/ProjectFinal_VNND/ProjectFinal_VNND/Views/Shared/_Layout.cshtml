@@ -63,6 +63,7 @@
         <nav>
 
             <p id="p1">
+                @Session["listParticipant"]
                 @if (Session["client"] != null)
                 {<span>Compte : @Session["login"] | Bonjour @Html.Raw((Session["client"] as Personnes).Civilites.civilite) @Html.Raw((Session["client"] as Personnes).prenom)  @Html.Raw((Session["client"] as Personnes).NOMCAP) ! </span>}
                 @if (Session["login"] != null)
@@ -94,9 +95,12 @@
 
 
                 <li class="menu"><a href="../../Authentifications/Connexion">Connexion</a></li>
-                <li class="menu"><a href="../../Authentifications/Create">Créer un Compte</a></li>
+                @if (Session["client"] == null)
+                {
+                    <li class="menu"><a href="../../Authentifications/Create">Créer un Compte</a></li>
+                }
 
-            </ul>
+                </ul>
         </nav>
 
     </header>

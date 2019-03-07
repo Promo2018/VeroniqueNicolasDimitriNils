@@ -10,40 +10,41 @@
 </head>
 <body>
 
+    <div class="bordure">
+        <table class="table">
+            <tr>
+                <th>
+                    Numero de Dossier
+                </th>
+                <th>
+                    Etat
+                </th>
+                <th>
+                    Date de dernier suivi
+                </th>
+                <th></th>
+            </tr>
 
-    <table class="table">
-        <tr>
-            <th>
-                Numero de Dossier
-            </th>
-            <th>
-                Etat
-            </th>
-            <th>
-                Date de dernier suivi
-            </th>
-            <th></th>
-        </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id_dossier)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Etats_Dossiers.etat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dernier_suivi)
+                    </td>
 
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_dossier)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Etats_Dossiers.etat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dernier_suivi)
-            </td>
+                    <td>
+                        @Html.ActionLink("Informations", "Details", new { id = item.id_dossier })
+                    </td>
+                </tr>
+            }
 
-            <td>
-                @Html.ActionLink("Informations", "Details", new { id = item.id_dossier })
-            </td>
-        </tr>
-                    }
-
-    </table>
+        </table>
+        </div>
 </body>
 </html>

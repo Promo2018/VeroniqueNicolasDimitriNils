@@ -9,36 +9,39 @@
     <title>Liste des Comptes utilisateurs</title>
 </head>
 <body>
-    <table class="table">
-        <tr>
-            <th>
-                ID du Compte Utilisateur
-            </th>
-            <th>
-                E-mail / Login
-            </th>
-            <th>
-                Statut
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <div class="bordure">
+        <table class="table">
             <tr>
-                <td>
-                    @item.id_auth
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-                <td>
-                    @Html.ActionLink("Modifier mon Mot de Passe", "Edit", new { id = item.id_auth }) |
-                    @Html.ActionLink("Supprimer mon Compte", "Delete", new { id = item.id_auth })
-                </td>
+                <th>
+                    ID du Compte Utilisateur
+                </th>
+                <th>
+                    E-mail / Login
+                </th>
+                <th>
+                    Statut
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.id_auth
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modifier mon Mot de Passe", "Edit", new { id = item.id_auth }) |
+                        @Html.ActionLink("Supprimer mon Compte", "Delete", new { id = item.id_auth })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div>
+
 </body>
 </html>

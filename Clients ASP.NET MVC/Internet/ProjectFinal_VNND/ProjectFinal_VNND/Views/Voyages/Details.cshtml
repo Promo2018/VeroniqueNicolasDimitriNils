@@ -13,79 +13,79 @@
     <div class=" details">
         <h4>Voyages</h4>
         <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                ID Destination
-            </dt>
-            <dt>
-                @Model.id_voyage
-            </dt>
-            <dt>
-                Date aller
-            </dt>
+            <dl>
+                <dt>
+                    ID Destination
+                </dt>
+                <dt>
+                    @Model.id_voyage
+                </dt>
+                <dt>
+                    Date aller
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.date_aller)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.date_aller)
+                </dd>
 
-            <dt>
-                Date retour
-            </dt>
+                <dt>
+                    Date retour
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.date_retour)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.date_retour)
+                </dd>
 
-            <dt>
-                Nombre de places encore disponibles
-            </dt>
+                <dt>
+                    Nombre de places encore disponibles
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.places_disponibles)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.places_disponibles)
+                </dd>
 
-            <dt>
-                Tarif Tout Compris
-            </dt>
+                <dt>
+                    Tarif Tout Compris
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.tarif_tout_compris) &euro;
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tarif_tout_compris) &euro;
+                </dd>
 
-            <dt>
-                Agence de Voyage
-            </dt>
+                <dt>
+                    Agence de Voyage
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Agences.agence)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Agences.agence)
+                </dd>
 
-            <dt>
-                Destination
-            </dt>
-            <dd>
-                <ul class="dest2">
-                    <li>
-                        ID Destination : @Model.Destinations.id_destination
-                    </li>
-                    <li>
-                        Pays : @Model.Destinations.pays
-                    </li>
-                    <li>
-                        R&eacutegion : @Html.DisplayFor(model => model.Destinations.region)
-                    </li>
-                    <li>
-                        Description du Voyage
-                    </li>
-                    @Html.DisplayFor(model => model.Destinations.descriptif)
-                </ul class = "table">
-            </dd>
+                <dt>
+                    Destination
+                </dt>
+                <dd>
+                    <ul class="dest2">
+                        <li>
+                            ID Destination : @Model.Destinations.id_destination
+                        </li>
+                        <li>
+                            Pays : @Model.Destinations.pays
+                        </li>
+                        <li>
+                            R&eacutegion : @Html.DisplayFor(model => model.Destinations.region)
+                        </li>
+                        <li>
+                            Description du Voyage
+                        </li>
+                        @Html.DisplayFor(model => model.Destinations.descriptif)
+                    </ul>
+                </dd>
 
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Reserver", "Reserver", new { id = Model.id_voyage }) |
-        @Html.ActionLink("Retour à la liste des Voyages", "Index")
-    </p>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Reserver", "Reserver", new { id = Model.id_voyage }) |
+            @Html.ActionLink("Retour à la liste des Voyages", "Index")
+        </p>
 </body>
 </html>

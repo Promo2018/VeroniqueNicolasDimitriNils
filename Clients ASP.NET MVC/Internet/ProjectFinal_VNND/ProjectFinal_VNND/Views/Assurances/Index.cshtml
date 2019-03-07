@@ -10,60 +10,61 @@
 </head>
 <body>
 
-    @using (Html.BeginForm())
+    @*@using (Html.BeginForm())
     {
         <p>
             Rechercher: @Html.TextBox("type", "", new { placeholder = "Type de l'assurance ..." })
             <button type="submit"><i class="fa fa-search"></i></button>
         </p>
-    }
-
-    <table class="table">
-        <tr>
-            <th>
-                Type d'Assurance
-            </th>
-            <th>
-                Coût (en % du prix Total)
-            </th>
-            <th>
-                Conditions d'Application
-            </th>
-            <th></th>
-        </tr>
-
-
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.libelle)
-                </td>
-                <td>
-                    @item.prix100
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.descriptif)
-                </td>
-                <td>
-                    @using (Html.BeginForm())
-                    {
-                        <p> Veuillez confirmer la souscription à cette assurance?</p>
-                        <div>
-                            @Html.Hidden("f_idassurance", item.id_assurance)
-                            @Html.RadioButton("assur", "Oui", new { @checked = "checked" }) Oui
-                            @Html.RadioButton("assur", "Non")Non
-                            <input type="submit" value="Confirmer" class="btn btn-default" />
-                        </div>
-                    }
-                </td>
-            </tr>
-        }
+    }*@
+        <div class="bordure">
+            <table class="table">
+                <tr>
+                    <th>
+                        Type d'Assurance
+                    </th>
+                    <th>
+                        Coût (en % du prix Total)
+                    </th>
+                    <th>
+                        Conditions d'Application
+                    </th>
+                    <th></th>
+                </tr>
 
 
 
-    </table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.libelle)
+                        </td>
+                        <td>
+                            @item.prix100
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descriptif)
+                        </td>
+                        <td>
+                            @using (Html.BeginForm())
+                            {
+                                <p> Veuillez confirmer la souscription à cette assurance?</p>
+                                <div>
+                                    @Html.Hidden("f_idassurance", item.id_assurance)
+                                    @Html.RadioButton("assur", "Oui", new { @checked = "checked" }) Oui
+                                    @Html.RadioButton("assur", "Non")Non
+                                    <input type="submit" value="Confirmer" class="btn btn-default" />
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+
+
+
+            </table>
+        </div>
 </body>
 <footer>
 
