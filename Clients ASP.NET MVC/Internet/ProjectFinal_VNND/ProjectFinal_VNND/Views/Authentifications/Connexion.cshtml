@@ -20,9 +20,10 @@
         </p>
     }
 
-    <p>
-        @ViewBag.message
-    </p>
+        <p>
+            @Request.QueryString["message"];
+            @ViewBag.message
+        </p>
 </body>
 </html>
 
