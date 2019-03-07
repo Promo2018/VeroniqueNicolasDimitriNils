@@ -10,7 +10,7 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @*<link rel="stylesheet" href="@Url.Content(" ~/Content/Style.css")" type="text/css" />*@
-    <link rel="stylesheet" href="@Url.Content("~/Content/Style1.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/StyleIntranet.css")" type="text/css" />
 </head>
 <body>
     <header>
@@ -27,11 +27,12 @@
         </div>
         @if (Session["login"] != null)
         {
-            <span> Vous &ecirc;tes  connecté avec le compte "@Session["statut"]" : @Session["login"]</span>
+            
 
             <nav>
                 <p id="p1">
 
+                    <span> Vous &ecirc;tes  connecté avec le compte "@Session["statut"]" : @Session["login"]</span>
                     <button class="btn btn-default" type="button" onclick="location.href='@Url.Action("LogOff", "Authentifications")'">D&eacute;connexion</button>
                 </p>
                 <ul>
